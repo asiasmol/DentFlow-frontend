@@ -1,9 +1,9 @@
-import {MenuItem} from "../models/MenuItem";
+import {link} from "./Link";
 
-export const menuItems: MenuItem[] = [
+export const menuItems: link[] = [
     {
         label: "About",
-        link: "/about"
+        link: "/profile"
     },
     {
         label: "Services",

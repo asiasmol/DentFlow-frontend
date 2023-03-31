@@ -1,4 +1,4 @@
-export type MenuItem = {
+export type link = {
     label: string,
     link: string
 }
