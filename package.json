@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.18",
     "@chakra-ui/react": "^2.5.2",
     "@mui/material": "^5.11.14",
     "@testing-library/jest-dom": "^5.16.5",
@@ -14,6 +15,7 @@
     "@types/react-dom": "^18.0.11",
     "axios": "^0.24.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
