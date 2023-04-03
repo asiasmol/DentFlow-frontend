@@ -5,10 +5,12 @@ export const Wrapper = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  background-color: #1784B3;
 `;
 
-export const Logo = styled.div`
+export const Logo = styled.img`
   font-size: 1.5rem;
+  width: 9%;
 `;
 
 export const Toggle = styled.div`
@@ -48,13 +50,20 @@ export const Menu = styled.div<{ isOpen: boolean }>`
 
 export const MenuItem = styled.a`
   text-decoration: none;
-  color: black;
+  color: white;
   margin-right: 1rem;
   cursor: pointer;
   @media (max-width: 768px) {
     margin: 0.5rem 0;
+    color: black;
   }
 `;
 export const Login = styled.button`
+    background-color: #FFBE5C;
+  color: white;
+  border: none;
+  width: 70px;
+  height: 35px;
+  border-radius: 10px;
     
 `
