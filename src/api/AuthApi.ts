@@ -4,5 +4,5 @@ import { SignInResponse } from "../models/api/SignInResponse";
 
 export class AuthApi {
   static signIn = async (request: SignInRequest) =>
-    await axios.post<SignInResponse>("auth/authenticate", request);
+    await axios.post<SignInResponse>("http://localhost:8080/api/auth/authenticate", request);
 }

@@ -8,7 +8,7 @@ import {
 } from "./Login.styles";
 import {AuthApi} from "../../api/AuthApi";
 import { toast } from "react-toastify";
-import {ACCESS_TOKEN} from "../../constants/constants";
+import {ACCESS_TOKEN, EMAIL} from "../../constants/constants";
 import {useNavigate} from "react-router-dom";
 
 export const Login = () => {
