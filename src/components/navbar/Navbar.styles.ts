@@ -1,12 +1,6 @@
-import Box from '@mui/material/Box';
 import styled from "styled-components";
 
-export const MyBox = styled(Box)`
-  display: none;
-  @media (max-width: 768px) {
-    display: flex ;
-  }
-`
+
 export const Wrapper = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -17,18 +11,19 @@ export const Wrapper = styled.nav`
 
 export const Logo = styled.img`
   font-size: 1.5rem;
-  width: 10%;
+  width: 10rem;
+  margin-left: 1.5rem;
+  }
   @media (max-width: 768px) {
     display: none;
-
   ;
   }
 `;
 export const MidLogo = styled.img`
   display: none;
   @media (max-width: 768px) {
+    width: 10rem;
     display: block;
-    width: 10%;
     margin-left: auto;
     margin-right: auto;
   ;
@@ -58,7 +53,7 @@ export const Toggle = styled.div`
 export const Menu = styled.div<{ isOpen: boolean }>`
   display: flex;
   width: 100%;
-  margin-left: 30px;
+  margin-left: 2rem;
   align-items: center;
   justify-content: space-between;
   @media (max-width: 768px) {
@@ -85,7 +80,7 @@ export const MenuItem = styled.a`
   text-decoration: none;
   color: white;
   margin-right: 20px;
-  font-size: 25px;
+  font-size: 28px;
   cursor: pointer;
   @media (max-width: 768px) {
     margin: 0.5rem 0;
@@ -96,7 +91,7 @@ export const MenuItem = styled.a`
 export const Login = styled.button`
   background-color: #FFBE5C;
   color: white;
-  font-size: 20px;
+  font-size: 28px;
   border: none;
   margin-right:auto  ;
   width: 100px;

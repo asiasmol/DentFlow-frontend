@@ -1,8 +1,16 @@
 import React, {useEffect, useState} from "react";
-import {Logo, Menu, Toggle, Wrapper, MenuItems, MenuItem, Login, MyBox, MidLogo} from "./Navbar.styles";
+import {
+    Logo,
+    Menu,
+    Toggle,
+    Wrapper,
+    MenuItems,
+    MenuItem,
+    Login,
+    MidLogo
+} from "./Navbar.styles";
 import {link} from "../../models/Link";
 import {Link, Outlet} from "react-router-dom";
-import {ACCESS_TOKEN} from "../../constants/constants";
 import logo from "../../resources/img/logo.png"
 import {ProfileButton} from "./ProfileButton";
 
@@ -17,8 +25,6 @@ export const Navbar: React.FC<NavbarProps> = ({ pages }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLogged, setIsLogged] = useState(false);
 
-    const logoPath = "./public/img/logo.png";
-    const logout = () => localStorage.removeItem('ACCESS_TOKEN')
     const toggle = () => {
         setIsOpen(!isOpen);
     }
@@ -33,6 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ pages }) => {
 
 
     return (
+
         <>
         <Wrapper>
             <Logo src={logo} alt="Logo"></Logo>
