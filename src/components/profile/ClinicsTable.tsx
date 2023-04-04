@@ -1,9 +1,15 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef} from '@mui/x-data-grid';
+import {TableDiv} from"./Profile.style";
+import { useState, useEffect } from "react";
+import { ClinicResponse } from '../../models/api/ClinicResponse';
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: '', width: 90 },
+    {
+        field: 'id',
+        headerName: 'Nr.',
+        width: 90
+    },
     {
         field: 'clinic',
         headerName: 'Kliniki :',
@@ -12,35 +18,38 @@ const columns: GridColDef[] = [
     }
 ];
 
-const rows = [
-    { id: 1, clinic: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, clinic: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, clinic: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, clinic: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, clinic: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, clinic: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, clinic: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, clinic: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, clinic: 'Roxie', firstName: 'Harvey', age: 65 },
-];
-
 export default function DataGridDemo() {
+    const [clinic, setClinic] = useState<ClinicResponse[]>([]);
+
+    useEffect(() => {
+        const api = async () => {
+            const data = await fetch("http://localhost:8080//api/clinics/all", {
+                method: "GET"
+            });
+            const jsonData = await data.json();
+            setClinic(jsonData.clinic);
+        };
+        api();
+    },[]);
+    clinic.map(value => {
+        console.log(value.name)
+    })
     return (
-        <Box sx={{ height: 318, width: '50%' }}>
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                initialState={{
-                    pagination: {
-                        paginationModel: {
-                            pageSize: 4,
-                        },
-                    },
-                }}
-                pageSizeOptions={[4]}
-                // checkboxSelection
-                // disableRowSelectionOnClick
-            />
-         </Box>
+                <TableDiv>
+                    <DataGrid
+                        rows={clinic}
+                        columns={columns}
+                        initialState={{
+                            pagination: {
+                                paginationModel: {
+                                    pageSize: 4,
+                                },
+                            },
+                        }}
+                        pageSizeOptions={[4]}
+                        // checkboxSelection
+                        // disableRowSelectionOnClick
+                    />
+                 </TableDiv>
     );
 }

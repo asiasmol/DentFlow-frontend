@@ -1,5 +1,4 @@
 export type ClinicResponse = {
     id:number
-    name:string 
-
+    name:string
 }
