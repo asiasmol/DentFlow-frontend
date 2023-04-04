@@ -8,11 +8,11 @@ import {
 } from "./Login.styles";
 import {AuthApi} from "../../api/AuthApi";
 import { toast } from "react-toastify";
-import {ACCESS_TOKEN} from "../../constants/constants";
+import {ACCESS_TOKEN, EMAIL} from "../../constants/constants";
 import {useNavigate} from "react-router-dom";
 
 export const Login = () => {
-  const [email, setEmial] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
@@ -55,7 +55,7 @@ export const Login = () => {
   }, [password]);
 
   const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmial(event.target.value);
+    setEmail(event.target.value);
   };
 
   const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +71,7 @@ export const Login = () => {
           onChange={(e) => onEmailChange(e)}
         ></LoginInput>
         {!isEmailValid && (
-          <ValidationError>Wpisz Emial</ValidationError>
+          <ValidationError>Wpisz Email</ValidationError>
         )}
         <LoginInput
           onChange={(e) => onPasswordChange(e)}

@@ -1,6 +1,6 @@
 import {link} from "./Link";
 
-export const menuItems: link[] = [
+export const pages: link[] = [
     {
         label: "About",
         link: "/profile"
