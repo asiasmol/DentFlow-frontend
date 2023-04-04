@@ -25,7 +25,7 @@ export const Login = () => {
         email: email,
         password: password,
       });
-      localStorage.setItem(ACCESS_TOKEN, result.data.accessToken);
+      localStorage.setItem(ACCESS_TOKEN, result.data.token);
       toast.success("Poprawnie zalogowano", {
         position: toast.POSITION.TOP_RIGHT,
       });

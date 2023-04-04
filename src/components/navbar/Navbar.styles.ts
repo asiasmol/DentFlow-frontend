@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Box from '@mui/material/Box';
 
 
 export const Wrapper = styled.nav`
@@ -16,7 +17,20 @@ export const Logo = styled.img`
   }
   @media (max-width: 768px) {
     display: none;
-  ;
+  }
+`;
+export const Link = styled.a`
+  text-decoration: none;
+  color: black;
+  @media (max-width: 768px) {
+    
+  }
+`;
+export const LogoLink = styled.a`
+  text-decoration: none;
+  color: black;
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 export const MidLogo = styled.img`

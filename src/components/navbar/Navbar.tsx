@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {
     Logo,
     Menu,
@@ -7,12 +7,14 @@ import {
     MenuItems,
     MenuItem,
     Login,
-    MidLogo
+    MidLogo, LogoLink
 } from "./Navbar.styles";
 import {link} from "../../models/Link";
 import {Link, Outlet} from "react-router-dom";
 import logo from "../../resources/img/logo.png"
 import {ProfileButton} from "./ProfileButton";
+import {UserContext} from "../../context/UserContext";
+
 
 
 
@@ -23,32 +25,28 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ pages }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isLogged, setIsLogged] = useState(false);
+    const { currentUser} = useContext(UserContext);
 
     const toggle = () => {
+        console.log(currentUser)
         setIsOpen(!isOpen);
     }
-
-    useEffect(() => {
-        const accessToken = localStorage.getItem('ACCESS_TOKEN');
-        if (accessToken) {
-            setIsLogged(true);
-        }
-    }, []);
-
-
 
     return (
 
         <>
         <Wrapper>
-            <Logo src={logo} alt="Logo"></Logo>
+            <LogoLink href={"/"}>
+                <Logo src={logo} alt="Logo"></Logo>
+            </LogoLink>
             <Toggle onClick={toggle}>
                 <span />
                 <span />
                 <span />
             </Toggle>
-            <MidLogo src={logo} alt="Logo"></MidLogo>
+            <Link to={"/"}>
+                <MidLogo src={logo} alt="Logo"></MidLogo>
+            </Link>
             <Menu isOpen={isOpen}>
                 <MenuItems>
                     {pages.map((page) => (
@@ -58,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({ pages }) => {
                     ))}
                 </MenuItems>
             </Menu>
-            {!isLogged ? (
+            {!currentUser ? (
                 <Link to={"/login"}>
                     <Login  >
                         Login
