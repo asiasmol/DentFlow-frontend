@@ -106,6 +106,7 @@ export const Login = styled.button`
   background-color: #FFBE5C;
   color: white;
   font-size: 28px;
+  cursor: pointer;
   border: none;
   margin-right:auto  ;
   width: 100px;
@@ -113,5 +114,8 @@ export const Login = styled.button`
   border-radius: 10px;
   @media (max-width: 768px) {
     margin-left:  30px ;
+  }
+  &:hover {
+    filter: brightness(85%);
   }
 `

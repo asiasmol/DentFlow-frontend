@@ -7,12 +7,21 @@ import {Login} from "../components/login/Login";
 import {Profile} from "../components/profile/Profile";
 import {ProtectedRoute} from "../components/ProtectedRoute";
 import {UnauthorizedRoute} from "../components/UnauthorizedRoute";
+import {ChooseClinic} from "../components/chooseClinic/ChooseClinic";
 
 export const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Navbar  pages={pages}/>}>
         <Route index element={<Home />} />
+          <Route
+              path="/Clinics"
+              element={
+               <ProtectedRoute>
+                 <ChooseClinic />
+              </ProtectedRoute>
+              }
+          ></Route>
           <Route
               path="/login"
               element={
