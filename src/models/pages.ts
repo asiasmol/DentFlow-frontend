@@ -6,8 +6,8 @@ export const pages: link[] = [
         link: "/profile"
     },
     {
-        label: "Services",
-        link: "/services"
+        label: "Clinics",
+        link: "/Clinics"
     },
     {
         label: "Contact",

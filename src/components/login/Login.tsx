@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {
   InputContainer,
   LoginButton,
@@ -8,14 +8,17 @@ import {
 } from "./Login.styles";
 import {AuthApi} from "../../api/AuthApi";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import {ACCESS_TOKEN} from "../../constants/constants";
 import {useNavigate} from "react-router-dom";
+import {UserContext} from "../../context/UserContext";
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
+  const { userModifier} = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -25,11 +28,10 @@ export const Login = () => {
         email: email,
         password: password,
       });
-      localStorage.setItem(ACCESS_TOKEN, result.data.accessToken);
-      toast.success("Poprawnie zalogowano", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-      navigate("/");
+      userModifier({email:email})
+      localStorage.setItem(ACCESS_TOKEN, result.data.token);
+      toast.success("Poprawnie zalogowano");
+      navigate("/Clinics");
     } catch (error: any) {
       let errorMessage;
 

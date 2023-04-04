@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Box from '@mui/material/Box';
 
 
 export const Wrapper = styled.nav`
@@ -16,7 +17,20 @@ export const Logo = styled.img`
   }
   @media (max-width: 768px) {
     display: none;
-  ;
+  }
+`;
+export const Link = styled.a`
+  text-decoration: none;
+  color: black;
+  @media (max-width: 768px) {
+    
+  }
+`;
+export const LogoLink = styled.a`
+  text-decoration: none;
+  color: black;
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 export const MidLogo = styled.img`
@@ -92,6 +106,7 @@ export const Login = styled.button`
   background-color: #FFBE5C;
   color: white;
   font-size: 28px;
+  cursor: pointer;
   border: none;
   margin-right:auto  ;
   width: 100px;
@@ -99,5 +114,8 @@ export const Login = styled.button`
   border-radius: 10px;
   @media (max-width: 768px) {
     margin-left:  30px ;
+  }
+  &:hover {
+    filter: brightness(85%);
   }
 `
