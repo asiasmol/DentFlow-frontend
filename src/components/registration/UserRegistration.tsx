@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-
 import './Registration.style';
 import {StyledBox, WelcomeText, WindowRegistration, Fields} from "./Registration.style";
+import {UserApi} from "../../api/UserApi";
+import {UserRegistrationData} from "../../models/api/UserRegistrationData";
 
 
 const UserRegistration = () => {
@@ -15,7 +16,14 @@ const UserRegistration = () => {
     const [telNumber, setTelNumber] = useState('')
 
     const handleSubmit = () => {
-        console.log("Nastąpi rejestracja użytkownika " + firstName + ' ' + lastName + ' ' + email + ' ' + password + ' ' + telNumber)
+        let user: UserRegistrationData = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            telNumber: telNumber
+        }
+        UserApi.registerUser(user).then(r => console.log("zarejestrowano"))
     }
 
     return (
