@@ -23,14 +23,13 @@ export default function DataGridDemo() {
     const [clinic, setClinic] = useState<ClinicResponse[]>([]);
     const fetchClinic = useCallback(async () => {
         try {
-            const result = await ClinicApi.getAll()
+            const result = await ClinicApi.getClinicWhereWork()
             setClinic(result.data)
         }
         finally {
 
         }
     },[])
-
     useEffect(() => {
         fetchClinic()
     },[fetchClinic]);
