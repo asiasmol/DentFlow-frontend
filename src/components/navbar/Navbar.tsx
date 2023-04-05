@@ -56,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({ pages }) => {
                     ))}
                 </MenuItems>
             </Menu>
-            {!currentUser ? (
+            {currentUser ? (
                 <Link to={"/login"}>
                     <Login  >
                         Login

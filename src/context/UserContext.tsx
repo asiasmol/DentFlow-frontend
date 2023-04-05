@@ -3,7 +3,7 @@ import { UserContextType } from "../models/UserContextType";
 import { User } from "../models/User";
 import { ACCESS_TOKEN } from "../constants/constants";
 import { UserApi } from "../api/UserApi";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 const defaultSettings: UserContextType = {
   currentUser: null,
@@ -29,13 +29,13 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
   useEffect(() => {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (token && !currentUser) {
-      const decodedToken = jwt_decode(token) as any;
-      const tokenExp = decodedToken.exp as number;
-      const currentTimestamp = Math.round(Date.now() / 1000);
+      // const decodedToken = jwt_decode(token) as any;
+      // const tokenExp = decodedToken.exp as number;
+      // const currentTimestamp = Math.round(Date.now() / 1000);
 
-      if (tokenExp > currentTimestamp) {
+      // if (tokenExp > currentTimestamp) {
         fetchUser();
-      }
+      // }
     }
   }, [fetchUser, currentUser]);
 
