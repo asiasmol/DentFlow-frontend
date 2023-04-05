@@ -45,7 +45,7 @@ export default function MultiActionAreaCard() {
                 </Typography>
                 <Typography>Hasło:</Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {user?.passwordLength}
+                    ********
                 </Typography>
             <CardActions>
                 <Button size="small" color="primary">
