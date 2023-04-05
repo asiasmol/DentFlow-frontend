@@ -2,15 +2,19 @@ import {link} from "./Link";
 
 export const pages: link[] = [
     {
-        label: "About",
+        label: "O nas",
         link: "/profile"
     },
     {
-        label: "Clinics",
+        label: "Kliniki",
         link: "/Clinics"
     },
     {
-        label: "Contact",
+        label: "Kontakt",
         link: "/contact"
+    },
+    {
+        label: "Załóż konto",
+        link: "/user-registration"
     }
 ];

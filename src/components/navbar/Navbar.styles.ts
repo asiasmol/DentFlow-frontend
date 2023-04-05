@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Box from '@mui/material/Box';
 
 
 export const Wrapper = styled.nav`
@@ -14,11 +13,10 @@ export const Logo = styled.img`
   font-size: 1.5rem;
   width: 10rem;
   margin-left: 1.5rem;
-  }
   @media (max-width: 768px) {
     display: none;
   }
-`;
+`
 export const Link = styled.a`
   text-decoration: none;
   color: black;
