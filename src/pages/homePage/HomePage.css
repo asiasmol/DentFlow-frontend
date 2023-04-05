@@ -1,0 +1,23 @@
+a{
+    text-decoration: none;
+    color: white;
+}
+
+#buttons{
+    grid-column: 8/10;
+    justify-self: end;
+}
+
+.MuiTextField-root{
+    width: 20rem;
+    height: 4rem;
+}
+
+#contact-form-button{
+    grid-column: 4;
+    grid-row: 8;
+    margin-left: 3rem;
+}
+.input{
+    height: 6rem;
+}
