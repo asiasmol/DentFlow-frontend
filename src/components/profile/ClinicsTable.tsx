@@ -34,10 +34,17 @@ export default function DataGridDemo() {
     useEffect(() => {
         fetchClinic()
     },[fetchClinic]);
-    console.log(clinic)
+
     return (
                 <TableDiv>
-                    <DataGrid
+                    <DataGrid sx={{
+                        boxShadow: 2,
+                        border: 2,
+                        borderColor: '#1784B3',
+                        '& .MuiDataGrid-cell:hover': {
+                            color: 'primary.main',
+                        },
+                    }}
                         rows={clinic}
                         columns={columns}
                         initialState={{
