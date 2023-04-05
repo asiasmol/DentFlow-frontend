@@ -8,7 +8,6 @@ import {Profile} from "../components/profile/Profile";
 import {ProtectedRoute} from "../components/ProtectedRoute";
 import {UnauthorizedRoute} from "../components/UnauthorizedRoute";
 import UserRegistration from "../components/registration/UserRegistration";
-import ClinicRegistration from "../components/registration/ClinicRegistration";
 import {ChooseClinic} from "../components/chooseClinic/ChooseClinic";
 
 export const AppRouter = () => {
@@ -43,10 +42,6 @@ export const AppRouter = () => {
           <Route
               path="/user-registration"
               element={<UserRegistration/>}
-          ></Route>
-          <Route
-              path="/clinic-registration"
-              element={<ClinicRegistration/>}
           ></Route>
       </Route>
     </Routes>

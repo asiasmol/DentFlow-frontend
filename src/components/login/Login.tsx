@@ -45,7 +45,7 @@ export const Login = () => {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
-  }, [email, password, navigate]);
+  }, [email,userModifier, password, navigate]);
 
 
   useEffect(() => {

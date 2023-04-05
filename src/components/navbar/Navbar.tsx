@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import {
     Logo,
     Menu,
@@ -56,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({ pages }) => {
                     ))}
                 </MenuItems>
             </Menu>
-            {currentUser ? (
+            {!currentUser ? (
                 <Link to={"/login"}>
                     <Login  >
                         Login

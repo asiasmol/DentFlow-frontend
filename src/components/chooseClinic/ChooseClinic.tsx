@@ -5,11 +5,13 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {ClinicResponse} from "../../models/api/ClinicResponse";
 import {ClinicApi} from "../../api/ClinicApi";
+import ClinicRegistration from "../registration/ClinicRegistration";
 
 
 export const ChooseClinic = () => {
     const [clinicId, setClinicId] = React.useState<string | number>("");
-    const [clinics, setClinics] = React.useState<ClinicResponse[]>([]);
+    const [myclinics, setMyClinics] = React.useState<ClinicResponse[]>([]);
+    const [clinicsWhereWork, setclinicsWhereWork] = React.useState<ClinicResponse[]>([]);
     const [isClinicValid, setisClinicValid] = useState<boolean>(true);
     const [open, setOpen] = React.useState(false);
 
@@ -24,57 +26,72 @@ export const ChooseClinic = () => {
     const handleOpen = () => {
         setOpen(true);
     };
-    const fetchClinic = useCallback(async () => {
+    const fetchClinics= useCallback(async () => {
         try {
             // setIsLoading(true);
-            const result = await ClinicApi.getAll();
-            setClinics(result.data);
+            const result = await ClinicApi.getClinicWhereWork();
+            setclinicsWhereWork(result.data);
+
+            const result1 = await ClinicApi.getMyClonics();
+            setMyClinics(result1.data);
         } finally {
             // setIsLoading(false);
         }
     }, []);
+
     useEffect(() => {
-        fetchClinic();
-    }, [fetchClinic]);
+        fetchClinics();
+    }, [fetchClinics])
 
     const choseClinic = useCallback(async () => {
         console.log("działa")
     },[] );
+
     useEffect(() => {
-        setisClinicValid(clinicId != "");
+        setisClinicValid(clinicId !== "");
     }, [clinicId]);
 
     return (
         <>
-    <MainContainer>
-        <ChooseClinicLabel>Wybierz placówkę </ChooseClinicLabel>
-        <FormSelect sx={{ m: 1, Width: 300 }}>
-            <InputLabel id="demo-controlled-open-select-label">Clinic</InputLabel>
-            <Select
-                labelId="demo-controlled-open-select-label"
-                id="demo-controlled-open-select"
-                open={open}
-                onClose={handleClose}
-                onOpen={handleOpen}
-                value={clinicId}
-                label="Clinic"
-                onChange={handleChange}
-            >
-                {clinics.map((clinic) => (
-                    <MenuItem key={clinic.id}  value={clinic.name}>
-                        {clinic.name}
-                    </MenuItem>
-                ))}
-            </Select>
-            <ClinicButton
-                disabled={!isClinicValid}
-                onClick={choseClinic}
-            >
-                Potwierdź
-            </ClinicButton>
-        </FormSelect>
+            {myclinics.length === 0 && clinicsWhereWork.length === 0 ? (
+            <ClinicRegistration/>
+            ):(
+                <MainContainer>
+                    <ChooseClinicLabel>Wybierz placówkę </ChooseClinicLabel>
+                    <FormSelect sx={{ m: 1, Width: 300 }}>
+                        <InputLabel id="demo-controlled-open-select-label">Clinic</InputLabel>
+                        <Select
+                            labelId="demo-controlled-open-select-label"
+                            id="demo-controlled-open-select"
+                            open={open}
+                            onClose={handleClose}
+                            onOpen={handleOpen}
+                            value={clinicId}
+                            label="Clinic"
+                            onChange={handleChange}
+                        >
+                            {clinicsWhereWork.map((clinic) => (
+                                <MenuItem key={clinic.id}  value={clinic.name}>
+                                    {clinic.name}
+                                </MenuItem>
+                            ))}
+                            {myclinics.map((clinic) => (
+                                <MenuItem key={clinic.id}  value={clinic.name}>
+                                    {clinic.name}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                        <ClinicButton
+                            disabled={!isClinicValid}
+                            onClick={choseClinic}
+                        >
+                            Potwierdź
+                        </ClinicButton>
+                    </FormSelect>
 
-    </MainContainer>
+                </MainContainer>
+            )}
+
     </>
 );
 };
