@@ -1,4 +1,5 @@
 import React from 'react'
+import { SocialIcon } from 'react-social-icons';
 import {
   Box,
   Container,
@@ -6,6 +7,7 @@ import {
   Column,
   FooterLink,
   Heading,
+  FooterText,
 } from "./Footer.styles";
 
 
@@ -19,44 +21,23 @@ export const Footer = () => {
             <FooterLink href="/profile">Zespół</FooterLink>  
           </Column>
           <Column>
-            <Heading>Kliniki</Heading>
-            <FooterLink href="/Clinics">Sprawdź</FooterLink>
-          </Column>
-          <Column>
-            <Heading>Kontakt</Heading>
-            <FooterLink href="/contacts">Skontaktuj się</FooterLink>
-          </Column>
-          <Column>
             <Heading>Social Media</Heading>
             <FooterLink href="#">
               <i className="fab fa-facebook-f">
                 <span style={{ marginLeft: "10px" }}>
-                  Facebook
-                </span>
-              </i>
-            </FooterLink>
-            <FooterLink href="#">
-              <i className="fab fa-instagram">
-                <span style={{ marginLeft: "10px" }}>
-                  Instagram
-                </span>
-              </i>
-            </FooterLink>
-            <FooterLink href="#">
-              <i className="fab fa-twitter">
-                <span style={{ marginLeft: "10px" }}>
-                  Twitter
-                </span>
-              </i>
-            </FooterLink>
-            <FooterLink href="#">
-              <i className="fab fa-youtube">
-                <span style={{ marginLeft: "10px" }}>
-                  Youtube
+                <SocialIcon network="github" bgColor="#FFBE5C" url="https://github.com/EternalCode-pl"
+                style={{ height: 25, width: 25 }} />
                 </span>
               </i>
             </FooterLink>
           </Column>
+          <Column>
+            <Heading>Eternal-Code sp. z o.o</Heading>
+            <FooterText>ul. Codecoolowa 1, 00-000 Codecool</FooterText>
+            <FooterText>kontakt@eternalcode.pl</FooterText>
+            <FooterText>+48 123 123 123</FooterText>
+          </Column>
+          
         </Row>
       </Container>
     </Box>

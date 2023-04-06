@@ -3,10 +3,11 @@ import styled from 'styled-components';
    
 export const Box = styled.div`
   padding-top: 40px;
+  margin-top: 10rem;
   background: #1784B3;
   bottom: 0;
   width: 100%;
-  height: 15rem;
+  height: 20rem;
   
    
   @media (max-width: 1000px) {
@@ -32,7 +33,8 @@ export const Column = styled.div`
 `;
    
 export const Row = styled.div`
-  display: grid;
+  display: inherit;
+  justify-content: center;
   grid-template-columns: repeat(auto-fill, 
                          minmax(185px, 1fr));
   grid-gap: 20px;
@@ -50,9 +52,16 @@ export const FooterLink = styled.a`
   text-decoration: none;
    
   &:hover {
-      color: green;
+      color: black;
       transition: 200ms ease-in;
   }
+`;
+
+export const FooterText = styled.a`
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-decoration: none;
 `;
    
 export const Heading = styled.p`
