@@ -10,7 +10,7 @@ import ClinicRegistration from "../registration/ClinicRegistration";
 
 export const ChooseClinic = () => {
     const [clinicId, setClinicId] = React.useState<string | number>("");
-    const [myclinics, setMyClinics] = React.useState<ClinicResponse[]>([]);
+    const [myclinic, setMyClinic] = React.useState<ClinicResponse>();
     const [clinicsWhereWork, setclinicsWhereWork] = React.useState<ClinicResponse[]>([]);
     const [isClinicValid, setisClinicValid] = useState<boolean>(true);
     const [open, setOpen] = React.useState(false);
@@ -31,9 +31,6 @@ export const ChooseClinic = () => {
             // setIsLoading(true);
             const result = await ClinicApi.getClinicWhereWork();
             setclinicsWhereWork(result.data);
-
-            const result1 = await ClinicApi.getMyClonics();
-            setMyClinics(result1.data);
         } finally {
             // setIsLoading(false);
         }
@@ -53,7 +50,7 @@ export const ChooseClinic = () => {
 
     return (
         <>
-            {myclinics.length === 0 && clinicsWhereWork.length === 0 ? (
+            {clinicsWhereWork.length === 0 ? (
             <ClinicRegistration/>
             ):(
                 <MainContainer>
@@ -71,11 +68,6 @@ export const ChooseClinic = () => {
                             onChange={handleChange}
                         >
                             {clinicsWhereWork.map((clinic) => (
-                                <MenuItem key={clinic.id}  value={clinic.name}>
-                                    {clinic.name}
-                                </MenuItem>
-                            ))}
-                            {myclinics.map((clinic) => (
                                 <MenuItem key={clinic.id}  value={clinic.name}>
                                     {clinic.name}
                                 </MenuItem>

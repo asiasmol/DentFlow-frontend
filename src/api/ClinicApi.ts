@@ -9,6 +9,6 @@ export class ClinicApi {
     static register = async (request:ClinicRequest) =>
         await authorizedApi.post("/clinics",request);
 
-    static getMyClonics = async () =>
-        await authorizedApi.get<ClinicResponse[]>("/clinics/myClinic");
+    static getMyClonic = async () =>
+        await authorizedApi.get<ClinicResponse>("/clinics/myClinic");
 }

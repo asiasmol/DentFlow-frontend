@@ -41,7 +41,7 @@ export const ClinicButton = styled.button`
   height: 4rem;
   @media (max-width: 768px) {
     font-size: 1rem;
-    width: 5rem ;
+    width: 6rem ;
     height: 3rem;
   }
   &:disabled {

@@ -5,6 +5,7 @@ import './Registration.style';
 import {StyledBox, WelcomeText, WindowRegistration, Fields} from "./Registration.style";
 import {UserApi} from "../../api/UserApi";
 import {UserRegistrationData} from "../../models/api/UserRegistrationData";
+import {useForceUpdate} from "@chakra-ui/react";
 
 
 const UserRegistration = () => {
@@ -23,7 +24,8 @@ const UserRegistration = () => {
             password: password,
             telNumber: telNumber
         }
-        UserApi.registerUser(user).then(r => console.log("zarejestrowano"))
+        UserApi.registerUser(user).then(r => {
+        })
     }
 
     return (

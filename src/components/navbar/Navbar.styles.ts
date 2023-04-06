@@ -69,12 +69,13 @@ export const Menu = styled.div<{ isOpen: boolean }>`
   align-items: center;
   justify-content: space-between;
   @media (max-width: 768px) {
+    margin-top: 3rem;
     flex-direction: column;
     position: absolute;
     top: 70px;
     margin-left: auto;
     left: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
-    background: white;
+    background-color: white;
     width: 100%;
     transition: all 0.3s ease-in-out;
     max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
@@ -83,6 +84,7 @@ export const Menu = styled.div<{ isOpen: boolean }>`
 `;
 export const MenuItems = styled.ul`
   @media (max-width: 768px) {
+    background-color: white;
     display: flex;
     flex-direction: column;
   }
