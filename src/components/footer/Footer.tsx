@@ -8,7 +8,8 @@ import {
   Heading,
 } from "./Footer.styles";
 
-const Footer = () => {
+
+export const Footer = () => {
   return (
     <Box>
       <Container>
@@ -59,8 +60,7 @@ const Footer = () => {
         </Row>
       </Container>
     </Box>
-      
+    
   )
 }
 
-export default Footer
