@@ -32,7 +32,8 @@ export const Column = styled.div`
 `;
    
 export const Row = styled.div`
-  display: grid;
+  display: inherit;
+  justify-content: center;
   grid-template-columns: repeat(auto-fill, 
                          minmax(185px, 1fr));
   grid-gap: 20px;
@@ -50,9 +51,16 @@ export const FooterLink = styled.a`
   text-decoration: none;
    
   &:hover {
-      color: green;
+      color: black;
       transition: 200ms ease-in;
   }
+`;
+
+export const FooterText = styled.a`
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-decoration: none;
 `;
    
 export const Heading = styled.p`
