@@ -9,6 +9,7 @@ import {ChooseClinic} from "../components/chooseClinic/ChooseClinic";
 import HomePage from "../pages/homePage/HomePage";
 import {Navbar} from "../components/navbar/Navbar";
 import {pages} from "../models/pages";
+import {Footer} from "../components/footer/Footer";
 
 export const AppRouter = () => {
   return (
