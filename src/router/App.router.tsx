@@ -1,18 +1,30 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Navbar } from "../components/navbar/Navbar";
-import {Home} from "../components/home/Home";
-import {pages} from "../models/pages";
 import {Login} from "../components/login/Login";
 import {Profile} from "../components/profile/Profile";
 import {ProtectedRoute} from "../components/ProtectedRoute";
 import {UnauthorizedRoute} from "../components/UnauthorizedRoute";
+import UserRegistration from "../components/registration/UserRegistration";
+import {ChooseClinic} from "../components/chooseClinic/ChooseClinic";
+import HomePage from "../pages/homePage/HomePage";
+import {Navbar} from "../components/navbar/Navbar";
+import {pages} from "../models/pages";
+import ClinicRegistration from "../components/registration/ClinicRegistration";
+import {MyClinic} from "../components/clinic/MyClinic";
 
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Navbar  pages={pages}/>}>
-        <Route index element={<Home />} />
+      <Route path="/" element={<HomePage />}></Route>
+        <Route element={<Navbar pages={pages} />}>
+            <Route
+              path="/clinics"
+              element={
+               <ProtectedRoute>
+                 <ChooseClinic />
+              </ProtectedRoute>
+              }
+          ></Route>
           <Route
               path="/login"
               element={
@@ -29,7 +41,19 @@ export const AppRouter = () => {
                   </ProtectedRoute>
               }
           ></Route>
-      </Route>
+          <Route
+              path="/user-registration"
+              element={<UserRegistration/>}
+          ></Route>
+            <Route
+                path="/clinic-registration"
+                element={
+                    <ProtectedRoute>
+                        <ClinicRegistration />
+                    </ProtectedRoute>
+                }
+            ></Route>
+        </Route>
     </Routes>
   );
 };

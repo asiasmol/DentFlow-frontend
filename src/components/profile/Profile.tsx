@@ -1,11 +1,19 @@
 import React from "react";
-import {HomeContainer, StyledHeading} from "../home/Home.styles";
+import {HomeContainer } from "./Profile.style";
+import ClinicsTable from "./ClinicsTable";
+import PersonalProfile from "./PersonalProfile";
 
 
 export const Profile = () => {
   return (
+      <>
       <HomeContainer>
-        <StyledHeading>Profile</StyledHeading>
+          <PersonalProfile/>
+          <ClinicsTable/>
       </HomeContainer>
+      </>
+      // <StyledHeading>Profile</StyledHeading>
+
   );
 };
+

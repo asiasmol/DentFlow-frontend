@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Box from '@mui/material/Box';
 
 
 export const Wrapper = styled.nav`
@@ -14,11 +13,10 @@ export const Logo = styled.img`
   font-size: 1.5rem;
   width: 10rem;
   margin-left: 1.5rem;
-  }
   @media (max-width: 768px) {
     display: none;
   }
-`;
+`
 export const Link = styled.a`
   text-decoration: none;
   color: black;
@@ -71,12 +69,13 @@ export const Menu = styled.div<{ isOpen: boolean }>`
   align-items: center;
   justify-content: space-between;
   @media (max-width: 768px) {
+    margin-top: 3rem;
     flex-direction: column;
     position: absolute;
     top: 70px;
     margin-left: auto;
     left: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
-    background: white;
+    background-color: white;
     width: 100%;
     transition: all 0.3s ease-in-out;
     max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
@@ -85,6 +84,7 @@ export const Menu = styled.div<{ isOpen: boolean }>`
 `;
 export const MenuItems = styled.ul`
   @media (max-width: 768px) {
+    background-color: white;
     display: flex;
     flex-direction: column;
   }
@@ -106,6 +106,7 @@ export const Login = styled.button`
   background-color: #FFBE5C;
   color: white;
   font-size: 28px;
+  cursor: pointer;
   border: none;
   margin-right:auto  ;
   width: 100px;
@@ -113,5 +114,8 @@ export const Login = styled.button`
   border-radius: 10px;
   @media (max-width: 768px) {
     margin-left:  30px ;
+  }
+  &:hover {
+    filter: brightness(85%);
   }
 `
