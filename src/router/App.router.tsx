@@ -9,15 +9,16 @@ import {ChooseClinic} from "../components/chooseClinic/ChooseClinic";
 import HomePage from "../pages/homePage/HomePage";
 import {Navbar} from "../components/navbar/Navbar";
 import {pages} from "../models/pages";
-import {Footer} from "../components/footer/Footer";
+import ClinicRegistration from "../components/registration/ClinicRegistration";
+import {MyClinic} from "../components/clinic/MyClinic";
 
 export const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />}></Route>
         <Route element={<Navbar pages={pages} />}>
-          <Route
-              path="/Clinics"
+            <Route
+              path="/clinics"
               element={
                <ProtectedRoute>
                  <ChooseClinic />
@@ -44,6 +45,14 @@ export const AppRouter = () => {
               path="/user-registration"
               element={<UserRegistration/>}
           ></Route>
+            <Route
+                path="/clinic-registration"
+                element={
+                    <ProtectedRoute>
+                        <ClinicRegistration />
+                    </ProtectedRoute>
+                }
+            ></Route>
         </Route>
     </Routes>
   );

@@ -3,10 +3,12 @@ import FormControl from '@mui/material/FormControl';
 
 export const MainContainer = styled.div`
   margin: auto;
+  margin-bottom: 0;
   padding: 5rem;
+  padding-bottom: 0;
   text-align: center;
   width: 30rem;
-  height: 60rem;
+  height: 20rem;
     @media (max-width: 768px) {
       padding: 1rem;
       width: 15rem;

@@ -4,7 +4,7 @@ import {ClinicRequest} from "../models/api/ClinicRequest";
 
 export class ClinicApi {
     static getClinicWhereWork = async () =>
-        await authorizedApi.get<ClinicResponse[]>("/clinics/whereWork");
+        await authorizedApi.get<ClinicResponse[]>("/clinics/myClinics");
 
     static register = async (request:ClinicRequest) =>
         await authorizedApi.post("/clinics",request);

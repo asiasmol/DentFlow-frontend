@@ -1,5 +1,5 @@
 import React from 'react'
-import { SocialIcon } from 'react-social-icons';
+import { SocialIcon } from "react-social-icons";
 import {
   Box,
   Container,

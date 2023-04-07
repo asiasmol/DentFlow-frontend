@@ -5,8 +5,6 @@ import './Registration.style';
 import {StyledBox, WelcomeText, WindowRegistration, Fields} from "./Registration.style";
 import {UserApi} from "../../api/UserApi";
 import {UserRegistrationData} from "../../models/api/UserRegistrationData";
-import {useForceUpdate} from "@chakra-ui/react";
-
 
 const UserRegistration = () => {
     const [firstName, setFirstName] = useState('');
