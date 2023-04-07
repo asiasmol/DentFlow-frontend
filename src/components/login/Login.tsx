@@ -3,8 +3,11 @@ import {
   InputContainer,
   LoginButton,
   LoginContainer,
+  LoginInfoText,
   LoginInput,
   ValidationError,
+    EmailLabel,
+    PasswordLabel,
 } from "./Login.styles";
 import {AuthApi} from "../../api/AuthApi";
 import { toast } from "react-toastify";
@@ -62,9 +65,12 @@ export const Login = () => {
     setPassword(event.target.value);
   };
 
+
   return (
     <LoginContainer>
+      <LoginInfoText>Login</LoginInfoText>
       <InputContainer>
+        <EmailLabel>Email</EmailLabel>
         <LoginInput
           placeholder="Email"
           type="email"
@@ -73,6 +79,7 @@ export const Login = () => {
         {!isEmailValid && (
           <ValidationError>Wpisz Email</ValidationError>
         )}
+        <PasswordLabel>Hasło</PasswordLabel>
         <LoginInput
           onChange={(e) => onPasswordChange(e)}
           placeholder="Hasło"
