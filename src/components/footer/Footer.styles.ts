@@ -7,8 +7,7 @@ export const Box = styled.div`
   bottom: 0;
   width: 100%;
   height: 15rem;
-  
-  @media (max-width: 1000px) {
+  @media (max-width: 768px) {
     padding: 70px 30px;
   }
 `;
@@ -37,7 +36,7 @@ export const Row = styled.div`
                          minmax(185px, 1fr));
   grid-gap: 20px;
    
-  @media (max-width: 1000px) {
+  @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, 
                            minmax(200px, 1fr));
   }

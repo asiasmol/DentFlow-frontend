@@ -4,23 +4,18 @@ import Typography from "@mui/material/Typography";
 
 
 export const HomeContainer = styled.div`
-  height: 100vh;
-  width: 100%;
   background-image: url(${home});
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: local;
   background-position: center;
-  @media(max-width: 950px){
-    height: 100%;
-  }
 `
 
 export const BorderContainer = styled.div`
   padding: 2rem;
   margin-right: 15rem;
   margin-left: 10rem;
-  @media(max-width: 900px){
+  @media(max-width: 950px){
     margin-left: 2rem;
   }
 `

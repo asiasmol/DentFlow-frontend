@@ -10,7 +10,6 @@ import HomePage from "../pages/homePage/HomePage";
 import {Navbar} from "../components/navbar/Navbar";
 import {pages} from "../models/pages";
 import ClinicRegistration from "../components/registration/ClinicRegistration";
-import {MyClinic} from "../components/clinic/MyClinic";
 
 export const AppRouter = () => {
   return (
