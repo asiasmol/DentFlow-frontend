@@ -1,4 +1,5 @@
 import {
+    BorderContainer,
     ContactForm,
     ContactHero, ContactInputs,
     HomeButton,
@@ -17,11 +18,11 @@ import TextField from '@mui/material/TextField';
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 
-
 const HomePage = () => {
+
     return (
-        <>
-            <HomeContainer>
+        <HomeContainer>
+            <BorderContainer>
                 <HomeHeader>
                     <Logo src={logo}/>
                     <Links>
@@ -35,7 +36,7 @@ const HomePage = () => {
                             <a href="/contact">Kontakt</a>
                         </HomeLink>
                         <HomeLink>
-                            <a href="/clinic-registration" style={{color:'red'}} >Załóż przychodnię</a>
+                            <a href="/clinic-registration">Załóż przychodnię</a>
                         </HomeLink>
                     </Links>
                     <div id='buttons'>
@@ -48,43 +49,44 @@ const HomePage = () => {
                         </Link>
                     </div>
                 </HomeHeader>
+                <div id='homeBody'>
+                    <TextArea>
+                        <Typography variant={"h2"} sx={{fontFamily: "Montserrat"}}>
+                            Zaufaj nam!
+                        </Typography>
 
-                <TextArea>
-                    <Typography variant={"h2"} sx={{fontFamily: "Montserrat"}}>
-                        Zaufaj nam!
-                    </Typography>
+                        <Typography variant={'h4'} sx={{fontFamily: "Montserrat", marginY: '2rem'}}>
+                            Odkryj najlepsze oprogramowanie <br/> do zarządzania gabinetem
+                            stomatologicznym
+                        </Typography>
 
-                    <Typography variant={'h4'} sx={{fontFamily: "Montserrat", marginY: '2rem'}}>
-                        Odkryj najlepsze oprogramowanie <br/> do zarządzania gabinetem
-                        stomatologicznym
-                    </Typography>
+                        <HomeButton width={17}> Dowiedz się więcej </HomeButton>
+                    </TextArea>
 
-                    <HomeButton width={17}> Dowiedz się więcej </HomeButton>
-                </TextArea>
+                    <ContactForm>
+                        <ContactHero variant='h4' sx={{fontFamily: "Montserrat", marginY: "2rem"}}>
+                            Skontaktujmy się!
+                        </ContactHero>
 
-                <ContactForm>
-                    <ContactHero variant='h4' sx={{fontFamily:"Montserrat", marginY:"2rem"}}>
-                        Skontaktujmy się!
-                    </ContactHero>
+                        <ContactInputs id={"inputs"}>
+                            <TextField required id="outlined-basic" label="Imię i nazwisko" variant="outlined"
+                                       className={"input"}/>
+                            <TextField required id="outlined-basic" label="Email" variant="outlined"
+                                       className={"input"}/>
+                            <TextField required id="outlined-basic" label="Numer telefonu" variant="outlined"
+                                       className={"input"}/>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DatePicker label="Wybierz dzień kontaktu" className={"input"}/>
+                            </LocalizationProvider>
+                            <HomeButton width={13} id={'contact-form-button'}>
+                                Wyślij
+                            </HomeButton>
 
-                    <ContactInputs id={"inputs"}>
-                        <TextField  required id="outlined-basic" label="Imię i nazwisko" variant="outlined" className={"input"} />
-                        <TextField  required id="outlined-basic" label="Email" variant="outlined" className={"input"} />
-                        <TextField  required id="outlined-basic" label="Numer telefonu" variant="outlined" className={"input"} />
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker label="Wybierz dzień kontaktu" className={"input"} />
-                        </LocalizationProvider>
-
-
-                    </ContactInputs>
-
-                    <HomeButton width={13} id={'contact-form-button'}>
-                        Wyślij
-                    </HomeButton>
-                </ContactForm>
-
-            </HomeContainer>
-        </>
+                        </ContactInputs>
+                    </ContactForm>
+                </div>
+            </BorderContainer>
+        </HomeContainer>
     )
 }
 

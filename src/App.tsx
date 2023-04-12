@@ -10,6 +10,7 @@ function App() {
       <AppContainer>
           <UserContextProvider>
               <AppRouter />
+              {/*<Footer/>*/}
               <ToastContainer />
           </UserContextProvider>
       </AppContainer>
