@@ -13,8 +13,8 @@ export const HomeContainer = styled.div`
 
 export const BorderContainer = styled.div`
   padding: 2rem;
-  margin-right: 15rem;
-  margin-left: 10rem;
+  margin-right: 5rem;
+  margin-left: 5rem;
   @media(max-width: 950px){
     margin-left: 2rem;
   }
