@@ -21,20 +21,23 @@ export const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
-  const { userModifier} = useContext(UserContext);
+  const {userModifier} = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const onLoginClicked = useCallback(async () => {
     try {
-      const result = await AuthApi.signIn({
+      const user = await AuthApi.signIn({
         email: email,
         password: password,
       });
-      userModifier({email:email})
-      localStorage.setItem(ACCESS_TOKEN, result.data.token);
+      userModifier({
+        email: user.data.email,
+        roles: user.data.roles,
+      });
+      localStorage.setItem(ACCESS_TOKEN, user.data.token);
       toast.success("Poprawnie zalogowano");
-      navigate("/Clinics");
+      navigate("/my-clinic");
     } catch (error: any) {
       let errorMessage;
 
@@ -95,6 +98,6 @@ export const Login = () => {
           Zaloguj się
         </LoginButton>
       </InputContainer>
-    </LoginContainer>
+     </LoginContainer>
   );
 };

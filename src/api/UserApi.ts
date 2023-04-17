@@ -13,4 +13,7 @@ export class UserApi {
 
   static getProfileUser = async () =>
       await authorizedApi.get<ProfileUserResponse>("/users/profile");
+
+  static getAllEmails = async () =>
+      await authorizedApi.get<string[]>("/users");
 }

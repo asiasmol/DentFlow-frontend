@@ -2,61 +2,50 @@ import styled from "styled-components";
 
 
 export const LoginContainer = styled.div`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 555px;
-    display:flex;
-    background: #1784B3;
-    border: 2px solid rgba(84,166,204,0.92);
-    border-radius: 30px;
-    color: white;
-    box-shadow: 0 0 70px rgba(84,166,204,0.92);
-    justify-content: center;
-    align-items: center;
-    
-    @media (max-width: 767px) {
-    width: 17rem;
-    height: 25rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  ;
-  }
-  @media(min-height:500;max-height:620px){
-    width:20rem;
-    height:25rem;
-    top:55%;
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
-  }
-`;
+  //position: fixed;
+  //top: 50%;
+  //left: 50%;
+  //transform: translate(-50%, -50%);
+  margin: 40px auto;
+  width: 500px;
+  height: 555px;
+  display: flex;
+  background: #1784B3;
+  border: 2px solid rgba(84, 166, 204, 0.92);
+  border-radius: 30px;
+  color: white;
+  box-shadow: 0 0 70px rgba(84, 166, 204, 0.92);
+  align-items: center;
+  flex-direction: column;
 
-export const StyledHeading = styled.span`
-  font-size: 36px;
-  font-weight: 600;
-  margin-top: 32px;
-  margin-bottom: 8px;
+  @media (max-width: 767px) {
+    width: 25rem;
+    height: 30rem;
+  }
+  @media (max-width: 450px) {
+    width: 15rem;
+    height: 22rem;
+  }
 `;
 
 export const LoginInfoText = styled.h1`
-    position:fixed;
-    top:10%;
-    
+    margin-top: 100px;
     @media (max-width: 767px) {
-    position:absolute;
     top:0;
     left:30%
   ;
   }
-   @media(min-height:500; max-height:620px){
-    position:absolute;
+   @media(max-width: 767px){  
+     margin-top: 40px;
     left:35%;
     top:0;
-  } 
+  }
+  @media (max-width: 450px) {
+    margin-top: 20px;
+    left:35%;
+    top:0;
+    margin-bottom: 3px;
+  }
 `
 
 export const InputContainer = styled.div`
@@ -65,18 +54,10 @@ export const InputContainer = styled.div`
   gap: 8px;
   width: 20rem;
   margin-top: 16px;
-  @media (max-width: 767px) {
-    position:absolute;
-    top:25%;
-  ;
+  @media (max-width: 450px) {
+    width:15rem;
   }
-  @media(min-height:500; max-height:620px){
-    position:absolute;
-    left:1rem;
-    width:20rem;
-    height:25rem;
-    
-  } 
+
 `;
 
 export const LoginInput = styled.input`
@@ -87,20 +68,20 @@ export const LoginInput = styled.input`
   border-style: solid;
   outline: transparent solid 2px;
   @media (max-width: 767px) {
-    width:13rem;
-    position:relative;
-    left:1rem;
-  ;
+    margin-left: auto;
+    margin-right: auto;
+    width:15rem;
   }
-  @media(min-height:500; max-height:620px){
-    width:16rem;
-    position:relative;
-    top:20%;
-  } 
+  @media (max-width: 450px) {
+    margin-left: auto;
+    margin-right: auto;
+    width:10rem;
+    height: 1rem;
+  }
 `;
 
 export const LoginButton = styled.button`
-  position: absolute;
+  margin-top: 40px;
   bottom: 10%;
   width: 320px;
   padding: 16px;
@@ -123,33 +104,34 @@ export const LoginButton = styled.button`
   
   
   @media (max-width: 767px) {
-    position:absolute;
     bottom:-40%;
     width:15rem;
-    left:1rem;
-  ;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  @media(min-height:500; max-height:620px){
-        width:18rem;
-    }
-  
-  
+  @media (max-width: 450px) {
+    bottom:-40%;
+    font-size: 0.8rem;
+    width:5rem;
+    height: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    padding:0;
+  }
 `;
 
 export const ValidationError = styled.span`
   color: red;
   font-size: 13px;
-  @media(min-height:500; max-height:620px){
-        position:relative;
-        top:20%
-   }
-   
   @media(max-width:767px){
   position:relative;
-  left:1rem;
+  left:2rem;
   }
-  
+  @media (max-width: 450px) {
+    sition:relative;
+    left:2rem;
+  }
   
 `
 
@@ -157,22 +139,14 @@ export const PasswordLabel = styled.label`
 
     @media(max-width:767px){
     position:relative;
-    left:1rem;
-    }
-    @media(min-height:500; max-height:620px){
-    position:relative;
-    top:20%;
+    left:2rem;
     }
 `
 
 export const EmailLabel = styled.label`
     @media(max-width:767px){
     position:relative;
-    left:1rem;
+    left:2rem;
     }
-
-    @media(min-height:500; max-height:620px){
-    position:relative;
-    top:20%;
-    }
+  
 `

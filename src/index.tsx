@@ -14,7 +14,6 @@ root.render(
   <React.StrictMode>
       <BrowserRouter>
           <App />
-          <Footer/>
       </BrowserRouter>
   </React.StrictMode>
 );

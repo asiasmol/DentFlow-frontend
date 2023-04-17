@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
@@ -6,32 +6,27 @@ import './Registration.style';
 import {StyledBox, WelcomeText, WindowRegistration, Fields} from "./Registration.style";
 import {AuthApi} from "../../api/AuthApi";
 import {ClinicApi} from "../../api/ClinicApi";
+import {UserContext} from "../../context/UserContext";
 
 const ClinicRegistration = () =>{
     const [name, setName] = useState('');
-    const [addres, setAddres] = useState('');
-    const [telNumber, setTelNumber] = useState('');
     const [isnameValid, setIsnameValid] = useState<boolean>(true);
+    const { currentUser,userModifier} = useContext(UserContext);
 
     const registerClinic = useCallback(async () => {
         try {
             await ClinicApi.register({
                 name: name,
             });
-
+            currentUser?.roles.push("OWNER")
+            userModifier(currentUser);
         } catch (error: any) {
 
         }
     }, [name]);
-
-
     useEffect(() => {
         setIsnameValid(name.length > 0);
     }, [name]);
-
-
-
-
     return(
         <WindowRegistration>
             <StyledBox>

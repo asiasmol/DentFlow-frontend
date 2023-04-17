@@ -5,7 +5,7 @@ export const HomeContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 64px;
+
 `;
 
 export const StyledHeading = styled.h1`
@@ -14,3 +14,9 @@ export const StyledHeading = styled.h1`
     margin-top: 32px;
     margin-bottom: 8px;
 `
+export const VisitContainer = styled.div`
+  background-color: black;
+  width: 800px;
+  height: 600px;
+
+`;

@@ -96,6 +96,9 @@ export const MenuItem = styled.a`
   margin-right: 20px;
   font-size: 28px;
   cursor: pointer;
+  &:hover {
+    color:#FFBE5C ;
+  }
   @media (max-width: 768px) {
     margin: 0.5rem 0;
     
@@ -108,13 +111,23 @@ export const Login = styled.button`
   font-size: 28px;
   cursor: pointer;
   border: none;
-  margin-right:auto  ;
+  margin-right:30px  ;
   width: 100px;
   height: 45px;
   border-radius: 10px;
   @media (max-width: 768px) {
     margin-left:  30px ;
+    margin-right:10px ;
+
   }
+  @media (max-width: 450px) {
+    margin-left: 0;
+    margin-right: auto;
+    width: 70px;
+    font-size: 18px;
+    height: 30px;
+  }
+  
   &:hover {
     filter: brightness(85%);
   }

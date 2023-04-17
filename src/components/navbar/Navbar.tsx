@@ -9,28 +9,24 @@ import {
     Login,
     MidLogo, LogoLink
 } from "./Navbar.styles";
-import {link} from "../../models/Link";
-import {Link, Outlet} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import logo from "../../resources/img/logo.png"
 import {ProfileButton} from "./ProfileButton";
 import {UserContext} from "../../context/UserContext";
+import {NavbarContext} from "../../context/NavbarContext";
 
 
-
-
-
-interface NavbarProps {
-    pages: link[];
-}
-
-export const Navbar: React.FC<NavbarProps> = ({ pages }) => {
+export const Navbar= () =>  {
     const [isOpen, setIsOpen] = useState(false);
     const { currentUser} = useContext(UserContext);
+    const { currentPages} = useContext(NavbarContext);
+    const navigate = useNavigate()
 
     const toggle = () => {
         console.log(currentUser)
         setIsOpen(!isOpen);
     }
+
 
     return (
 
@@ -49,8 +45,8 @@ export const Navbar: React.FC<NavbarProps> = ({ pages }) => {
             </Link>
             <Menu isOpen={isOpen}>
                 <MenuItems>
-                    {pages.map((page) => (
-                        <MenuItem key={page.label} href={page.link}>
+                    {currentPages.map((page) => (
+                        <MenuItem key={page.label} onClick={()=>{navigate(page.link)}} >
                             {page.label}
                         </MenuItem>
                     ))}
@@ -66,7 +62,6 @@ export const Navbar: React.FC<NavbarProps> = ({ pages }) => {
                 <ProfileButton/>
             )}
         </Wrapper>
-        <Outlet/>
         </>
     );
 };

@@ -1,6 +1,6 @@
-import {link} from "./Link";
+import {link} from "../Link";
 
-export const pages: link[] = [
+export const UnLoginPages: link[] = [
     {
         label: "O nas",
         link: "/profile"
@@ -13,8 +13,4 @@ export const pages: link[] = [
         label: "Kontakt",
         link: "/contact"
     },
-    {
-        label: "Załóż konto",
-        link: "/user-registration"
-    }
 ];
