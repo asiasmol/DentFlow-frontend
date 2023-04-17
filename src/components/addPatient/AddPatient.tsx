@@ -1,25 +1,29 @@
-import React, {useState} from "react";
+import React, {useCallback, useContext, useState} from "react";
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import {StyledBox, WelcomeText, WindowRegistration, Fields} from "./AddPatient.styles";
-import {PatientResponse} from "../../models/api/PatientResponse";
+import {ClinicContext} from "../../context/ClinicContext";
+import {PatientApi} from "../../api/PatientApi";
 
 export const AddPatient = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [telNumber, setTelNumber] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const {currentClinic} = useContext(ClinicContext)
+    const PatientRegistration = useCallback(async () => {
+        try {
+            await PatientApi.register({
+                clinicId: currentClinic?.id as 0,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phoneNumber: phoneNumber
+            })
+        } catch (error: any) {
 
-    const handleSubmit = () => {
-        let patient: PatientResponse = {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            telNumber: telNumber
         }
-        // UserApi.registerUser(user).then(r => {
-        // })
-    }
+    },[currentClinic?.id, email, firstName, lastName, phoneNumber])
 
     return (
         <WindowRegistration>
@@ -55,12 +59,12 @@ export const AddPatient = () => {
                         label="Numer telefonu"
                         type="tel"
                         variant="standard"
-                        onChange={event => setTelNumber(event.target.value)}
+                        onChange={event => setPhoneNumber(event.target.value)}
                     />
 
                 </Fields>
 
-                <Button onClick={handleSubmit} fullWidth={true}> Zarejestruj </Button>
+                <Button onClick={PatientRegistration} fullWidth={true}> Zarejestruj </Button>
 
             </StyledBox>
         </WindowRegistration>
