@@ -45,7 +45,6 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-
-////
+## To Do
 trzeba naprawic odpowiednie navigate to poszeczegółnych stron i je zabezpieczyc
 
