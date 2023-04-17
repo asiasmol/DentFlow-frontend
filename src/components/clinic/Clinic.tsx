@@ -3,7 +3,7 @@ import {Outlet} from "react-router-dom";
 import {NavbarContext} from "../../context/NavbarContext";
 import {DoctorPages} from "../../models/pages/DoctorPages";
 import {HomeContainer, StyledHeading} from "./Clinic.styles";
-import {VisitTable} from "./VisitTable";
+import {Calendar} from "./Calendar";
 import {ClinicContext} from "../../context/ClinicContext";
 
 
@@ -20,8 +20,7 @@ export const Clinic = () => {
       <>
           <HomeContainer>
               <StyledHeading>{currentClinic?.name}</StyledHeading>
-              <StyledHeading>Wizyty</StyledHeading>
-              <VisitTable />
+              <Calendar />
           </HomeContainer>
           <Outlet/>
       </>

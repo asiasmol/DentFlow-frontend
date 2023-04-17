@@ -5,8 +5,6 @@ import {ProfileDiv} from "./Profile.style";
 import img from "../../resources/img/profile.png";
 import Avatar from "@mui/material/Avatar";
 import {useCallback, useEffect, useState} from "react";
-import {ClinicResponse} from "../../models/api/ClinicResponse";
-import {ClinicApi} from "../../api/ClinicApi";
 import {UserApi} from "../../api/UserApi";
 import {ProfileUserResponse} from "../../models/api/ProfileUserResponse";
 

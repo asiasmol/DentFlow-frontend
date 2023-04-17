@@ -13,7 +13,7 @@ import {OwnerProtectedRoute} from "../components/OwnerProtectedRoute";
 import { Clinic } from "../components/clinic/Clinic";
 import {SetContainter} from "../components/SetContainter";
 import {AddPatient} from "../components/addPatient/AddPatient";
-import {MyClinic} from "../components/clinic/MyClinic/MyClinic";
+import {MyClinic} from "../components/MyClinic/MyClinic";
 import { NonOwnerProtectedRoot } from "../components/NonOwnerProtectedRoot";
 
 

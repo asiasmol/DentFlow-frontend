@@ -21,7 +21,7 @@ const ClinicRegistration = () =>{
             });
             currentUser?.roles.push("OWNER")
             userModifier(currentUser);
-            // navigate("/my-clinic")
+            navigate("/my-clinic")
         } catch (error: any) {
 
         }
