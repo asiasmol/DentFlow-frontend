@@ -3,6 +3,7 @@ import {ClinicResponse} from "../models/api/ClinicResponse";
 import {ClinicRequest} from "../models/api/ClinicRequest";
 import {EmployeeResponse} from "../models/api/EmployeeResponse";
 import {EmployeeRequest} from "../models/api/EmployeeRequest";
+import {PatientResponse} from "../models/api/PatientResponse";
 
 export class ClinicApi {
     static getClinicWhereWork = async () =>
@@ -16,6 +17,9 @@ export class ClinicApi {
 
     static getEmployees = async () =>
         await authorizedApi.get<EmployeeResponse[]>("/clinics/personnel");
+
+    static getPatients = async () =>
+        await authorizedApi.get<PatientResponse[]>("/clinics/patients")
     static addEmployees = async (request:EmployeeRequest) =>
         await authorizedApi.patch("/clinics/personnel",request);
 }

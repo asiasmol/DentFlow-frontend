@@ -13,4 +13,8 @@ export const DoctorPages: link[] = [
         label: "Dodaj Pacjenta",
         link: "/add-patient"
     },
+    {
+        label:"Pacjenci",
+        link: "/patients"
+    }
 ];

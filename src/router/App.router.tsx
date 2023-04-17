@@ -15,6 +15,7 @@ import {SetContainter} from "../components/SetContainter";
 import {AddPatient} from "../components/addPatient/AddPatient";
 import {MyClinic} from "../components/MyClinic/MyClinic";
 import { NonOwnerProtectedRoot } from "../components/NonOwnerProtectedRoot";
+import PatientsList from "../components/PatientsList/PatientsList";
 
 
 
@@ -44,6 +45,15 @@ export const AppRouter = () => {
               </ProtectedRoute>
               }
           ></Route>
+            <Route path="/patients"
+             element={
+                 <ProtectedRoute>
+                     <OwnerProtectedRoute>
+                         <PatientsList />
+                     </OwnerProtectedRoute>
+                 </ProtectedRoute>
+             }>
+            </Route>
             <Route
                 path="/clinic"
                 element={

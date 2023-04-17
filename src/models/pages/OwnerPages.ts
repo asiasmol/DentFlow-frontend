@@ -13,4 +13,8 @@ export const OwnerPages: link[] = [
         label: "Dodaj Pracownika",
         link: "/add-employee"
     },
+    {
+        label: "Pacjenci",
+        link: "/patients"
+    }
 ];
