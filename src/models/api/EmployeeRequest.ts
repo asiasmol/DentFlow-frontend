@@ -1,4 +1,4 @@
 export type EmployeeRequest = {
-    email:string
-
+    email:string,
+    role:string,
 }

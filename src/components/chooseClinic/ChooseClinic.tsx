@@ -59,9 +59,7 @@ export const ChooseClinic = () => {
                 <MainContainer>
                     <ChooseClinicLabel>Niestety nikt cię nie zatrudnił </ChooseClinicLabel>
                     <a href="/clinic-registration">
-                        <ClinicButton
-                            onClick={choseClinic}
-                        >
+                        <ClinicButton>
                             Załóż Klinike
                         </ClinicButton>
                     </a>

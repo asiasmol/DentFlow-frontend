@@ -21,7 +21,7 @@ export const NavbarContextProvider = ({ children }: React.PropsWithChildren) => 
     };
     useEffect(() => {
         pagesModifier(UnLoginPages);
-    }, [pagesModifier]);
+    }, []);
     return (
         <NavbarContext.Provider value={{ currentPages, pagesModifier }}>
             {children}

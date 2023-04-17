@@ -4,14 +4,15 @@ import Button from '@mui/material/Button'
 
 import './Registration.style';
 import {StyledBox, WelcomeText, WindowRegistration, Fields} from "./Registration.style";
-import {AuthApi} from "../../api/AuthApi";
 import {ClinicApi} from "../../api/ClinicApi";
 import {UserContext} from "../../context/UserContext";
+import {useNavigate} from "react-router-dom";
 
 const ClinicRegistration = () =>{
     const [name, setName] = useState('');
     const [isnameValid, setIsnameValid] = useState<boolean>(true);
     const { currentUser,userModifier} = useContext(UserContext);
+    const navigate = useNavigate();
 
     const registerClinic = useCallback(async () => {
         try {
@@ -20,10 +21,11 @@ const ClinicRegistration = () =>{
             });
             currentUser?.roles.push("OWNER")
             userModifier(currentUser);
+            // navigate("/my-clinic")
         } catch (error: any) {
 
         }
-    }, [name]);
+    }, [name,currentUser,navigate,userModifier]);
     useEffect(() => {
         setIsnameValid(name.length > 0);
     }, [name]);

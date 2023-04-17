@@ -8,8 +8,26 @@ import {ClinicApi} from "../../api/ClinicApi";
 
 export const AddEmplyee = ()=>{
     const [email, setEmail] = useState<string>("");
+    const [role, setRole] = useState<string>("");
+    const [isRole, setIsRole] = useState<boolean>(false);
     const [searchResults, setSearchResults] = useState<string[]>([]);
     const [emailList, setEmailList] = useState<string[]>([]);
+    const [isChecked1, setIsChecked1] = useState(false);
+    const [isChecked2, setIsChecked2] = useState(false);
+
+    const handleCheck1Change = () => {
+        setIsChecked1(true);
+        setIsChecked2(false);
+        setRole("DOCTOR");
+        setIsRole(true);
+    }
+
+    const handleCheck2Change = () => {
+        setIsChecked1(false);
+        setIsChecked2(true);
+        setRole("RECEPTIONIST")
+        setIsRole(true);
+    }
     function search(searchTerm: string) {
         const filteredEmails = emailList.filter((email) =>
             email.includes(searchTerm)
@@ -32,8 +50,9 @@ export const AddEmplyee = ()=>{
     const addEmployee = useCallback(async () => {
         await ClinicApi.addEmployees({
             email: email,
+            role:role
         });
-    },[email] );
+    },[email,role] );
     const fetchEmails= useCallback(async () => {
         try {
             const result = await UserApi.getAllEmails();
@@ -63,7 +82,14 @@ export const AddEmplyee = ()=>{
                 ))}
 
             </SearchList>
+            <div>
+                <input type="checkbox" checked={isChecked1} onChange={handleCheck1Change} />
+                <label style={{ marginLeft: 8 }}>Lekarz</label>
+                <input type="checkbox" checked={isChecked2} onChange={handleCheck2Change} />
+                <label style={{ marginLeft: 8 }}>Recepcjonistka</label>
+            </div>
             <AddEmplyeeButton
+                disabled={!isRole}
                 onClick={addEmployee}
             >
                 Dodaj pracownika

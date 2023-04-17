@@ -6,8 +6,8 @@ export const OwnerPages: link[] = [
         link: "/profile"
     },
     {
-        label: "Kliniki",
-        link: "/Clinics"
+        label: "Moja klinikas",
+        link: "/clinics"
     },
     {
         label: "Dodaj Pracownika",
