@@ -23,7 +23,6 @@ a{
     align-items: center;
     flex-wrap: wrap;
     margin-top: 5rem;
-    margin-left: 10rem;
 }
 @media (max-width: 950px) {
     #homeBody{
