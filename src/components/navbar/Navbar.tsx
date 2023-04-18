@@ -32,7 +32,7 @@ export const Navbar= () =>  {
 
         <>
         <Wrapper>
-            <LogoLink href={"/"}>
+            <LogoLink href={"/clinic"}>
                 <Logo src={logo} alt="Logo"></Logo>
             </LogoLink>
             <Toggle onClick={toggle}>

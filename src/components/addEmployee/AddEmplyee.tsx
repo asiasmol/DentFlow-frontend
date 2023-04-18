@@ -2,6 +2,8 @@ import {AddEmplyeeButton, AddEmplyeeInput, MainContainer, SearchElement, SearchL
 import React, {useCallback, useEffect, useState} from "react";
 import {UserApi} from "../../api/UserApi";
 import {ClinicApi} from "../../api/ClinicApi";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 
 
@@ -15,6 +17,7 @@ export const AddEmplyee = ()=>{
     const [isChecked1, setIsChecked1] = useState(false);
     const [isChecked2, setIsChecked2] = useState(false);
 
+    const navigate = useNavigate();
     const handleCheck1Change = () => {
         setIsChecked1(true);
         setIsChecked2(false);
@@ -52,7 +55,9 @@ export const AddEmplyee = ()=>{
             email: email,
             role:role
         });
-    },[email,role] );
+        toast.success("Dodano pracownika");
+        navigate("/my-clinic");
+    },[email,role, navigate] );
     const fetchEmails= useCallback(async () => {
         try {
             const result = await UserApi.getAllEmails();
