@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -13,6 +12,8 @@ import {useCallback, useContext, useEffect, useState} from "react";
 import {ClinicApi} from "../../../api/ClinicApi";
 import {ClinicContext} from "../../../context/ClinicContext";
 import {EmployeeResponse} from "../../../models/api/EmployeeResponse";
+import {PatientResponse} from "../../../models/api/PatientResponse";
+import { VisitApi } from '../../../api/VisitApi';
 
 
 function Copyright(props: any) {
@@ -29,17 +30,20 @@ function Copyright(props: any) {
 }
 const theme = createTheme();
 
+type Props = {
+    date: string;
+    time:string;
+};
 
-
-export default function SignIn() {
+export default function SignIn(props:Props) {
     const [doctorFullName, setDoctorFullName] = useState("");
     const [doctorEmail, setDoctorEmail] = useState<string>("");
     const [doctorSearchResults, setDoctorSearchResults] = useState<EmployeeResponse[]>([]);
     const [doctors, setDoctors] = useState<EmployeeResponse[]>([]);
     const [patientId, setPatientId] = useState<number>(0);
     const [patientFullName, setPatientFullName] = useState("");
-    const [patientSearchResults, setPatientSearchResults] = useState<EmployeeResponse[]>([]);
-    const [patients, setPatients] = useState<EmployeeResponse[]>([]);
+    const [patientSearchResults, setPatientSearchResults] = useState<PatientResponse[]>([]);
+    const [patients, setPatients] = useState<PatientResponse[]>([]);
     const {currentClinic} = useContext(ClinicContext);
 
     function splitString(str: string): string[] | null {
@@ -53,11 +57,22 @@ export default function SignIn() {
                 const firstNameMatch = doctor.firstName.toLowerCase().includes(firstName.toLowerCase());
                 const lastNameMatch = doctor.lastName.toLowerCase().includes(lastName.toLowerCase());
 
-                if ( firstName == lastName)return firstNameMatch || lastNameMatch
+                if ( firstName === lastName)return firstNameMatch || lastNameMatch
                 else return firstNameMatch && lastNameMatch
             });
 
     }
+    function searchPatient( firstName:string,lastName:string) {
+
+        return patients.filter((patient) =>{
+            const firstNameMatch = patient.firstName.toLowerCase().includes(firstName.toLowerCase());
+            const lastNameMatch = patient.lastName.toLowerCase().includes(lastName.toLowerCase());
+
+            if ( firstName === lastName)return firstNameMatch || lastNameMatch
+            else return firstNameMatch && lastNameMatch
+        });
+    }
+
     function doctorHandleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         const searchTerm = event.target.value;
         setDoctorFullName(searchTerm)
@@ -72,38 +87,11 @@ export default function SignIn() {
         setDoctorSearchResults(results);
     }
 
-    function doctorHandleResultClick(result: EmployeeResponse) { // określenie typu parametru "result" na string
-        setDoctorEmail(result.email);
-        setDoctorFullName(result.firstName + " " + result.lastName)
-        setDoctorSearchResults([]);
-    }
-
-    const fetchDoctors= useCallback(async () => {
-        try {
-            const result = await ClinicApi.getDoctors({
-                clinicId:currentClinic?.id
-            });
-         setDoctors(result.data)
-        } finally {
-            // setIsLoading(false);
-        }
-    }, [currentClinic?.id]);
-
-    function searchPatient( firstName:string,lastName:string) {
-        return patients.filter((patient) =>{
-            const firstNameMatch = patient.firstName.toLowerCase().includes(firstName.toLowerCase());
-            const lastNameMatch = patient.lastName.toLowerCase().includes(lastName.toLowerCase());
-
-            if ( firstName == lastName)return firstNameMatch || lastNameMatch
-            else return firstNameMatch && lastNameMatch
-        });
-
-    }
     function patientHandleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         const searchTerm = event.target.value;
         setPatientFullName(searchTerm)
         const result = splitString(searchTerm);
-        let results: EmployeeResponse[] = [];
+        let results: PatientResponse[] = [];
         if (result !== null) {
             const [firstWord, secondWord] = result;
             results = searchTerm ? searchPatient(firstWord,secondWord) : [];
@@ -113,15 +101,30 @@ export default function SignIn() {
         setPatientSearchResults(results);
     }
 
-    function patientHandleResultClick(result: EmployeeResponse) { // określenie typu parametru "result" na string
+    function doctorHandleResultClick(result: EmployeeResponse) { // określenie typu parametru "result" na string
         setDoctorEmail(result.email);
+        setDoctorFullName(result.firstName + " " + result.lastName)
+        setDoctorSearchResults([]);
+    }
+    function patientHandleResultClick(result: PatientResponse) { // określenie typu parametru "result" na string
+        setPatientId(result.patientId);
         setPatientFullName(result.firstName + " " + result.lastName)
         setPatientSearchResults([]);
     }
+    const fetchDoctors= useCallback(async () => {
+        try {
+            const result = await ClinicApi.getDoctors({
+                clinicId:currentClinic?.id
+            });
+            setDoctors(result.data)
+        } finally {
+            // setIsLoading(false);
+        }
+    }, [currentClinic?.id]);
 
     const fetchPatients= useCallback(async () => {
         try {
-            const result = await ClinicApi.getDoctors({
+            const result = await ClinicApi.getPatients({
                 clinicId:currentClinic?.id
             });
             setPatients(result.data)
@@ -134,7 +137,19 @@ export default function SignIn() {
         fetchDoctors();
         fetchPatients();
     }, [fetchDoctors,fetchPatients])
-
+    const handleAppointment= useCallback(async () => {
+        try {
+            await VisitApi.add({
+                clinicId:currentClinic?.id,
+                visitDate:props.date,
+                visitTime:props.time,
+                doctorEmail:doctorEmail,
+                patientId:patientId,
+            })
+        } finally {
+            // setIsLoading(false);
+        }
+    }, [patientId,doctorEmail,props.date,props.time]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -185,13 +200,12 @@ export default function SignIn() {
 
 
                         <Button
-                            type="submit"
                             fullWidth
                             variant="contained"
+                            onClick={handleAppointment}
                             sx={{ mt: 3, mb: 2, bgcolor: '#78A6C8',
                                 ':hover': {bgcolor: '#78A6C8'}}}
                         >
-
                             Umów
                         </Button>
                     </Box>

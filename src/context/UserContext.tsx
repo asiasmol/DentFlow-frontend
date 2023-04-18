@@ -1,7 +1,7 @@
 import React, {createContext, useCallback, useContext, useEffect, useState} from "react";
 import { UserContextType } from "../models/UserContextType";
 import { User } from "../models/User";
-import { ACCESS_TOKEN } from "../constants/constants";
+import {ACCESS_TOKEN, CLINIC_ID, CLINIC_NAME} from "../constants/constants";
 import { UserApi } from "../api/UserApi";
 import jwt_decode from "jwt-decode";
 import {NavbarContext} from "./NavbarContext";
@@ -44,7 +44,9 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
       }
       else{
         userModifier(null);
-        localStorage.removeItem('ACCESS_TOKEN')
+        localStorage.removeItem(ACCESS_TOKEN)
+        localStorage.removeItem(CLINIC_NAME)
+        localStorage.removeItem(CLINIC_ID)
         pagesModifier(UnLoginPages);
       }
     }

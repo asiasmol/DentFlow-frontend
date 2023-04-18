@@ -99,7 +99,7 @@ export default function CustomPaginationActionsTable() {
         } finally {
             // setIsLoading(false);
         }
-    }, []);
+    }, [currentClinic?.id]);
 
     useEffect(() => {
         fetchPatients();

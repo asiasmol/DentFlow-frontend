@@ -2,19 +2,15 @@ import {link} from "../Link";
 
 export const OwnerPages: link[] = [
     {
-        label: "dupa",
-        link: "/profile"
-    },
-    {
-        label: "Moja klinikas",
-        link: "/clinics"
-    },
-    {
-        label: "Dodaj Pracownika",
-        link: "/add-employee"
+        label: "Moja klinika",
+        link: "/my-clinic"
     },
     {
         label: "Pacjenci",
         link: "/patients"
+    },
+    {
+        label: "Dodaj Pracownika",
+        link: "/add-employee"
     }
 ];

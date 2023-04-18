@@ -51,11 +51,6 @@ export const Calendar = () => {
         setSelectedTime("");
         setShowModal(false);
     };
-    const handleAppointment = () => {
-        // Kod obsługi umawiania wizyty
-        console.log(`Umówiono wizytę na ${selectedDate} o godzinie ${selectedTime}`);
-        handleModalClose();
-    };
 
     return (
         <CalendarContainer>
@@ -101,17 +96,11 @@ export const Calendar = () => {
                     <ModalContent>
                         <ModalHeader>Umów wizytę</ModalHeader>
                         <ModalBody>
-                            <AddVisit/>
-                            <p>
-                                Wybrana data: {selectedDate}, godzina: {selectedTime}
-                            </p>
+                            <AddVisit date= {selectedDate} time={selectedTime}/>
                         </ModalBody>
                         <ModalFooter>
                             <Button  onClick={handleModalClose}>
                                 Anuluj
-                            </Button>
-                            <Button onClick={handleAppointment}>
-                                Umów
                             </Button>
                         </ModalFooter>
                     </ModalContent>

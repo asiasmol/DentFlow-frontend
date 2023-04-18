@@ -8,6 +8,8 @@ import Menu from '@mui/material/Menu';
 import {Link} from "./Navbar.styles";
 import {UserContext} from "../../context/UserContext";
 import {useNavigate} from "react-router-dom";
+import {CLINIC_ID, CLINIC_NAME} from "../../constants/constants";
+import {ClinicContext} from "../../context/ClinicContext";
 
 
 
@@ -15,12 +17,16 @@ export const ProfileButton= () => {
 
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const { userModifier } = useContext(UserContext);
+    const { clinicModifier } = useContext(ClinicContext);
     const navigate = useNavigate();
     const logout = useCallback(() => {
         userModifier(null);
+        clinicModifier(null);
         localStorage.removeItem('ACCESS_TOKEN')
+        localStorage.removeItem(CLINIC_NAME)
+        localStorage.removeItem(CLINIC_ID)
         navigate("/login");
-    }, [navigate,  userModifier]);
+    }, [navigate,  userModifier,clinicModifier]);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);

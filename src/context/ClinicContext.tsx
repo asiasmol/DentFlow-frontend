@@ -1,9 +1,10 @@
-import React, {createContext,  useEffect, useState} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
 import {ClinicContextType} from "../models/ClinicContextType";
 import {Clinic} from "../models/Clinic";
 import {ClinicApi} from "../api/ClinicApi";
 import {CLINIC_ID, CLINIC_NAME} from "../constants/constants";
-import {json} from "stream/consumers";
+import {UserContext} from "./UserContext";
+
 
 
 
@@ -17,13 +18,14 @@ export const ClinicContext = createContext<ClinicContextType>(defaultSettings);
 
 export const ClinicContextProvider = ({ children }: React.PropsWithChildren) => {
     const [currentClinic, setCurrentClinic] = useState<Clinic | null>(null);
+    const {currentUser} = useContext(UserContext);
     const clinicModifier = (clinic: Clinic  | null) => {
         setCurrentClinic(clinic);
         // localStorage.setItem(CLINIC_ID,)
     };
 
     useEffect(() => {
-        if (!currentClinic) {
+        if (!currentClinic && currentUser) {
             ClinicApi.getMyClinic().then(r => {
                 if(!r.data){
                     clinicModifier({
@@ -36,7 +38,7 @@ export const ClinicContextProvider = ({ children }: React.PropsWithChildren) => 
             });
 
         }
-    }, [currentClinic]);
+    }, [currentClinic,currentUser]);
 
     return (
         <ClinicContext.Provider value={{ currentClinic, clinicModifier}}>
