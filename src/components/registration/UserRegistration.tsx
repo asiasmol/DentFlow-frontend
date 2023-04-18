@@ -5,6 +5,9 @@ import './Registration.style';
 import {StyledBox, WelcomeText, WindowRegistration, Fields} from "./Registration.style";
 import {UserApi} from "../../api/UserApi";
 import {UserRegistrationData} from "../../models/api/UserRegistrationData";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
+
 
 const UserRegistration = () => {
     const [firstName, setFirstName] = useState('');
@@ -14,6 +17,7 @@ const UserRegistration = () => {
     const [repeatedPassword, setRepeatedPassword] = useState('')
     const [telNumber, setTelNumber] = useState('')
 
+    const navigate = useNavigate();
     const handleSubmit = () => {
         let user: UserRegistrationData = {
             firstName: firstName,
@@ -24,6 +28,8 @@ const UserRegistration = () => {
         }
         UserApi.registerUser(user).then(r => {
         })
+        toast.success("Poprawnie zarejestrowano");
+        navigate("/login");
     }
 
     return (
