@@ -16,6 +16,7 @@ import {
     ModalBody,
     ModalFooter,
     Button,
+    Time,
 } from "./Calendar.styles";
 
 export const Calendar = () => {
@@ -74,13 +75,18 @@ export const Calendar = () => {
                 ))}
             </Weekdays>
             <Days>
+                <Hours>
+                    {[...Array(13)].map((_, i) => (
+                        <Time key={i+8}>{`${i+8}:00`}</Time>
+                    ))}
+                </Hours>
                 {Array.from({ length: 7 }, (_, i) => addDays(weekStart, i)).map(
                     (day) => (
                         <Day key={day.toString()}>
                             <Hours>
                                 {[...Array(13)].map((_, i) => (
                                     <Hour key={i+8} onClick={() => handleHourClick(`${i+8}:00`,day.toString())}>
-                                        {`${i+8}:00`}
+
                                     </Hour>
                                 ))}
                             </Hours>

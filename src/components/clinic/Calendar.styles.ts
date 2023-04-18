@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 1000px;
 `;
 
 export const CalendarHeader = styled.div`
@@ -13,6 +14,7 @@ export const CalendarHeader = styled.div`
 
 export const Weekdays = styled.div`
   display: flex;
+  font-size: 2rem;
 `;
 
 export const Weekday = styled.div`
@@ -31,13 +33,28 @@ export const Day = styled.div`
 export const Hours = styled.div`
   display: flex;
   flex-direction: column;
+  height: 600px;
   //flex-wrap: wrap;
 `;
 
 export const Hour = styled.div`
+  height: 30px;
   flex-basis: 25%;
   padding: 4px;
   cursor: pointer;
+  border: 1px solid #ccc;
+`;
+export const Time = styled.div`
+    font-size: 20px;
+  height: 30px;
+  flex-basis: 25%;
+  padding: 4px;
+  margin-left: -50px;
+  margin-top: 4px;
+  text-align: center;
+  :first-child{
+    margin-top: 10px;
+  }
 `;
 export const Modal = styled.div`
   position: fixed;
