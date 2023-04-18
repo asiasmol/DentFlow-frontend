@@ -9,7 +9,7 @@ export class ClinicApi {
     static getClinicWhereWork = async () =>
         await authorizedApi.get<ClinicResponse[]>("/clinics/myClinics");
 
-    static register = async (request:ClinicRequest) =>
+    static register = async (request: ClinicRequest) =>
         await authorizedApi.post("/clinics",request);
 
     static getMyClinic = async () =>
@@ -18,8 +18,8 @@ export class ClinicApi {
     static getEmployees = async () =>
         await authorizedApi.get<EmployeeResponse[]>("/clinics/personnel");
 
-    static getPatients = async () =>
-        await authorizedApi.get<PatientResponse[]>("/clinics/patients")
+    static getPatients = async (request: {clinicId: number | undefined}) =>
+        await authorizedApi.get<PatientResponse[]>("/clinics/patients", {params:request});
     static addEmployees = async (request:EmployeeRequest) =>
         await authorizedApi.patch("/clinics/personnel",request);
 }

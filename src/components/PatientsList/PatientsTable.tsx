@@ -13,11 +13,12 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import {useCallback, useEffect} from "react";
+import {useCallback, useContext, useEffect} from "react";
 import {ClinicApi} from "../../api/ClinicApi";
 import { TableContainer } from '@mui/material';
 import {Container} from "./PatientsList.styles";
 import {PatientResponse} from "../../models/api/PatientResponse";
+import {ClinicContext} from "../../context/ClinicContext";
 
 interface TablePaginationActionsProps {
     count: number;
@@ -89,10 +90,11 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
 export default function CustomPaginationActionsTable() {
     const [patients, setPatients] = React.useState<PatientResponse[]>([]);
+    const {currentClinic} = useContext(ClinicContext);
 
     const fetchPatients= useCallback(async () => {
         try {
-            const result = await ClinicApi.getPatients()
+            const result = await ClinicApi.getPatients({clinicId: currentClinic?.id})
             setPatients(result.data);
         } finally {
             // setIsLoading(false);

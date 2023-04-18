@@ -48,9 +48,7 @@ export const AppRouter = () => {
             <Route path="/patients"
              element={
                  <ProtectedRoute>
-                     <OwnerProtectedRoute>
                          <PatientsList />
-                     </OwnerProtectedRoute>
                  </ProtectedRoute>
              }>
             </Route>

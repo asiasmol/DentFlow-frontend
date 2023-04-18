@@ -1,7 +1,6 @@
 import React, {useContext} from "react";
 import {ClinicContext} from "../../context/ClinicContext";
-import {HomeContainer, StyledHeading} from "../clinic/MyClinic/MyClinic.styles";
-import Table from "../clinic/MyClinic/Table";
+import {HomeContainer, StyledHeading} from "../MyClinic/MyClinic.styles";
 import {Outlet} from "react-router-dom";
 import PatientsTable from "./PatientsTable";
 
