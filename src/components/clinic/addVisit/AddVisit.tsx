@@ -32,28 +32,50 @@ const theme = createTheme();
 
 
 export default function SignIn() {
-    const [email, setEmail] = useState<string>("");
-    const [searchResults, setSearchResults] = useState<string[]>([]);
+    const [doctorFullName, setDoctorFullName] = useState("");
+    const [doctorEmail, setDoctorEmail] = useState<string>("");
+    const [doctorSearchResults, setDoctorSearchResults] = useState<EmployeeResponse[]>([]);
     const [doctors, setDoctors] = useState<EmployeeResponse[]>([]);
+    const [patientId, setPatientId] = useState<number>(0);
+    const [patientFullName, setPatientFullName] = useState("");
+    const [patientSearchResults, setPatientSearchResults] = useState<EmployeeResponse[]>([]);
+    const [patients, setPatients] = useState<EmployeeResponse[]>([]);
     const {currentClinic} = useContext(ClinicContext);
 
-    function search(searchTerm: string) {
-    //     const filteredEmails = doctors.filter((email) =>
-    //         email.includes(searchTerm)
-    //     );
-    //     return filteredEmails;
+    function splitString(str: string): string[] | null {
+        if (str.includes(" ")) {
+            return str.split(" ");
+        }
+        return null;
+    }
+    function searchDoctor( firstName:string,lastName:string) {
+            return doctors.filter((doctor) =>{
+                const firstNameMatch = doctor.firstName.toLowerCase().includes(firstName.toLowerCase());
+                const lastNameMatch = doctor.lastName.toLowerCase().includes(lastName.toLowerCase());
+
+                if ( firstName == lastName)return firstNameMatch || lastNameMatch
+                else return firstNameMatch && lastNameMatch
+            });
+
+    }
+    function doctorHandleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const searchTerm = event.target.value;
+        setDoctorFullName(searchTerm)
+        const result = splitString(searchTerm);
+        let results: EmployeeResponse[] = [];
+        if (result !== null) {
+            const [firstWord, secondWord] = result;
+            results = searchTerm ? searchDoctor(firstWord,secondWord) : [];
+        } else {
+            results = searchTerm ? searchDoctor( searchTerm , searchTerm) : [];
+        }
+        setDoctorSearchResults(results);
     }
 
-    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    //     const searchTerm = event.target.value;
-    //     const results = searchTerm ? search(searchTerm) : [];
-    //     setEmail(searchTerm);
-    //     setSearchResults(results);
-    }
-
-    function handleResultClick(result: string) { // określenie typu parametru "result" na string
-    //     setEmail(result);
-    //     setSearchResults([]);
+    function doctorHandleResultClick(result: EmployeeResponse) { // określenie typu parametru "result" na string
+        setDoctorEmail(result.email);
+        setDoctorFullName(result.firstName + " " + result.lastName)
+        setDoctorSearchResults([]);
     }
 
     const fetchDoctors= useCallback(async () => {
@@ -67,9 +89,51 @@ export default function SignIn() {
         }
     }, [currentClinic?.id]);
 
+    function searchPatient( firstName:string,lastName:string) {
+        return patients.filter((patient) =>{
+            const firstNameMatch = patient.firstName.toLowerCase().includes(firstName.toLowerCase());
+            const lastNameMatch = patient.lastName.toLowerCase().includes(lastName.toLowerCase());
+
+            if ( firstName == lastName)return firstNameMatch || lastNameMatch
+            else return firstNameMatch && lastNameMatch
+        });
+
+    }
+    function patientHandleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const searchTerm = event.target.value;
+        setPatientFullName(searchTerm)
+        const result = splitString(searchTerm);
+        let results: EmployeeResponse[] = [];
+        if (result !== null) {
+            const [firstWord, secondWord] = result;
+            results = searchTerm ? searchPatient(firstWord,secondWord) : [];
+        } else {
+            results = searchTerm ? searchPatient( searchTerm , searchTerm) : [];
+        }
+        setPatientSearchResults(results);
+    }
+
+    function patientHandleResultClick(result: EmployeeResponse) { // określenie typu parametru "result" na string
+        setDoctorEmail(result.email);
+        setPatientFullName(result.firstName + " " + result.lastName)
+        setPatientSearchResults([]);
+    }
+
+    const fetchPatients= useCallback(async () => {
+        try {
+            const result = await ClinicApi.getDoctors({
+                clinicId:currentClinic?.id
+            });
+            setPatients(result.data)
+        } finally {
+            // setIsLoading(false);
+        }
+    }, [currentClinic?.id]);
+
     useEffect(() => {
         fetchDoctors();
-    }, [fetchDoctors])
+        fetchPatients();
+    }, [fetchDoctors,fetchPatients])
 
 
     return (
@@ -84,37 +148,41 @@ export default function SignIn() {
                         alignItems: 'center',
                     }}
                 >
-                    <AddEmplyeeInput
-                        type="text"
-                        value={email}
-                        placeholder="Search..."
-                        onChange={handleInputChange}
-                    />
-
-
-                    <SearchList>
-                        {searchResults.map((result) => (
-                            <SearchElement key={result} onClick={() => handleResultClick(result)}>
-                                {/*{result}*/}
-
-                            </SearchElement>
-                        ))}
-
-                    </SearchList>
                     <Box component="form" noValidate sx={{ mt: 1 }}>
-
-
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="patientId"
-                            label="pacjent"
-                            type="patientId"
-                            id="patientId"
-                            autoComplete="current-password"
-
+                        <AddEmplyeeInput
+                            type="text"
+                            value={doctorFullName}
+                            placeholder="Search..."
+                            onChange={doctorHandleInputChange}
                         />
+
+
+                        <SearchList>
+                            {doctorSearchResults.map((doctor) => (
+                                <SearchElement  onClick={() => doctorHandleResultClick(doctor)}>
+                                    {doctor.firstName +" "+doctor.lastName}
+                                </SearchElement>
+                            ))}
+
+                        </SearchList>
+                        <AddEmplyeeInput
+                            type="text"
+                            value={patientFullName}
+                            placeholder="Search..."
+                            onChange={patientHandleInputChange}
+                        />
+
+
+                        <SearchList>
+                            {patientSearchResults.map((patient) => (
+                                <SearchElement  onClick={() => patientHandleResultClick(patient)}>
+                                    {patient.firstName +" "+patient.lastName}
+                                </SearchElement>
+                            ))}
+
+                        </SearchList>
+
+
 
                         <Button
                             type="submit"
@@ -129,9 +197,7 @@ export default function SignIn() {
                     </Box>
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />
-                {doctors.map((doctor)=> (
-                    <h1>{doctor.firstName}</h1>
-                ))}
+
             </Container>
         </ThemeProvider>
     );

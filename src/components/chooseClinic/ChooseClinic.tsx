@@ -7,6 +7,7 @@ import {ClinicResponse} from "../../models/api/ClinicResponse";
 import {ClinicApi} from "../../api/ClinicApi";
 import {useNavigate} from "react-router-dom";
 import {ClinicContext} from "../../context/ClinicContext";
+import {CLINIC_ID, CLINIC_NAME} from "../../constants/constants";
 
 
 export const ChooseClinic = () => {
@@ -45,6 +46,8 @@ export const ChooseClinic = () => {
         const foundClinic = clinicsWhereWork.find(clinic => clinic.id === clinicId);
         if (foundClinic) {
             clinicModifier(foundClinic);
+            localStorage.setItem(CLINIC_ID,String(foundClinic.id))
+            localStorage.setItem(CLINIC_NAME,foundClinic.name)
         }
         navigate(`/clinic`)
     },[navigate,clinicId,clinicModifier,clinicsWhereWork] );

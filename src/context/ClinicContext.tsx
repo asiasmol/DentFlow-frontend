@@ -1,7 +1,10 @@
-import React, {createContext, useCallback, useEffect, useState} from "react";
+import React, {createContext,  useEffect, useState} from "react";
 import {ClinicContextType} from "../models/ClinicContextType";
 import {Clinic} from "../models/Clinic";
 import {ClinicApi} from "../api/ClinicApi";
+import {CLINIC_ID, CLINIC_NAME} from "../constants/constants";
+import {json} from "stream/consumers";
+
 
 
 
@@ -14,20 +17,26 @@ export const ClinicContext = createContext<ClinicContextType>(defaultSettings);
 
 export const ClinicContextProvider = ({ children }: React.PropsWithChildren) => {
     const [currentClinic, setCurrentClinic] = useState<Clinic | null>(null);
-
     const clinicModifier = (clinic: Clinic  | null) => {
         setCurrentClinic(clinic);
+        // localStorage.setItem(CLINIC_ID,)
     };
-    const fetchClinic = useCallback(async () => {
-        const myClinic = await ClinicApi.getMyClinic();
-        clinicModifier(myClinic.data);
-    }, []);
 
     useEffect(() => {
         if (!currentClinic) {
-            fetchClinic();
+            ClinicApi.getMyClinic().then(r => {
+                if(!r.data){
+                    clinicModifier({
+                        id: Number(localStorage.getItem(CLINIC_ID)),
+                        name: localStorage.getItem(CLINIC_NAME) as ""
+                    });
+                }else{
+                    clinicModifier(r.data);
+                }
+            });
+
         }
-    }, [fetchClinic,currentClinic]);
+    }, [currentClinic]);
 
     return (
         <ClinicContext.Provider value={{ currentClinic, clinicModifier}}>
