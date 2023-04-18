@@ -16,6 +16,11 @@ export class ClinicApi {
 
     static getEmployees = async () =>
         await authorizedApi.get<EmployeeResponse[]>("/clinics/personnel");
+
     static addEmployees = async (request:EmployeeRequest) =>
         await authorizedApi.patch("/clinics/personnel",request);
+
+    static getDoctors = async (request: { clinicId: number | undefined }) =>
+        await authorizedApi.get<EmployeeResponse[]>("/clinics/doctors", {params:request});
+
 }
