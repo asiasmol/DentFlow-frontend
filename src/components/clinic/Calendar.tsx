@@ -18,6 +18,7 @@ import {
     Button,
     Time,
 } from "./Calendar.styles";
+import AddVisit from "./addVisit/AddVisit";
 
 export const Calendar = () => {
     const [selectedDate, setSelectedDate] = useState("");
@@ -100,6 +101,7 @@ export const Calendar = () => {
                     <ModalContent>
                         <ModalHeader>Umów wizytę</ModalHeader>
                         <ModalBody>
+                            <AddVisit/>
                             <p>
                                 Wybrana data: {selectedDate}, godzina: {selectedTime}
                             </p>
