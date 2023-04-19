@@ -45,20 +45,18 @@ export default function MultiActionAreaCard() {
 
         const [firstName, setFirstName] = useState('');
         const [lastName, setLastName] = useState('');
-        const [email, setEmail] = useState('');
+        // const [email, setEmail] = useState('');
 
         const navigate = useNavigate();
         const handleSubmit = () => {
-            let user: UserUpdateData = {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-            }
-            UserApi.updateUser(user).then(r => {
-            })
-            toast.success("Zaktualizowano profil");
-            // navigate("/profile");
-            closeModal();
+                let userRequest: UserUpdateData = {
+                    firstName: firstName,
+                    lastName: lastName
+                }
+                UserApi.updateUser(userRequest)
+                toast.success("Zaktualizowano profil");
+                closeModal();
+               navigate("/login");
         }
 
 
@@ -109,14 +107,14 @@ export default function MultiActionAreaCard() {
                                             variant="standard"
                                             onChange={(event) => setLastName(event.target.value)}
                                         />
-                                        <TextField
-                                            required
-                                            id="email"
-                                            label="Email"
-                                            type='email'
-                                            variant="standard"
-                                            onChange={event => setEmail(event.target.value)}
-                                        />
+                                        {/*<TextField*/}
+                                        {/*    required*/}
+                                        {/*    id="email"*/}
+                                        {/*    label="Email"*/}
+                                        {/*    type='email'*/}
+                                        {/*    variant="standard"*/}
+                                        {/*    onChange={event => setEmail(event.target.value)}*/}
+                                        {/*/>*/}
                                     </Fields>
                                 </ModalBody>
                                 <ModalFooter>
