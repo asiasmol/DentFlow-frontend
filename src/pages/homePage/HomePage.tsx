@@ -1,14 +1,16 @@
 import {
     BorderContainer,
     ContactForm,
-    ContactHero, ContactInputs,
+    ContactHero,
+    ContactInputs,
     HomeButton,
     HomeContainer,
     HomeHeader,
     HomeLink,
     Links,
     Logo,
-    TextArea
+    TextArea,
+    PriceContainer,
 } from "./HomePage.style";
 import logo from '../../resources/img/logo.png';
 import './HomePage.css'
@@ -17,6 +19,7 @@ import {Link} from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {Cennik} from "../../components/cennik/Cennik";
 
 const HomePage = () => {
 
@@ -24,7 +27,7 @@ const HomePage = () => {
         <HomeContainer>
             <BorderContainer>
                 <HomeHeader>
-                    <Logo src={logo}/>
+                    <a href="/"><Logo src={logo}/></a>
                     <Links>
                         <HomeLink>
                             <a href="/">Strona główna</a>
@@ -84,6 +87,11 @@ const HomePage = () => {
 
                         </ContactInputs>
                     </ContactForm>
+                </div>
+                <div id='price'>
+                    <PriceContainer>
+
+                    </PriceContainer>
                 </div>
             </BorderContainer>
         </HomeContainer>

@@ -16,6 +16,7 @@ import {AddPatient} from "../components/addPatient/AddPatient";
 import {MyClinic} from "../components/MyClinic/MyClinic";
 import { NonOwnerProtectedRoot } from "../components/NonOwnerProtectedRoot";
 import PatientsList from "../components/PatientsList/PatientsList";
+import {Cennik} from "../components/cennik/Cennik";
 
 
 
@@ -106,7 +107,14 @@ export const AppRouter = () => {
                     </ProtectedRoute>
                 }
             ></Route>
+            <Route
+                path="/payment"
+                element={
+                    <Cennik />
+                }
+            ></Route>
         </Route>
+
     </Routes>
   );
 };
