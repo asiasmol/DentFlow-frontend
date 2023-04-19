@@ -1,5 +1,5 @@
 import React from "react";
-import {HomeContainer } from "./Profile.style";
+import { HomeContainer } from "./Profile.style";
 import ClinicsTable from "./ClinicsTable";
 import PersonalProfile from "./PersonalProfile";
 
