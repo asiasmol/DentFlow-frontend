@@ -19,7 +19,8 @@ import {Link} from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import {Cennik} from "../../components/cennik/Cennik";
+// import {Cennik} from "../../components/cennik/Cennik";
+// import {Footer} from "../../components/footer/Footer";
 
 const HomePage = () => {
 
@@ -94,6 +95,7 @@ const HomePage = () => {
                     </PriceContainer>
                 </div>
             </BorderContainer>
+
         </HomeContainer>
     )
 }

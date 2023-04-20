@@ -17,6 +17,8 @@ import {MyClinic} from "../components/MyClinic/MyClinic";
 import { NonOwnerProtectedRoot } from "../components/NonOwnerProtectedRoot";
 import PatientsList from "../components/PatientsList/PatientsList";
 import {Cennik} from "../components/cennik/Cennik";
+import {Home} from "../components/home/Home";
+
 
 
 

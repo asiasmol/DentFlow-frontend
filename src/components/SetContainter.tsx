@@ -7,7 +7,7 @@ import { Footer } from "./footer/Footer";
 export const SetContainter=() => {
     return(
         <>
-        <Navbar/>
+            <Navbar/>
             <Outlet/>
             <Footer/>
         </>

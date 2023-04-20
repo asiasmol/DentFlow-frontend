@@ -6,6 +6,7 @@ import {withAxiosIntercepted} from "./hooks/withAxiosIntercepted";
 import {UserContextProvider} from "./context/UserContext";
 import {NavbarContextProvider} from "./context/NavbarContext";
 import {ClinicContextProvider} from "./context/ClinicContext";
+import {Footer} from "./components/footer/Footer";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
                   <NavbarContextProvider>
                       <AppRouter />
                       <ToastContainer />
+                      <Footer />
                   </NavbarContextProvider>
               </ClinicContextProvider>
           </UserContextProvider>
