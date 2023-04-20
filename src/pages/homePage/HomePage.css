@@ -19,10 +19,10 @@ a{
 #homeBody{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 @media (max-width: 950px) {
     #homeBody{
@@ -33,6 +33,5 @@ a{
 #contact-form-button{
     align-self: center;
     margin-left: 3rem;
-    margin-top: 3rem;
     box-shadow: 1rem 2rem 4rem rgba(0, 0, 0, 0.25);
 }
