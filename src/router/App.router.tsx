@@ -16,7 +16,7 @@ import {AddPatient} from "../components/addPatient/AddPatient";
 import {MyClinic} from "../components/MyClinic/MyClinic";
 import { NonOwnerProtectedRoot } from "../components/NonOwnerProtectedRoot";
 import PatientsList from "../components/PatientsList/PatientsList";
-import {Cennik} from "../components/cennik/Cennik";
+import {Pricing} from "../components/pricing/Pricing";
 import {Home} from "../components/home/Home";
 
 
@@ -26,7 +26,13 @@ import {Home} from "../components/home/Home";
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />}></Route>
+      <Route path="/"
+             element={
+          <>
+              <HomePage />
+              <Pricing />
+          </>
+      }></Route>
         <Route element={<SetContainter/>}>
             <Route
                 path="/my-clinic"
@@ -38,6 +44,13 @@ export const AppRouter = () => {
                     </ProtectedRoute>
                 }
             ></Route>
+            <Route
+                path="/pricing"
+                element={
+                    <Pricing />
+                }
+            >
+            </Route>
             <Route
               path="/clinics"
               element={
@@ -112,7 +125,7 @@ export const AppRouter = () => {
             <Route
                 path="/payment"
                 element={
-                    <Cennik />
+                    <Pricing />
                 }
             ></Route>
         </Route>

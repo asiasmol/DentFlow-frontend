@@ -16,7 +16,6 @@ function App() {
                   <NavbarContextProvider>
                       <AppRouter />
                       <ToastContainer />
-                      <Footer />
                   </NavbarContextProvider>
               </ClinicContextProvider>
           </UserContextProvider>

@@ -19,7 +19,7 @@ import {Link} from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-// import {Cennik} from "../../components/cennik/Cennik";
+import {Pricing} from "../../components/pricing/Pricing";
 // import {Footer} from "../../components/footer/Footer";
 
 const HomePage = () => {
@@ -45,11 +45,11 @@ const HomePage = () => {
                     </Links>
                     <div id='buttons'>
                         <Link to={'/user-registration'}>
-                            <HomeButton width={12}>Załóż konto</HomeButton>
+                            <HomeButton width={12} marginTop={0}>Załóż konto</HomeButton>
                         </Link>
 
                         <Link to={"/login"}>
-                            <HomeButton width={12}>Zaloguj</HomeButton>
+                            <HomeButton width={12} marginTop={0}>Zaloguj</HomeButton>
                         </Link>
                     </div>
                 </HomeHeader>
@@ -64,7 +64,7 @@ const HomePage = () => {
                             stomatologicznym
                         </Typography>
 
-                        <HomeButton width={17}> Dowiedz się więcej </HomeButton>
+                        <HomeButton width={17} marginTop={0}> Dowiedz się więcej </HomeButton>
                     </TextArea>
 
                     <ContactForm>
@@ -82,20 +82,14 @@ const HomePage = () => {
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker label="Wybierz dzień kontaktu" className={"input"}/>
                             </LocalizationProvider>
-                            <HomeButton width={13} id={'contact-form-button'}>
+                            <HomeButton marginTop={0} width={13} id={'contact-form-button'}>
                                 Wyślij
                             </HomeButton>
 
                         </ContactInputs>
                     </ContactForm>
                 </div>
-                <div id='price'>
-                    <PriceContainer>
-
-                    </PriceContainer>
-                </div>
             </BorderContainer>
-
         </HomeContainer>
     )
 }

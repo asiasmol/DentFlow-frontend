@@ -47,12 +47,13 @@ export const Links = styled.div`
 export const HomeLink = styled.div`
   font-size: 1.6rem;
 `
-export const HomeButton = styled.button<{width:number}>`
+export const HomeButton = styled.button<{width:number, marginTop: number}>`
   background-color: #FFBE5C;
   color: white;
   height: 4rem;
   font-size: 1.5rem;
   width: ${props => props.width}rem;
+  margin-top: ${props => props.marginTop}rem;
   cursor: pointer;
   margin-right: auto;
   border: none;
