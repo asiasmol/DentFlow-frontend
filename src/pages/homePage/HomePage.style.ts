@@ -15,8 +15,13 @@ export const BorderContainer = styled.div`
   padding: 2rem;
   margin-right: 5rem;
   margin-left: 5rem;
-  @media(max-width: 950px){
-    margin-left: 2rem;
+  //@media(max-width: 950px){
+  //  margin-left: 2rem;
+  //}
+
+  @media only screen and (max-width: 950px){
+    flex-direction: column;
+    align-items: center;
   }
 `
 

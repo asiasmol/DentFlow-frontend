@@ -7,8 +7,9 @@ export const Box = styled.div`
   bottom: 0;
   width: 100%;
   height: 15rem;
-  @media (max-width: 768px) {
-    padding: 70px 30px;
+  @media only screen and (max-width: 950px){
+    flex-direction: column;
+    align-items: center;
   }
 `;
    

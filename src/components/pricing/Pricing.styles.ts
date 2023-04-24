@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const PriceContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-  //background: #FAFAFA;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    //background: #FAFAFA;
   
 `
 
@@ -28,4 +28,8 @@ export const Prices = styled.div`
   margin-left: 50%;
   margin-right: 50%;
   //background: #FAFAFA;
+  @media only screen and (max-width: 950px){
+    flex-direction: column;
+    align-items: center;
+  }
 `
