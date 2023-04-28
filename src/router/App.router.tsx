@@ -17,6 +17,9 @@ import { NonOwnerProtectedRoot } from "../components/NonOwnerProtectedRoot";
 import PatientsList from "../components/PatientsList/PatientsList";
 import {Calendar} from "../components/calendar/Calendar";
 import {CalendarContextProvider} from "../context/CalendarContext";
+import {Pricing} from "../components/pricing/Pricing";
+import {Home} from "../components/home/Home";
+
 
 
 
@@ -24,7 +27,13 @@ import {CalendarContextProvider} from "../context/CalendarContext";
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />}></Route>
+      <Route path="/"
+             element={
+          <>
+              <HomePage />
+              <Pricing />
+          </>
+      }></Route>
         <Route element={<SetContainter/>}>
             <Route
                 path="/my-clinic"
@@ -42,6 +51,13 @@ export const AppRouter = () => {
                     <Calendar />
                 }
             ></Route>
+            <Route
+                path="/pricing"
+                element={
+                    <Pricing />
+                }
+            >
+            </Route>
             <Route
               path="/clinics"
               element={
@@ -92,9 +108,9 @@ export const AppRouter = () => {
             <Route
                 path="/clinic-registration"
                 element={
-                    <ProtectedRoute>
+                    // <ProtectedRoute>
                         <ClinicRegistration />
-                    </ProtectedRoute>
+                    // </ProtectedRoute>
                 }
             ></Route>
             <Route
@@ -115,7 +131,14 @@ export const AppRouter = () => {
                     </ProtectedRoute>
                 }
             ></Route>
+            <Route
+                path="/payment"
+                element={
+                    <Pricing />
+                }
+            ></Route>
         </Route>
+
     </Routes>
   );
 };

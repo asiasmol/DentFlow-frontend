@@ -25,7 +25,7 @@ export const ProfileButton= () => {
         localStorage.removeItem('ACCESS_TOKEN')
         localStorage.removeItem(CLINIC_NAME)
         localStorage.removeItem(CLINIC_ID)
-        navigate("/login");
+        navigate("/");
     }, [navigate,  userModifier,clinicModifier]);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {

@@ -15,8 +15,13 @@ export const BorderContainer = styled.div`
   padding: 2rem;
   margin-right: 5rem;
   margin-left: 5rem;
-  @media(max-width: 950px){
-    margin-left: 2rem;
+  //@media(max-width: 950px){
+  //  margin-left: 2rem;
+  //}
+
+  @media only screen and (max-width: 950px){
+    flex-direction: column;
+    align-items: center;
   }
 `
 
@@ -47,17 +52,18 @@ export const Links = styled.div`
 export const HomeLink = styled.div`
   font-size: 1.6rem;
 `
-export const HomeButton = styled.button<{width:number}>`
+export const HomeButton = styled.button<{width:number, marginTop: number}>`
   background-color: #FFBE5C;
   color: white;
-  height: 5rem;
-  font-size: 28px;
+  height: 4rem;
+  font-size: 1.5rem;
   width: ${props => props.width}rem;
+  margin-top: ${props => props.marginTop}rem;
   cursor: pointer;
   margin-right: auto;
   border: none;
   border-radius: 10px;
-  margin-left: 1.5rem;
+  margin-left: 1rem;
   @media(max-width: 950px){
     margin-top: 2rem;
   }
@@ -67,8 +73,8 @@ export const TextArea = styled.div`
 `
 
 export const ContactForm = styled.div`
-  width: 36rem;
-  height: 50rem;
+  width: 32rem;
+  height: 40rem;
   background-color: white;
   border-radius: 1rem;
   box-shadow: 1rem 2rem 3rem rgba(0, 0, 0, 0.25);
@@ -90,3 +96,16 @@ export const ContactInputs = styled.div`
   margin-left: 2rem;
   margin-right: 2rem;
 `
+
+export const PriceContainer = styled.div`
+  position: absolute;
+  width: 1440px;
+  height: 1116px;
+  //left: 0px;
+  top: 2565px;
+
+  /* light-gray-1 */
+
+  background: #FAFAFA;
+`
+
