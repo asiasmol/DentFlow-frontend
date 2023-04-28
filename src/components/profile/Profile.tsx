@@ -9,16 +9,16 @@ import {ACCESS_TOKEN, CLINIC_ID, CLINIC_NAME} from "../../constants/constants";
 
 export const Profile = () => {
 
-    const {userModifier} = useContext(UserContext)
-    const {clinicModifier} = useContext(ClinicContext)
+    // const {userModifier} = useContext(UserContext)
+    // const {clinicModifier} = useContext(ClinicContext)
 
-    useEffect(() => {
-          localStorage.removeItem(ACCESS_TOKEN)
-          localStorage.removeItem(CLINIC_NAME)
-          localStorage.removeItem(CLINIC_ID)
-          userModifier(null);
-          clinicModifier(null);
-    }, [userModifier, clinicModifier])
+    // useEffect(() => {
+    //       localStorage.removeItem(ACCESS_TOKEN)
+    //       localStorage.removeItem(CLINIC_NAME)
+    //       localStorage.removeItem(CLINIC_ID)
+    //       userModifier(null);
+    //       clinicModifier(null);
+    // }, [userModifier, clinicModifier])
 
   return (
       <>

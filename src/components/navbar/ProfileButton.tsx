@@ -59,9 +59,8 @@ export const ProfileButton= () => {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
                     >
-                    <MenuItem onClick={handleCloseUserMenu} ><Link href={"/profile"}>Profile</Link></MenuItem>
-                    <MenuItem onClick={handleCloseUserMenu}><Link href={"/profile"}>My account</Link></MenuItem>
-                    <MenuItem onClick={()=>{handleCloseUserMenu();logout();}}>Log out</MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu} ><Link href={"/profile"}>Profil</Link></MenuItem>
+                    <MenuItem onClick={()=>{handleCloseUserMenu();logout();}}>Wylogujt</MenuItem>
                     </Menu>
                 </Box>
 

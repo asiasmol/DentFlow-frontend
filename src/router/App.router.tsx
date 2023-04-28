@@ -52,13 +52,6 @@ export const AppRouter = () => {
                 }
             ></Route>
             <Route
-                path="/pricing"
-                element={
-                    <Pricing />
-                }
-            >
-            </Route>
-            <Route
               path="/clinics"
               element={
                <ProtectedRoute>
@@ -129,12 +122,6 @@ export const AppRouter = () => {
                     <ProtectedRoute>
                                 <AddPatient />
                     </ProtectedRoute>
-                }
-            ></Route>
-            <Route
-                path="/payment"
-                element={
-                    <Pricing />
                 }
             ></Route>
         </Route>
