@@ -14,6 +14,7 @@ import {ClinicContext} from "../../../context/ClinicContext";
 import {EmployeeResponse} from "../../../models/api/EmployeeResponse";
 import {PatientResponse} from "../../../models/api/PatientResponse";
 import { VisitApi } from '../../../api/VisitApi';
+import {toast} from "react-toastify";
 
 
 function Copyright(props: any) {
@@ -33,6 +34,7 @@ const theme = createTheme();
 type Props = {
     date: string;
     time:string;
+    handleModalClose:()=>void;
 };
 
 export default function SignIn(props:Props) {
@@ -146,10 +148,12 @@ export default function SignIn(props:Props) {
                 doctorEmail:doctorEmail,
                 patientId:patientId,
             })
+            props.handleModalClose();
+            toast.success("Dodano wizyte");
         } finally {
             // setIsLoading(false);
         }
-    }, [patientId,doctorEmail,props.date,props.time]);
+    }, [patientId,doctorEmail,currentClinic?.id,props]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -174,7 +178,7 @@ export default function SignIn(props:Props) {
 
                         <SearchList>
                             {doctorSearchResults.map((doctor) => (
-                                <SearchElement  onClick={() => doctorHandleResultClick(doctor)}>
+                                <SearchElement key={doctor.email}  onClick={() => doctorHandleResultClick(doctor)}>
                                     {doctor.firstName +" "+doctor.lastName}
                                 </SearchElement>
                             ))}
@@ -190,7 +194,7 @@ export default function SignIn(props:Props) {
 
                         <SearchList>
                             {patientSearchResults.map((patient) => (
-                                <SearchElement  onClick={() => patientHandleResultClick(patient)}>
+                                <SearchElement key={patient.patientId}   onClick={() => patientHandleResultClick(patient)}>
                                     {patient.firstName +" "+patient.lastName}
                                 </SearchElement>
                             ))}

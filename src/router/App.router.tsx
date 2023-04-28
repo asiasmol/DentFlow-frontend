@@ -10,12 +10,13 @@ import HomePage from "../pages/homePage/HomePage";
 import ClinicRegistration from "../components/registration/ClinicRegistration";
 import { AddEmplyee } from "../components/addEmployee/AddEmplyee";
 import {OwnerProtectedRoute} from "../components/OwnerProtectedRoute";
-import { Clinic } from "../components/clinic/Clinic";
 import {SetContainter} from "../components/SetContainter";
 import {AddPatient} from "../components/addPatient/AddPatient";
 import {MyClinic} from "../components/MyClinic/MyClinic";
 import { NonOwnerProtectedRoot } from "../components/NonOwnerProtectedRoot";
 import PatientsList from "../components/PatientsList/PatientsList";
+import {Calendar} from "../components/calendar/Calendar";
+import {CalendarContextProvider} from "../context/CalendarContext";
 
 
 
@@ -33,6 +34,12 @@ export const AppRouter = () => {
                             <MyClinic />
                         </OwnerProtectedRoute>
                     </ProtectedRoute>
+                }
+            ></Route>
+            <Route
+                path="/test"
+                element={
+                    <Calendar />
                 }
             ></Route>
             <Route
@@ -56,7 +63,9 @@ export const AppRouter = () => {
                 path="/clinic"
                 element={
                     <ProtectedRoute>
-                        <Clinic  />
+                        <CalendarContextProvider>
+                            <Calendar />
+                        </CalendarContextProvider>
                     </ProtectedRoute>
                 }
             ></Route>

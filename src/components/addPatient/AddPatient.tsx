@@ -4,6 +4,8 @@ import Button from '@mui/material/Button'
 import {StyledBox, WelcomeText, WindowRegistration, Fields} from "./AddPatient.styles";
 import {ClinicContext} from "../../context/ClinicContext";
 import {PatientApi} from "../../api/PatientApi";
+import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 export const AddPatient = () => {
     const [firstName, setFirstName] = useState('');
@@ -11,6 +13,7 @@ export const AddPatient = () => {
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('')
     const {currentClinic} = useContext(ClinicContext)
+    const navigate = useNavigate();
     const PatientRegistration = useCallback(async () => {
         try {
             await PatientApi.register({
@@ -20,10 +23,12 @@ export const AddPatient = () => {
                 email: email,
                 phoneNumber: phoneNumber
             })
+            toast.success("Dodano Pacjenta");
+            navigate("/clinic");
         } catch (error: any) {
 
         }
-    },[currentClinic?.id, email, firstName, lastName, phoneNumber])
+    },[currentClinic?.id, email, firstName, lastName, phoneNumber,navigate])
 
     return (
         <WindowRegistration>

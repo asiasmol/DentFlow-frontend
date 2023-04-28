@@ -23,7 +23,6 @@ export const Navbar= () =>  {
     const navigate = useNavigate()
 
     const toggle = () => {
-        console.log(currentUser)
         setIsOpen(!isOpen);
     }
 

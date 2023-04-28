@@ -36,7 +36,6 @@ export const Login = () => {
         roles: user.data.roles,
       });
       localStorage.setItem(ACCESS_TOKEN, user.data.token);
-      toast.success("Poprawnie zalogowano");
       navigate("/my-clinic");
     } catch (error: any) {
       let errorMessage;

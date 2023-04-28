@@ -5,13 +5,13 @@ export const Wrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 10px;
   background-color: #1784B3;
 `;
 
 export const Logo = styled.img`
   font-size: 1.5rem;
-  width: 10rem;
+  width: 8rem;
   margin-left: 1.5rem;
   @media (max-width: 768px) {
     display: none;
@@ -34,11 +34,11 @@ export const LogoLink = styled.a`
 export const MidLogo = styled.img`
   display: none;
   @media (max-width: 768px) {
-    width: 10rem;
+    width: 8rem;
     display: block;
     margin-left: auto;
     margin-right: auto;
-  ;
+  
   }
 `;
 
@@ -69,6 +69,7 @@ export const Menu = styled.div<{ isOpen: boolean }>`
   align-items: center;
   justify-content: space-between;
   @media (max-width: 768px) {
+    z-index: 2;
     margin-top: 3rem;
     flex-direction: column;
     position: absolute;
