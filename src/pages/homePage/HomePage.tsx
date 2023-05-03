@@ -10,7 +10,7 @@ import {
     Links,
     Logo,
     TextArea,
-    PriceContainer,
+    PriceContainer, H1, H2,
 } from "./HomePage.style";
 import logo from '../../resources/img/logo.png';
 import './HomePage.css'
@@ -45,31 +45,45 @@ const HomePage = () => {
                     </Links>
                     <div id='buttons'>
                         <Link to={'/user-registration'}>
-                            <HomeButton width={12} marginTop={0}>Załóż konto</HomeButton>
+                            <HomeButton marginTop={0}>Załóż konto</HomeButton>
                         </Link>
 
                         <Link to={"/login"}>
-                            <HomeButton width={12} marginTop={0}>Zaloguj</HomeButton>
+                            <HomeButton marginTop={0}>Zaloguj</HomeButton>
                         </Link>
                     </div>
                 </HomeHeader>
                 <div id='homeBody'>
                     <TextArea>
-                        <Typography variant={"h2"} sx={{fontFamily: "Montserrat"}}>
-                            Zaufaj nam!
-                        </Typography>
 
-                        <Typography variant={'h4'} sx={{fontFamily: "Montserrat", marginY: '2rem'}}>
-                            Odkryj najlepsze oprogramowanie <br/> do zarządzania gabinetem
-                            stomatologicznym
-                        </Typography>
+                        <H1>Zaufaj nam!</H1>
+                        {/*<Typography*/}
+                        {/*    variant={"h2"}*/}
+                        {/*    sx={{*/}
+                        {/*        fontFamily: "Montserrat",*/}
+                        {/*        }}*/}
+                        {/*    >*/}
+                        {/*    Zaufaj nam!*/}
+                        {/*</Typography>*/}
 
-                        <HomeButton width={17} marginTop={0}> Dowiedz się więcej </HomeButton>
+
+                        <H2>Odkryj najlepsze oprogramowanie <br/> do zarządzania gabinetem
+                            stomatologicznym</H2>
+
+                        {/*<Typography variant={'h4'} sx={{*/}
+                        {/*    fontFamily: "Montserrat",*/}
+                        {/*    marginY: '2rem',*/}
+                        {/*    }}>*/}
+                        {/*    Odkryj najlepsze oprogramowanie <br/> do zarządzania gabinetem*/}
+                        {/*    stomatologicznym*/}
+                        {/*</Typography>*/}
+
+                        <HomeButton  marginTop={0}> Dowiedz się więcej </HomeButton>
                     </TextArea>
 
                     <ContactForm>
-                        <ContactHero variant='h4' sx={{fontFamily: "Montserrat", marginY: "2rem"}}>
-                            Skontaktujmy się!
+                        <ContactHero>
+                            Skontaktuj się!
                         </ContactHero>
 
                         <ContactInputs id={"inputs"}>
@@ -82,7 +96,7 @@ const HomePage = () => {
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker label="Wybierz dzień kontaktu" className={"input"}/>
                             </LocalizationProvider>
-                            <HomeButton marginTop={0} width={13} id={'contact-form-button'}>
+                            <HomeButton marginTop={0}  id={'contact-form-button'}>
                                 Wyślij
                             </HomeButton>
 

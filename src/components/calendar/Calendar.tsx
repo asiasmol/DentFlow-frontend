@@ -4,7 +4,7 @@ import {Slidebar} from "./slider/Slidebar";
 import { Week } from './weekCalendar/Week';
 import {Arrow, CalendarBody, CalendarHeaderBody, BackButton, HeaderLabel, HScreen, Toggle} from "./Calendar.styles";
 import {CalendarContext} from "../../context/CalendarContext";
-import { DayCalendar } from './dayCalendar/DayCalendar';
+// import { DayCalendar } from './dayCalendar/DayCalendar';
 
 
 export const Calendar = () => {

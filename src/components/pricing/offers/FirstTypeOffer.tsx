@@ -141,7 +141,7 @@ export const FirstTypeOffer: React.FC<OfferProps> = ({ price, header, currency }
                     </Typography>
                 </OfferIcon>
             </OfferParam>
-            <HomeButton width={13} id={'contact-form-button'}
+            <HomeButton id={'contact-form-button'}
                         marginTop={2}>
                 Kup
             </HomeButton>

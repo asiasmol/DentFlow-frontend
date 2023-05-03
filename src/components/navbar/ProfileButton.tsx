@@ -60,7 +60,7 @@ export const ProfileButton= () => {
                         onClose={handleCloseUserMenu}
                     >
                     <MenuItem onClick={handleCloseUserMenu} ><Link href={"/profile"}>Profil</Link></MenuItem>
-                    <MenuItem onClick={()=>{handleCloseUserMenu();logout();}}>Wylogujt</MenuItem>
+                    <MenuItem onClick={()=>{handleCloseUserMenu();logout();}}>Wyloguj</MenuItem>
                     </Menu>
                 </Box>
 

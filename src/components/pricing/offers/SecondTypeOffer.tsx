@@ -140,7 +140,6 @@ export const SecondTypeOffer: React.FC<OfferProps> = ({ currency, price, header 
                 </OfferIcon>
             </OfferParam>
             <HomeButton
-                width={13}
                 marginTop={2}
                 id={'contact-form-button'}
                 >
