@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HScreen = styled.div`
-  //flex-direction: column;
+ height: auto;
 `;
 export const Toggle = styled.div`
   cursor: pointer;
