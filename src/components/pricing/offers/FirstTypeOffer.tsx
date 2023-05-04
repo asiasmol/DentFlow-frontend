@@ -49,43 +49,22 @@ export const FirstTypeOffer: React.FC<OfferProps> = ({ price, header, currency }
                         color={"#1784B3"}
                         size={30}
                     />
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            marginLeft: "1rem"
-                        }}>
-                        brak opłat od liczby komputerów
-                    </Typography>
+                    <H4>brak opłat od liczby komputerów</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
                         color={"#1784B3"}
                         size={30}
                     />
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            marginLeft: "1rem"
-                        }}>
-                        brak opłat za stanowisko recepcji
-                    </Typography>
+                    <H4>brak opłat za stanowisko recepcji</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
                         color={"#1784B3"}
                         size={30}
                     />
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            flexDirection: "row",
-                            marginLeft: "1rem"
-                        }}>
-                        brak opłat za aktualizację programu i pomoc
-                    </Typography>
+                    <H4>brak opłat za pomoc</H4>
+
                 </OfferIcon>
             </OfferParam>
             <HomeButton1 id={'contact-form-button'}

@@ -32,7 +32,7 @@ export const Prices = styled.div`
   margin-left: 50%;
   margin-right: 50%;
   //background: #FAFAFA;
-  @media only screen and (max-width: 950px){
+  @media only screen and (max-width: 1400px){
     flex-direction: column;
     align-items: center;
   }

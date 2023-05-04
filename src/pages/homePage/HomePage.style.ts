@@ -203,12 +203,10 @@ export const HomeButton1 = styled.button<{ marginTop: number}>` //width:number,
     font-size: 0.7rem;
   }
 
-  //@media(max-width: 950px){
-  //  height: 1.5rem;
-  //  width: 6rem;
-  //  font-size: 0.6rem;
-  //  margin-top: auto;
-  //}
+  @media(max-width: 950px){
+    margin-left: 1rem;
+    margin-right: auto;
+  }
 `
 
 export const HomeButton2 = styled.button<{ marginTop: number}>` //width:number,
