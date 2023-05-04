@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import home from "../../resources/img/home.png"
 import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 
 
 export const HomeContainer = styled.div`
@@ -303,14 +304,15 @@ export const ContactInputs = styled.div`
   margin-right: 2rem;
   flex-direction: column;
 
-  @media(max-width: 950px) {
-    width: 10rem;
-    height: 15rem;
-    margin-top: 1rem;
-    align-self: center;
-    margin-left: 0.1rem;
-    margin-right: 1rem;
-  }
+  //@media(max-width: 950px) {
+  //  width: 15rem;
+  //  height: 20rem;
+  //  margin-top: 2rem;
+  //  align-self: center;
+  //  margin-left: 2rem;
+  //  margin-right: 2rem;
+  //  flex-direction: column;
+  //}
 `
 
 export const PriceContainer = styled.div`
@@ -324,4 +326,68 @@ export const PriceContainer = styled.div`
 
   background: #FAFAFA;
 `
+
+export const StyledTextFieldMedium = styled(TextField)`
+  && {
+    display: flex;
+    width: 100%;
+    //margin: 0;
+    margin-top: 1rem;
+    padding: 0;
+    .MuiInputLabel-root {
+      font-weight: normal;
+    }
+    .MuiInputBase-input {
+      font-size: 16px;
+    }
+  }
+
+  @media(max-width: 950px) {
+    && {
+      display: none;
+      width: 80%;
+      //margin: 0;
+      margin-top: 1rem;
+      padding: 0;
+      .MuiInputLabel-root {
+        font-size: 14px;
+      }
+      .MuiInputBase-input {
+        font-size: 14px;
+      }
+    }
+  }
+`;
+
+export const StyledTextFieldSmall = styled(TextField)`
+  && {
+    display: none;
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    .MuiInputLabel-root {
+      font-weight: normal;
+    }
+    .MuiInputBase-input {
+      font-size: 16px;
+    }
+  }
+
+  @media(max-width: 950px) {
+    && {
+      display: flex;
+      width: 70%;
+      //margin: 0;
+      margin-right: auto;
+      margin-left: auto;
+      padding: 0;
+      .MuiInputLabel-root {
+        font-size: 14px;
+      }
+      .MuiInputBase-input {
+        font-size: 14px;
+      }
+    }
+  }
+`;
 

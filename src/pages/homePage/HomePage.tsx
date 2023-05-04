@@ -12,7 +12,7 @@ import {
     TextArea,
     PriceContainer,
     H1, H2,
-    HomeButton2,
+    HomeButton2, StyledTextFieldMedium, StyledTextFieldSmall,
 } from "./HomePage.style";
 import logo from '../../resources/img/logo.png';
 import './HomePage.css'
@@ -89,12 +89,16 @@ const HomePage = () => {
                         </ContactHero>
 
                         <ContactInputs id={"inputs"}>
-                            <TextField required id="outlined-basic" label="Imię i nazwisko" variant="outlined"
-                                       className={"input"}/>
-                            <TextField required id="outlined-basic" label="Email" variant="outlined"
-                                       className={"input"}/>
-                            <TextField required id="outlined-basic" label="Numer telefonu" variant="outlined"
-                                       className={"input"}/>
+                            <StyledTextFieldMedium label="Imię i nazwisko" size={"medium"}/>
+                            <StyledTextFieldSmall label="Imię i nazwisko" size={"small"}/>
+                            <StyledTextFieldMedium label="Email" size={"medium"}/>
+                            <StyledTextFieldSmall label="Email" size={"small"}/>
+                            {/*<TextField required id="outlined-basic" label="Email" variant="outlined"*/}
+                            {/*           className={"input"}/>*/}
+                            <StyledTextFieldMedium label="Numer telefonu" size={"medium"}/>
+                            <StyledTextFieldSmall label="Numer telefonu" size={"small"}/>
+                            {/*<TextField required id="outlined-basic" label="Numer telefonu" variant="outlined"*/}
+                            {/*           className={"input"}/>*/}
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker label="Wybierz dzień kontaktu" className={"input"}/>
                             </LocalizationProvider>
