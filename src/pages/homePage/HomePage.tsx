@@ -3,14 +3,16 @@ import {
     ContactForm,
     ContactHero,
     ContactInputs,
-    HomeButton,
+    HomeButton1,
     HomeContainer,
     HomeHeader,
     HomeLink,
     Links,
     Logo,
     TextArea,
-    PriceContainer, H1, H2,
+    PriceContainer,
+    H1, H2,
+    HomeButton2,
 } from "./HomePage.style";
 import logo from '../../resources/img/logo.png';
 import './HomePage.css'
@@ -45,11 +47,11 @@ const HomePage = () => {
                     </Links>
                     <div id='buttons'>
                         <Link to={'/user-registration'}>
-                            <HomeButton marginTop={0}>Załóż konto</HomeButton>
+                            <HomeButton1 marginTop={0}>Załóż konto</HomeButton1>
                         </Link>
 
                         <Link to={"/login"}>
-                            <HomeButton marginTop={0}>Zaloguj</HomeButton>
+                            <HomeButton1 marginTop={0}>Zaloguj</HomeButton1>
                         </Link>
                     </div>
                 </HomeHeader>
@@ -78,7 +80,7 @@ const HomePage = () => {
                         {/*    stomatologicznym*/}
                         {/*</Typography>*/}
 
-                        <HomeButton  marginTop={0}> Dowiedz się więcej </HomeButton>
+                        <HomeButton2 marginTop={0}> Dowiedz się więcej </HomeButton2>
                     </TextArea>
 
                     <ContactForm>
@@ -96,10 +98,9 @@ const HomePage = () => {
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker label="Wybierz dzień kontaktu" className={"input"}/>
                             </LocalizationProvider>
-                            <HomeButton marginTop={0}  id={'contact-form-button'}>
+                            <HomeButton1 marginTop={0} id={'contact-form-button'}>
                                 Wyślij
-                            </HomeButton>
-
+                            </HomeButton1>
                         </ContactInputs>
                     </ContactForm>
                 </div>

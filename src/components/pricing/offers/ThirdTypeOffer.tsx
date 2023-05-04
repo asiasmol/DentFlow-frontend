@@ -1,30 +1,30 @@
 import {
-    SecondOfferContainer,
+    ThirdOfferContainer,
     Header,
     PriceArea,
     OfferParam,
     OfferIcon,
-    H1, H2, H3,
-    CurrencyTextArea
-} from "./SecondTypeOffer.style";
+    CurrencyTextArea,
+    H1, H2, H3
+} from "./ThirdTypeOffer.styles";
 import {HomeButton1} from "../../../pages/homePage/HomePage.style";
 import React from "react";
 import Typography from "@mui/material/Typography";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import {CheckCircle} from "react-bootstrap-icons";
-
+// import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+// import { Icon } from "@chakra-ui/icons";
+import { CheckCircle } from 'react-bootstrap-icons';
 
 interface OfferProps {
     header: string;
-    price: number;
+    price: string;
     currency: string;
 }
 
-export const SecondTypeOffer: React.FC<OfferProps> = ({ currency, price, header }) => {
+export const ThirdTypeOffer: React.FC<OfferProps> = ({ price, header, currency }) => {
     return (
-        <SecondOfferContainer>
+        <ThirdOfferContainer>
             <Header>
-                <H1>1-4 foteli</H1>
+                <H1>5+ foteli</H1>
             </Header>
             <PriceArea>
                 <H2>899.99</H2>
@@ -33,82 +33,81 @@ export const SecondTypeOffer: React.FC<OfferProps> = ({ currency, price, header 
             <OfferParam>
                 <OfferIcon>
                     <CheckCircle
-                        color={"white"}
-                        size={30}/>
+                        color={"#1784B3"}
+                        size={30}
+                    />
                     <Typography
                         variant={"h6"}
                         sx={{
                             fontFamily: "Montserrat",
-                            marginLeft: "1rem",
-                            color: "#FAFAFA",
+                            marginLeft: "1rem"
                         }}>
                         pełna wersja programu
                     </Typography>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
-                        color={"white"}
-                        size={30}/>
+                        color={"#1784B3"}
+                        size={30}
+                    />
                     <Typography
                         variant={"h6"}
                         sx={{
                             fontFamily: "Montserrat",
-                            marginLeft: "1rem",
-                            color: "#FAFAFA"
+                            marginLeft: "1rem"
                         }}>
                         brak opłat od liczby użytkowników
                     </Typography>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
-                        color={"white"}
-                        size={30}/>
+                        color={"#1784B3"}
+                        size={30}
+                    />
                     <Typography
                         variant={"h6"}
                         sx={{
                             fontFamily: "Montserrat",
-                            marginLeft: "1rem",
-                            color: "#FAFAFA"
+                            marginLeft: "1rem"
                         }}>
                         brak opłat od liczby komputerów
                     </Typography>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
-                        color={"white"}
-                        size={30}/>
+                        color={"#1784B3"}
+                        size={30}
+                    />
                     <Typography
                         variant={"h6"}
                         sx={{
                             fontFamily: "Montserrat",
-                            marginLeft: "1rem",
-                            color: "#FAFAFA"
+                            marginLeft: "1rem"
                         }}>
                         brak opłat za stanowisko recepcji
                     </Typography>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
-                        color={"white"}
-                        size={30}/>
+                        color={"#1784B3"}
+                        size={30}
+                    />
                     <Typography
                         variant={"h6"}
                         sx={{
                             fontFamily: "Montserrat",
-                            marginLeft: "1rem",
-                            color: "#FAFAFA"
+                            flexDirection: "row",
+                            marginLeft: "1rem"
                         }}>
                         brak opłat za aktualizację programu i pomoc
                     </Typography>
                 </OfferIcon>
             </OfferParam>
-            <HomeButton1
-                marginTop={2}
-                id={'contact-form-button'}
-                >
+            <HomeButton1 id={'contact-form-button'}
+                         marginTop={2}>
                 Kup
             </HomeButton1>
-        </SecondOfferContainer>
+        </ThirdOfferContainer>
 
 
     )

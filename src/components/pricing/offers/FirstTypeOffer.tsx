@@ -4,9 +4,9 @@ import {
     PriceArea,
     OfferParam,
     OfferIcon,
-    CurrencyTextArea,
+    CurrencyTextArea, H1, H2, H3, H4,
 } from "./FirstTypeOffer.style";
-import {HomeButton} from "../../../pages/homePage/HomePage.style";
+import {HomeButton1} from "../../../pages/homePage/HomePage.style";
 import React from "react";
 import Typography from "@mui/material/Typography";
 // import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -23,79 +23,26 @@ export const FirstTypeOffer: React.FC<OfferProps> = ({ price, header, currency }
     return (
         <FirstOfferContainer>
             <Header>
-                <Typography
-                    variant={"h5"}
-                    sx={{
-                        // width: "3rem",
-                        // height: "3rem",
-                        fontFamily: "Montserrat",
-                        fontWeight: "bold",
-                        fontSize: "2rem",
-                        marginTop: "2rem",
-                        color: "#1784B3"}}>
-                    {header}
-                </Typography>
+                <H1>1 fotel</H1>
+                <PriceArea>
+                    <H2>249.99</H2>
+                    <H3>zł/msc</H3>
+                </PriceArea>
             </Header>
-            <PriceArea>
-                <Typography
-                    variant={"h2"}
-                    sx={{
-                        fontFamily: "Montserrat",
-                        fontWeight: "bold",
-                        marginLeft: "1rem",
-                        marginRight: "1rem",
-                        color: "#FFBE5C"}}>
-                    {price}
-                </Typography>
-                <CurrencyTextArea>
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            fontWeight: "bold",
-
-                            color: "#FFBE5C"}}>
-                        {currency}
-                    </Typography>
-                    {/*<Typography*/}
-                    {/*    variant={"h6"}*/}
-                    {/*    sx={{*/}
-                    {/*        fontFamily: "Montserrat",*/}
-                    {/*        fontWeight: "bold",*/}
-
-                    {/*        color: "#FFBE5C"}}>*/}
-                    {/*    {text}*/}
-                    {/*</Typography>*/}
-                </CurrencyTextArea>
-            </PriceArea>
             <OfferParam>
                 <OfferIcon>
                     <CheckCircle
                         color={"#1784B3"}
                         size={30}
                         />
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            marginLeft: "1rem"
-                        }}>
-                        pełna wersja programu
-                    </Typography>
+                    <H4>pełna wersja programu</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
                         color={"#1784B3"}
                         size={30}
                     />
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            marginLeft: "1rem"
-                        }}>
-                        brak opłat od liczby użytkowników
-                    </Typography>
+                    <H4>brak opłat od liczby użytkowników</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
@@ -141,10 +88,10 @@ export const FirstTypeOffer: React.FC<OfferProps> = ({ price, header, currency }
                     </Typography>
                 </OfferIcon>
             </OfferParam>
-            <HomeButton id={'contact-form-button'}
-                        marginTop={2}>
+            <HomeButton1 id={'contact-form-button'}
+                         marginTop={2}>
                 Kup
-            </HomeButton>
+            </HomeButton1>
         </FirstOfferContainer>
 
 

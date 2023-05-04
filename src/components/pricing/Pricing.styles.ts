@@ -8,6 +8,10 @@ export const PriceContainer = styled.div`
     margin-bottom: 5rem;
     //background: #FAFAFA;
   
+  @media(max-width: 950px) {
+    
+  }
+  
 `
 
 export const HeadingText = styled.div`

@@ -8,21 +8,24 @@ import {
 import React from "react";
 import {FirstTypeOffer} from "./offers/FirstTypeOffer";
 import {SecondTypeOffer} from "./offers/SecondTypeOffer";
+import {ThirdTypeOffer} from "./offers/ThirdTypeOffer";
 import Typography from "@mui/material/Typography";
+import {H1} from "../../pages/homePage/HomePage.style";
 
 
 export const Pricing = () => {
     return (
         <PriceContainer>
             <HeadingText>
-                <Typography
-                    variant={"h2"}
-                    sx={{
-                        fontFamily: "Montserrat",
-                        fontWeight: "bold",
-                        color: "#252B42"}}>
-                    Cennik
-                </Typography>
+                <H1>Cennik</H1>
+                {/*<Typography*/}
+                {/*    variant={"h2"}*/}
+                {/*    sx={{*/}
+                {/*        fontFamily: "Montserrat",*/}
+                {/*        fontWeight: "bold",*/}
+                {/*        color: "#252B42"}}>*/}
+                {/*    Cennik*/}
+                {/*</Typography>*/}
                 <Typography
                     variant={"h6"}
                     sx={{
@@ -44,7 +47,7 @@ export const Pricing = () => {
                     currency={"zł/msc"}
                     // text={"Na Miesiąc"}
                     />
-                <FirstTypeOffer
+                <ThirdTypeOffer
                     header={"5+ foteli"}
                     price={"899.99"}
                     currency={"zł/msc"}

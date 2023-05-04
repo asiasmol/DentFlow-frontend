@@ -106,21 +106,26 @@ export const H1 = styled.div`
   font-size: 4.5rem;
   font-family: Montserrat; 
   
-  @media(max-width: 1500px){
+  
+  
+  @media(max-width: 1590px){
     //margin-top: 1rem;
-    font-size: 3rem;
+    font-size: 4.5rem;
+    text-align: center;
   }
 
   @media(max-width: 1250px){
     //margin-top: 1rem;
-    font-size: 3rem;
+    font-size: 4rem;
     //display: none;
+    text-align: center;
   }
 
   @media(max-width: 950px){
     //margin-top: 1rem;
     font-size: 3rem;
     //display: none;
+    text-align: center;
   }
 `
 
@@ -129,29 +134,33 @@ export const H2 = styled.div`
   font-family: Montserrat; 
   margin-bottom: 2rem;
   
-  //@media(max-width: 1500px){
-  //  //margin-top: 1rem;
-  //  font-size: 3rem;
-  //}
+  @media(max-width: 1590px){
+    //margin-top: 1rem;
+    font-size: 3rem;
+    text-align: center;
+  }
 
   @media(max-width: 1250px){
     //margin-top: 1rem;
     font-size: 1.5rem;
     //display: none;
+    text-align: center;
   }
 
   @media(max-width: 950px){
     margin-top: 1rem;
     //font-size: 1.3rem;
     //display: none;
+    text-align: center;
   }
 `
-export const HomeButton = styled.button<{ marginTop: number}>` //width:number,
+export const HomeButton1 = styled.button<{ marginTop: number}>` //width:number,
   background-color: #FFBE5C;
   color: white;
   height: 2.5rem;
   width: 11.5rem;
   font-size: 1rem;
+  
   
   margin-top: ${props => props.marginTop}rem;
   cursor: pointer;
@@ -159,12 +168,78 @@ export const HomeButton = styled.button<{ marginTop: number}>` //width:number,
   border: none;
   border-radius: 10px;
   margin-left: 1rem;
+  align-content: space-between;
+  justify-content: center;
   
-  @media(max-width: 1500px){
+  @media(max-width: 1590px){
     height: 2.1rem;
     width: 9rem;
     font-size: 0.8rem;
-    //margin-top: auto;
+
+    background-color: #FFBE5C;
+    color: white;
+    margin-top: ${props => props.marginTop}rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    //display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+    margin-right: auto;
+    flex-direction: row;
+    
+  }
+
+  @media(max-width: 1250px){
+    height: 1.9rem;
+    width: 7.8rem;
+    font-size: 0.7rem;
+  }
+
+  //@media(max-width: 950px){
+  //  height: 1.5rem;
+  //  width: 6rem;
+  //  font-size: 0.6rem;
+  //  margin-top: auto;
+  //}
+`
+
+export const HomeButton2 = styled.button<{ marginTop: number}>` //width:number,
+  background-color: #FFBE5C;
+  color: white;
+  height: 2.5rem;
+  width: 11.5rem;
+  font-size: 1rem;
+  
+  
+  margin-top: ${props => props.marginTop}rem;
+  cursor: pointer;
+  margin-right: auto;
+  border: none;
+  border-radius: 10px;
+  margin-left: 1rem;
+  align-content: space-between;
+  justify-content: center;
+  
+  @media(max-width: 1590px){
+    height: 2.1rem;
+    width: 9rem;
+    font-size: 0.8rem;
+
+    background-color: #FFBE5C;
+    color: white;
+    margin-top: ${props => props.marginTop}rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+    
   }
 
   @media(max-width: 1250px){
@@ -210,6 +285,7 @@ export const ContactHero = styled.div`
   font-family: Montserrat;
   margin-bottom: 2rem;
   margin-top: 2rem;
+  flex-direction: column;
 
   @media(max-width: 950px) {
     font-size: 1.8rem;
@@ -225,6 +301,7 @@ export const ContactInputs = styled.div`
   align-self: center;
   margin-left: 2rem;
   margin-right: 2rem;
+  flex-direction: column;
 
   @media(max-width: 950px) {
     width: 10rem;

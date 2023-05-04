@@ -1,24 +1,19 @@
 import styled from 'styled-components';
 
-
-export const SecondOfferContainer = styled.div`
+export const ThirdOfferContainer = styled.div`
   box-sizing: border-box;
   border: 1px solid #23A6F0;
-  box-shadow: 1rem 2rem 3rem rgba(0, 0, 0, 0.25);
-  background: #1784B3;
-  border-radius: 1rem;
+  border-radius: 10px;
+  //margin-top: 1rem;
+  //background: #FAFAFA;
   padding: 2.8rem;
-  margin-top: -2rem;
-  margin-bottom: 2rem;
-  
 `
 
 export const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #1784B3;
-  
+  //background: #FAFAFA;
 `
 
 export const PriceArea = styled.div`
@@ -26,7 +21,9 @@ export const PriceArea = styled.div`
   flex-direction: row;
   align-items: center;
   margin-top: 2rem;
-  background: #1784B3;
+  margin-bottom: 1rem;
+  //background: #FAFAFA;
+  
 `
 
 export const OfferParam = styled.div`
@@ -38,12 +35,12 @@ export const OfferIcon = styled.div`
   //display: flex;
   flex-direction: row;
   padding-top: 1rem;
-  background: #1784B3;
+  //background: #FAFAFA;
 `
 
 export const CurrencyTextArea = styled.div`
-  
-  background: #1784B3;
+  align-items: center;
+  //background: #FAFAFA;
 `
 
 export const H1 = styled.div`
@@ -54,7 +51,7 @@ export const H1 = styled.div`
   font-weight: bold;
   //fontSize: "2rem",
   margin-top: 2rem;
-  color: white;
+  color: #1784B3;
   
   
   //@media(max-width: 1500px){
@@ -70,7 +67,7 @@ export const H1 = styled.div`
   //
   //@media(max-width: 950px){
   //  //margin-top: 1rem;
-  //  font-size: 1.3rem;
+  //  font-size: 3rem;
   //  //display: none;
   //}
   
@@ -99,7 +96,7 @@ export const H2 = styled.div`
   //
   //@media(max-width: 950px){
   //  //margin-top: 1rem;
-  //  font-size: 2.5rem;
+  //  font-size: 3rem;
   //  //display: none;
   //}
 `

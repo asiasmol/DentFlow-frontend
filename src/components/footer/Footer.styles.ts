@@ -53,6 +53,10 @@ export const FooterLink = styled.a`
       color: black;
       transition: 200ms ease-in;
   }
+
+  @media(max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 
 export const FooterText = styled.a`
@@ -60,6 +64,10 @@ export const FooterText = styled.a`
   margin-bottom: 20px;
   font-size: 18px;
   text-decoration: none;
+  
+  @media(max-width: 768px) {
+    font-size: 10px;
+  }
 `;
    
 export const Heading = styled.p`
@@ -67,4 +75,8 @@ export const Heading = styled.p`
   color: #fff;
   margin-bottom: 40px;
   font-weight: bold;
+
+  @media(max-width: 768px) {
+    font-size: 14px;
+  }
 `;
