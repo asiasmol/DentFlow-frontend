@@ -12,17 +12,26 @@ import {
     TextArea,
     PriceContainer,
     H1, H2,
-    HomeButton2, StyledTextFieldMedium, StyledTextFieldSmall,
+    HomeButton2,
+    StyledTextFieldMedium,
+    StyledTextFieldSmall,
+    StyledDatePickerMedium, StyledDatePickerSmall,
+
 } from "./HomePage.style";
+// import AdapterDayjs from "@mui/lab/AdapterDayjs";
 import logo from '../../resources/img/logo.png';
 import './HomePage.css'
 import Typography from "@mui/material/Typography";
 import {Link} from "react-router-dom";
 import TextField from '@mui/material/TextField';
-import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+import {DateField, LocalizationProvider, MobileDatePicker} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {Pricing} from "../../components/pricing/Pricing";
+import dayjs from "dayjs";
+import {DemoItem, DemoContainer} from "@mui/x-date-pickers/internals/demo";
 // import {Footer} from "../../components/footer/Footer";
+import { DesktopDatePicker } from '@mui/x-date-pickers-pro';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const HomePage = () => {
 
@@ -57,29 +66,9 @@ const HomePage = () => {
                 </HomeHeader>
                 <div id='homeBody'>
                     <TextArea>
-
                         <H1>Zaufaj nam!</H1>
-                        {/*<Typography*/}
-                        {/*    variant={"h2"}*/}
-                        {/*    sx={{*/}
-                        {/*        fontFamily: "Montserrat",*/}
-                        {/*        }}*/}
-                        {/*    >*/}
-                        {/*    Zaufaj nam!*/}
-                        {/*</Typography>*/}
-
-
                         <H2>Odkryj najlepsze oprogramowanie <br/> do zarządzania gabinetem
                             stomatologicznym</H2>
-
-                        {/*<Typography variant={'h4'} sx={{*/}
-                        {/*    fontFamily: "Montserrat",*/}
-                        {/*    marginY: '2rem',*/}
-                        {/*    }}>*/}
-                        {/*    Odkryj najlepsze oprogramowanie <br/> do zarządzania gabinetem*/}
-                        {/*    stomatologicznym*/}
-                        {/*</Typography>*/}
-
                         <HomeButton2 marginTop={0}> Dowiedz się więcej </HomeButton2>
                     </TextArea>
 
@@ -99,9 +88,19 @@ const HomePage = () => {
                             <StyledTextFieldSmall label="Numer telefonu" size={"small"}/>
                             {/*<TextField required id="outlined-basic" label="Numer telefonu" variant="outlined"*/}
                             {/*           className={"input"}/>*/}
+
+
+                            {/*<LocalizationProvider dateAdapter={AdapterDayjs}>*/}
+                            {/*    <DatePicker label="Wybierz dzień kontaktu" className={"input"}/>*/}
+                            {/*</LocalizationProvider>*/}
+
+
+
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker label="Wybierz dzień kontaktu" className={"input"}/>
+                                <StyledDatePickerMedium label={'Data'} />
+                                <StyledDatePickerSmall label={'Data'} />
                             </LocalizationProvider>
+
                             <HomeButton1 marginTop={0} id={'contact-form-button'}>
                                 Wyślij
                             </HomeButton1>

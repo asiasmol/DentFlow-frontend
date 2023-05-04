@@ -2,6 +2,8 @@ import styled from "styled-components";
 import home from "../../resources/img/home.png"
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import {DatePicker} from "@mui/x-date-pickers/DatePicker";
+
 
 
 export const HomeContainer = styled.div`
@@ -47,6 +49,7 @@ export const HomeHeader = styled.nav`
   justify-content: space-between;
   flex-wrap: wrap;
 `
+
 export const Logo = styled.img`
     width: 10rem;
     height: 5rem;
@@ -63,12 +66,13 @@ export const Logo = styled.img`
     width: 5rem;
     height: 2.5rem;
     //margin-right: 25%;
-    margin-top: 1.4rem;
+    margin-top: 1.7rem;
     
   }
   
   
 `
+
 export const Links = styled.div`
   margin-top: 2.2rem;
   gap: 3rem;
@@ -155,6 +159,7 @@ export const H2 = styled.div`
     text-align: center;
   }
 `
+
 export const HomeButton1 = styled.button<{ marginTop: number}>` //width:number,
   background-color: #FFBE5C;
   color: white;
@@ -256,6 +261,7 @@ export const HomeButton2 = styled.button<{ marginTop: number}>` //width:number,
   //  margin-top: auto;
   //}
 `
+
 export const TextArea = styled.div`
   color: white;
 `
@@ -277,6 +283,7 @@ export const ContactForm = styled.div`
   
   
 `
+
 export const ContactHero = styled.div`
   white-space: nowrap;
   color: #1784B3;
@@ -295,6 +302,7 @@ export const ContactHero = styled.div`
   
   
 `
+
 export const ContactInputs = styled.div`
   width: 20rem;
   height: 30rem;
@@ -391,3 +399,56 @@ export const StyledTextFieldSmall = styled(TextField)`
   }
 `;
 
+
+export const StyledDatePickerMedium = styled(DatePicker)`
+  && {
+    width: 100%;
+    //margin: 0;
+    padding: 0;
+    margin-top: 1rem;
+    .MuiInputLabel-root {
+      font-weight: normal;
+    }
+    .MuiInputBase-input {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 950px) {
+    && {
+      display: none;
+    }
+  }
+`;
+
+export const StyledDatePickerSmall = styled(DatePicker)`
+  && {
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    .MuiInputLabel-root {
+      font-weight: normal;
+    }
+    .MuiInputBase-input {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 950px) {
+    && {
+      display: flex;
+      width: 70%;
+      //margin: 0;
+      margin-right: auto;
+      margin-left: auto;
+      padding: 0;
+      .MuiInputLabel-root {
+        font-size: 14px;
+      }
+      .MuiInputBase-input {
+        font-size: 14px;
+      }
+    }
+  }
+`;
