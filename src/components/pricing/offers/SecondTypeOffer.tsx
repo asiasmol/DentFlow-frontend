@@ -5,9 +5,9 @@ import {
     OfferParam,
     OfferIcon,
     H1, H2, H3,
-    CurrencyTextArea
+    CurrencyTextArea, H4
 } from "./SecondTypeOffer.style";
-import {HomeButton1} from "../../../pages/homePage/HomePage.style";
+import {HomeButton1, HomeButton2} from "../../../pages/homePage/HomePage.style";
 import React from "react";
 import Typography from "@mui/material/Typography";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -27,7 +27,7 @@ export const SecondTypeOffer: React.FC<OfferProps> = ({ currency, price, header 
                 <H1>1-4 foteli</H1>
             </Header>
             <PriceArea>
-                <H2>899.99</H2>
+                <H2>549.99</H2>
                 <H3>zł/msc</H3>
             </PriceArea>
             <OfferParam>
@@ -35,79 +35,36 @@ export const SecondTypeOffer: React.FC<OfferProps> = ({ currency, price, header 
                     <CheckCircle
                         color={"white"}
                         size={30}/>
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            marginLeft: "1rem",
-                            color: "#FAFAFA",
-                        }}>
-                        pełna wersja programu
-                    </Typography>
+                    <H4>pełna wersja programu</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
                         color={"white"}
                         size={30}/>
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            marginLeft: "1rem",
-                            color: "#FAFAFA"
-                        }}>
-                        brak opłat od liczby użytkowników
-                    </Typography>
+                    <H4>brak opłat od liczby użytkowników</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
                         color={"white"}
                         size={30}/>
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            marginLeft: "1rem",
-                            color: "#FAFAFA"
-                        }}>
-                        brak opłat od liczby komputerów
-                    </Typography>
+                    <H4>brak opłat od liczby komputerów</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
                         color={"white"}
                         size={30}/>
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            marginLeft: "1rem",
-                            color: "#FAFAFA"
-                        }}>
-                        brak opłat za stanowisko recepcji
-                    </Typography>
+                    <H4>brak opłat za stanowisko recepcji</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
                         color={"white"}
                         size={30}/>
-                    <Typography
-                        variant={"h6"}
-                        sx={{
-                            fontFamily: "Montserrat",
-                            marginLeft: "1rem",
-                            color: "#FAFAFA"
-                        }}>
-                        brak opłat za aktualizację programu i pomoc
-                    </Typography>
+                    <H4>bezpłatna pomoc</H4>
                 </OfferIcon>
             </OfferParam>
-            <HomeButton1
-                marginTop={2}
-                id={'contact-form-button'}
-                >
+            <HomeButton2>
                 Kup
-            </HomeButton1>
+            </HomeButton2>
         </SecondOfferContainer>
 
 

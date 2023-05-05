@@ -6,7 +6,7 @@ import {
     OfferIcon,
     CurrencyTextArea, H1, H2, H3, H4,
 } from "./FirstTypeOffer.style";
-import {HomeButton1} from "../../../pages/homePage/HomePage.style";
+import {HomeButton1, HomeButton2} from "../../../pages/homePage/HomePage.style";
 import React from "react";
 import Typography from "@mui/material/Typography";
 // import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -67,10 +67,9 @@ export const FirstTypeOffer: React.FC<OfferProps> = ({ price, header, currency }
 
                 </OfferIcon>
             </OfferParam>
-            <HomeButton1 id={'contact-form-button'}
-                         marginTop={2}>
+            <HomeButton2>
                 Kup
-            </HomeButton1>
+            </HomeButton2>
         </FirstOfferContainer>
 
 

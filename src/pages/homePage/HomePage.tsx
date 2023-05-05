@@ -15,7 +15,7 @@ import {
     HomeButton2,
     StyledTextFieldMedium,
     StyledTextFieldSmall,
-    StyledDatePickerMedium, StyledDatePickerSmall,
+    StyledDatePickerMedium, StyledDatePickerSmall, HomeButton3,
 
 } from "./HomePage.style";
 // import AdapterDayjs from "@mui/lab/AdapterDayjs";
@@ -69,7 +69,8 @@ const HomePage = () => {
                         <H1>Zaufaj nam!</H1>
                         <H2>Odkryj najlepsze oprogramowanie <br/> do zarządzania gabinetem
                             stomatologicznym</H2>
-                        <HomeButton2 marginTop={0}> Dowiedz się więcej </HomeButton2>
+
+                        <HomeButton3 marginTop={0}> Dowiedz się więcej </HomeButton3>
                     </TextArea>
 
                     <ContactForm>
@@ -80,30 +81,21 @@ const HomePage = () => {
                         <ContactInputs id={"inputs"}>
                             <StyledTextFieldMedium label="Imię i nazwisko" size={"medium"}/>
                             <StyledTextFieldSmall label="Imię i nazwisko" size={"small"}/>
+
                             <StyledTextFieldMedium label="Email" size={"medium"}/>
                             <StyledTextFieldSmall label="Email" size={"small"}/>
-                            {/*<TextField required id="outlined-basic" label="Email" variant="outlined"*/}
-                            {/*           className={"input"}/>*/}
+
                             <StyledTextFieldMedium label="Numer telefonu" size={"medium"}/>
                             <StyledTextFieldSmall label="Numer telefonu" size={"small"}/>
-                            {/*<TextField required id="outlined-basic" label="Numer telefonu" variant="outlined"*/}
-                            {/*           className={"input"}/>*/}
-
-
-                            {/*<LocalizationProvider dateAdapter={AdapterDayjs}>*/}
-                            {/*    <DatePicker label="Wybierz dzień kontaktu" className={"input"}/>*/}
-                            {/*</LocalizationProvider>*/}
-
-
 
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <StyledDatePickerMedium label={'Data'} />
                                 <StyledDatePickerSmall label={'Data'} />
                             </LocalizationProvider>
 
-                            <HomeButton1 marginTop={0} id={'contact-form-button'}>
+                            <HomeButton2 id={'contact-form-button'}>
                                 Wyślij
-                            </HomeButton1>
+                            </HomeButton2>
                         </ContactInputs>
                     </ContactForm>
                 </div>

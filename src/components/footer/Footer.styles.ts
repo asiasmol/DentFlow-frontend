@@ -19,7 +19,6 @@ export const Container = styled.div`
     justify-content: center;
     max-width: 1000px;
     margin: 0 auto;
-    /* background: red; */
 `
    
 export const Column = styled.div`
@@ -28,6 +27,14 @@ export const Column = styled.div`
   text-align: left;
   margin-left: 60px;
   height: 10rem;
+  
+  @media(max-width: 1350px) {
+    margin-left: 40px;
+  }
+  
+  @media(max-width: 950px) {
+    margin-left: 0;
+  } 
 `;
    
 export const Row = styled.div`
