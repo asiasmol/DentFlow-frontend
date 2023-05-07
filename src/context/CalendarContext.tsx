@@ -3,10 +3,8 @@ import {CalendarContextType} from "../models/context/CalendarContextType";
 import {VisitResponse} from "../models/api/VisitResponse";
 import {VisitApi} from "../api/VisitApi";
 import {ClinicContext} from "./ClinicContext";
-import dayjs from "dayjs";
 import {getWeek} from "../utils/utils";
-
-
+import dayjs from "dayjs";
 
 
 const defaultSettings: CalendarContextType = {
@@ -23,6 +21,9 @@ const defaultSettings: CalendarContextType = {
 export const CalendarContext = createContext<CalendarContextType>(defaultSettings);
 
 export const CalendarContextProvider = ({ children }: React.PropsWithChildren) => {
+    const dayjs = require('dayjs');
+    require('dayjs/locale/pl'); // Importuj lokalizację językową
+    dayjs.locale('pl'); // Ustawienie języka na polski
     const [currenDate,setCurrenDate] = useState(dayjs(new Date()))
     const [selectedDate,setSelectedDate] = useState(dayjs(new Date()))
     const [weekDays,setWeekDays] = useState(getWeek(currenDate))

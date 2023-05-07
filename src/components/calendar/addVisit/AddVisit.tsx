@@ -38,6 +38,7 @@ type Props = {
 };
 
 export default function SignIn(props:Props) {
+    const [time, setTime] = useState("");
     const [doctorFullName, setDoctorFullName] = useState("");
     const [doctorEmail, setDoctorEmail] = useState<string>("");
     const [doctorSearchResults, setDoctorSearchResults] = useState<EmployeeResponse[]>([]);
@@ -135,7 +136,12 @@ export default function SignIn(props:Props) {
         }
     }, [currentClinic?.id]);
 
+    const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTime(event.target.value);
+    };
+
     useEffect(() => {
+        setTime(props.time.length === 4 ? "0" + props.time : props.time);
         fetchDoctors();
         fetchPatients();
     }, [fetchDoctors,fetchPatients])
@@ -144,7 +150,7 @@ export default function SignIn(props:Props) {
             await VisitApi.add({
                 clinicId:currentClinic?.id,
                 visitDate:props.date,
-                visitTime:props.time,
+                visitTime:time,
                 doctorEmail:doctorEmail,
                 patientId:patientId,
             })
@@ -153,7 +159,7 @@ export default function SignIn(props:Props) {
         } finally {
             // setIsLoading(false);
         }
-    }, [patientId,doctorEmail,currentClinic?.id,props]);
+    }, [patientId,doctorEmail,currentClinic?.id,props,time]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -167,6 +173,10 @@ export default function SignIn(props:Props) {
                         alignItems: 'center',
                     }}
                 >
+                    <input type="time"
+                           value={time}
+                           onChange={handleTimeChange}
+                    />
                     <Box component="form" noValidate sx={{ mt: 1 }}>
                         <AddEmplyeeInput
                             type="text"
@@ -184,6 +194,7 @@ export default function SignIn(props:Props) {
                             ))}
 
                         </SearchList>
+
                         <AddEmplyeeInput
                             type="text"
                             value={patientFullName}

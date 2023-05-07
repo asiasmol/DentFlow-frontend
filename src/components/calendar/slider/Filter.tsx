@@ -22,7 +22,7 @@ export function Filter(){
     }
     useEffect(()=>{
         visitsModifier(noFilterVisits.filter(item => doctorsToFilter.some(e => item.doctor.email.includes(e))));
-        if (doctorsToFilter.length == 0){
+        if (doctorsToFilter.length === 0){
             visitsModifier(noFilterVisits)
         }
     },[doctorsToFilter])

@@ -16,10 +16,11 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
     const [hour, setHour] = useState("");
     const {currentVisits} = useContext(CalendarContext);
 
-    const getMatchingVisits = (hour:number) => {
+    const getMatchingVisits = (hour:string) => {
         const day = props.day.format("YYYYMMDD");
+        hour = (hour.length === 1 ? "0" + hour : hour)
         return currentVisits.filter((visit) => {
-            return dayjs(visit.visitDate, 'YYYY-MM-DDTHH:mm:ss').format("YYYYMMDDHH") === String(day)+String(hour);
+            return dayjs(visit.visitDate, 'YYYY-MM-DDHH').format("YYYYMMDDHH") === String(day)+String(hour);
         });
     }
 
@@ -38,25 +39,26 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                     <DayLabel>{props.day.format("DD")}</DayLabel>
                 </DayBodyHeader>
 
-                {[...Array(13)].map((_, i) => (
-                    <Hour key={i}  row={i+2} onClick={() => handleHourClick(i+8)}>
-                        <>
-                        <HourHeader>{i+8}.00</HourHeader>
-                            {getMatchingVisits(i+8).map((visit) => (
-                                <Tooltip id={`visit-${i}`} title={
-                                    <div>
-                                        <strong>Opis wizyty:</strong> {visit.description}<br />
-                                        <strong>Lekarz:</strong> {visit.doctor.firstName} {visit.doctor.lastName}<br />
-                                        <strong>Pacjent:</strong> {visit.patient.firstName} {visit.patient.lastName}
-                                    </div>
-                                }>
-                                <Visit >
-                                     {visit.doctor.lastName} {visit.doctor.firstName}
-                                </Visit>
-                                </Tooltip>
-                            ))}
-                        </>
-                    </Hour>
+                {[...Array(12)].map((_, i) => (
+                    <>
+                            <Hour key={i}  row={i+2} onClick={() => handleHourClick(i+8)}>
+                                <HourHeader>{i+8}.00</HourHeader>
+                                 {getMatchingVisits(i+8+"").map((visit) => (
+                                    <Tooltip id={`visit-${i}`} title={
+                                        <div>
+                                            <strong>Opis wizyty:</strong> {visit.description}<br />
+                                            <strong>Lekarz:</strong> {visit.doctor.firstName} {visit.doctor.lastName}<br />
+                                            <strong>Pacjent:</strong> {visit.patient.firstName} {visit.patient.lastName}
+                                        </div>
+                                    }>
+                                        <Visit  onClick={handleModalClose} min={Number(dayjs(visit.visitDate, 'YYYY-MM-DD HH:mm').format("mm"))}>
+                                            {visit.doctor.firstName}
+                                            {visit.doctor.lastName}
+                                        </Visit>
+                                    </Tooltip>
+                                ))}
+                            </Hour>
+                    </>
                 ))}
             </DayBody>
             {showModal && (

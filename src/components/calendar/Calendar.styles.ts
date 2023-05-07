@@ -22,7 +22,6 @@ export const Toggle = styled.div`
 
 export const CalendarBody = styled.div`
   width: 100%;
-  height: 550px;
 `;
 export const HeaderLabel = styled.h1`
   float: right;

@@ -37,7 +37,7 @@ export const ProfileButton= () => {
     };
 
     return (
-                <Box sx={{ flexGrow: 0 }}>
+                <Box sx={{ flexGrow: 0 ,marginRight:3}} >
                     <Tooltip title="Open settings">
                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                             <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -60,7 +60,7 @@ export const ProfileButton= () => {
                         onClose={handleCloseUserMenu}
                     >
                     <MenuItem onClick={handleCloseUserMenu} ><Link href={"/profile"}>Profil</Link></MenuItem>
-                    <MenuItem onClick={()=>{handleCloseUserMenu();logout();}}>Wylogujt</MenuItem>
+                    <MenuItem onClick={()=>{handleCloseUserMenu();logout();}}>Wyloguj</MenuItem>
                     </Menu>
                 </Box>
 
