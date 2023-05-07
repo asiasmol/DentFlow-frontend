@@ -12,7 +12,7 @@ type Props = {
     isOpen:boolean
 };
 
-export  const Day: React.FC<Props> = (props:Props) =>{
+export  const DayCalendar: React.FC<Props> = (props:Props) =>{
     const {currenDate} = useContext(CalendarContext)
 
     return(

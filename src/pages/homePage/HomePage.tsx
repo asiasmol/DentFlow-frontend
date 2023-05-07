@@ -18,20 +18,16 @@ import {
     StyledDatePickerMedium, StyledDatePickerSmall, HomeButton3,
 
 } from "./HomePage.style";
-// import AdapterDayjs from "@mui/lab/AdapterDayjs";
+
 import logo from '../../resources/img/logo.png';
 import './HomePage.css'
-import Typography from "@mui/material/Typography";
+
 import {Link} from "react-router-dom";
-import TextField from '@mui/material/TextField';
-import {DateField, LocalizationProvider, MobileDatePicker} from "@mui/x-date-pickers";
+
+import {LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import {Pricing} from "../../components/pricing/Pricing";
-import dayjs from "dayjs";
-import {DemoItem, DemoContainer} from "@mui/x-date-pickers/internals/demo";
-// import {Footer} from "../../components/footer/Footer";
-import { DesktopDatePicker } from '@mui/x-date-pickers-pro';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+
 
 const HomePage = () => {
 

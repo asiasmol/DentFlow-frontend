@@ -4,7 +4,7 @@ import {Slidebar} from "./slider/Slidebar";
 import { Week } from './weekCalendar/Week';
 import {Arrow, CalendarBody, CalendarHeaderBody, BackButton, HeaderLabel, HScreen, Toggle} from "./Calendar.styles";
 import {CalendarContext} from "../../context/CalendarContext";
-import { Day } from './dayCalendar/Day';
+import { DayCalendar } from './dayCalendar/DayCalendar';
 
 
 export const Calendar = () => {
@@ -58,7 +58,7 @@ export const Calendar = () => {
                    {isOpen &&(
                        <Slidebar />
                    )}
-                   {isWeekCalendar ?(<Week isOpen = {isOpen} week = {weekDays}/>):(<Day isOpen = {isOpen}/>)}
+                   {isWeekCalendar ?(<Week isOpen = {isOpen} week = {weekDays}/>):(<DayCalendar isOpen = {isOpen}/>)}
 
                </CalendarBody>
            </HScreen>
