@@ -1,71 +1,78 @@
 import {
-    SecondOfferContainer,
+    ThirdOfferContainer,
     Header,
     PriceArea,
     OfferParam,
     OfferIcon,
-    H1, H2, H3,
-    CurrencyTextArea, H4
-} from "./SecondTypeOffer.style";
+    CurrencyTextArea,
+    H1, H2, H3
+} from "./ThirdTypeOffer.styles";
 import {HomeButton1, HomeButton2} from "../../../pages/homePage/HomePage.style";
 import React from "react";
 import Typography from "@mui/material/Typography";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import {CheckCircle} from "react-bootstrap-icons";
-
+// import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+// import { Icon } from "@chakra-ui/icons";
+import { CheckCircle } from 'react-bootstrap-icons';
+import {H4} from "./FirstTypeOffer.style";
 
 interface OfferProps {
     header: string;
-    price: number;
+    price: string;
     currency: string;
 }
 
-export const SecondTypeOffer: React.FC<OfferProps> = ({ currency, price, header }) => {
+export const ThirdTypeOffer: React.FC<OfferProps> = ({ price, header, currency }) => {
     return (
-        <SecondOfferContainer>
+        <ThirdOfferContainer>
             <Header>
-                <H1>1-4 foteli</H1>
+                <H1>5+ foteli</H1>
             </Header>
             <PriceArea>
-                <H2>549.99</H2>
+                <H2>899.99</H2>
                 <H3>zł/msc</H3>
             </PriceArea>
             <OfferParam>
                 <OfferIcon>
                     <CheckCircle
-                        color={"white"}
-                        size={30}/>
+                        color={"#1784B3"}
+                        size={30}
+                    />
                     <H4>pełna wersja programu</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
-                        color={"white"}
-                        size={30}/>
+                        color={"#1784B3"}
+                        size={30}
+                    />
                     <H4>brak opłat od liczby użytkowników</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
-                        color={"white"}
-                        size={30}/>
+                        color={"#1784B3"}
+                        size={30}
+                    />
                     <H4>brak opłat od liczby komputerów</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
-                        color={"white"}
-                        size={30}/>
+                        color={"#1784B3"}
+                        size={30}
+                    />
                     <H4>brak opłat za stanowisko recepcji</H4>
                 </OfferIcon>
                 <OfferIcon>
                     <CheckCircle
-                        color={"white"}
-                        size={30}/>
+                        color={"#1784B3"}
+                        size={30}
+                    />
                     <H4>bezpłatna pomoc</H4>
+
                 </OfferIcon>
             </OfferParam>
             <HomeButton2>
                 Kup
             </HomeButton2>
-        </SecondOfferContainer>
+        </ThirdOfferContainer>
 
 
     )

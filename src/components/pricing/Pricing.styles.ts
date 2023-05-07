@@ -6,7 +6,10 @@ export const PriceContainer = styled.div`
     flex-direction: column;
     margin-top: 5rem;
     margin-bottom: 5rem;
-    //background: #FAFAFA;
+
+  @media(max-width: 950px) {
+    
+  }
   
 `
 
@@ -14,9 +17,7 @@ export const HeadingText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  //background: #FAFAFA;
   margin-bottom: 2rem;
-
   font-family: Serif,serif;
 `
 
@@ -27,7 +28,6 @@ export const Prices = styled.div`
   width: fit-content;
   margin-left: 50%;
   margin-right: 50%;
-  //background: #FAFAFA;
   @media only screen and (max-width: 950px){
     flex-direction: column;
     align-items: center;

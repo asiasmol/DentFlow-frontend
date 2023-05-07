@@ -3,7 +3,7 @@ import {
     ContactForm,
     ContactHero,
     ContactInputs,
-    HomeButton,
+    HomeButton1,
     HomeContainer,
     HomeHeader,
     HomeLink,
@@ -11,16 +11,27 @@ import {
     Logo,
     TextArea,
     PriceContainer,
+    H1, H2,
+    HomeButton2,
+    StyledTextFieldMedium,
+    StyledTextFieldSmall,
+    StyledDatePickerMedium, StyledDatePickerSmall, HomeButton3,
+
 } from "./HomePage.style";
+// import AdapterDayjs from "@mui/lab/AdapterDayjs";
 import logo from '../../resources/img/logo.png';
 import './HomePage.css'
 import Typography from "@mui/material/Typography";
 import {Link} from "react-router-dom";
 import TextField from '@mui/material/TextField';
-import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+import {DateField, LocalizationProvider, MobileDatePicker} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {Pricing} from "../../components/pricing/Pricing";
+import dayjs from "dayjs";
+import {DemoItem, DemoContainer} from "@mui/x-date-pickers/internals/demo";
 // import {Footer} from "../../components/footer/Footer";
+import { DesktopDatePicker } from '@mui/x-date-pickers-pro';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const HomePage = () => {
 
@@ -45,47 +56,46 @@ const HomePage = () => {
                     </Links>
                     <div id='buttons'>
                         <Link to={'/user-registration'}>
-                            <HomeButton width={12} marginTop={0}>Załóż konto</HomeButton>
+                            <HomeButton1 marginTop={0}>Załóż konto</HomeButton1>
                         </Link>
 
                         <Link to={"/login"}>
-                            <HomeButton width={12} marginTop={0}>Zaloguj</HomeButton>
+                            <HomeButton1 marginTop={0}>Zaloguj</HomeButton1>
                         </Link>
                     </div>
                 </HomeHeader>
                 <div id='homeBody'>
                     <TextArea>
-                        <Typography variant={"h2"} sx={{fontFamily: "Montserrat"}}>
-                            Zaufaj nam!
-                        </Typography>
+                        <H1>Zaufaj nam!</H1>
+                        <H2>Odkryj najlepsze oprogramowanie <br/> do zarządzania gabinetem
+                            stomatologicznym</H2>
 
-                        <Typography variant={'h4'} sx={{fontFamily: "Montserrat", marginY: '2rem'}}>
-                            Odkryj najlepsze oprogramowanie <br/> do zarządzania gabinetem
-                            stomatologicznym
-                        </Typography>
-
-                        <HomeButton width={17} marginTop={0}> Dowiedz się więcej </HomeButton>
+                        <HomeButton3 marginTop={0}> Dowiedz się więcej </HomeButton3>
                     </TextArea>
 
                     <ContactForm>
-                        <ContactHero variant='h4' sx={{fontFamily: "Montserrat", marginY: "2rem"}}>
-                            Skontaktujmy się!
+                        <ContactHero>
+                            Skontaktuj się!
                         </ContactHero>
 
                         <ContactInputs id={"inputs"}>
-                            <TextField required id="outlined-basic" label="Imię i nazwisko" variant="outlined"
-                                       className={"input"}/>
-                            <TextField required id="outlined-basic" label="Email" variant="outlined"
-                                       className={"input"}/>
-                            <TextField required id="outlined-basic" label="Numer telefonu" variant="outlined"
-                                       className={"input"}/>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker label="Wybierz dzień kontaktu" className={"input"}/>
-                            </LocalizationProvider>
-                            <HomeButton marginTop={0} width={13} id={'contact-form-button'}>
-                                Wyślij
-                            </HomeButton>
+                            <StyledTextFieldMedium label="Imię i nazwisko" size={"medium"}/>
+                            <StyledTextFieldSmall label="Imię i nazwisko" size={"small"}/>
 
+                            <StyledTextFieldMedium label="Email" size={"medium"}/>
+                            <StyledTextFieldSmall label="Email" size={"small"}/>
+
+                            <StyledTextFieldMedium label="Numer telefonu" size={"medium"}/>
+                            <StyledTextFieldSmall label="Numer telefonu" size={"small"}/>
+
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <StyledDatePickerMedium label={'Data'} />
+                                <StyledDatePickerSmall label={'Data'} />
+                            </LocalizationProvider>
+
+                            <HomeButton2 id={'contact-form-button'}>
+                                Wyślij
+                            </HomeButton2>
                         </ContactInputs>
                     </ContactForm>
                 </div>
