@@ -31,7 +31,12 @@ export const ValidationError = styled.div`
     margin-top: -1rem;
     left:3rem;
   }
+  @media (max-width: 450px) {
+    position:relative;
+    left:3rem;
+  }
 `
+
 interface LoginFormProps{
     height: number
 }
@@ -163,6 +168,16 @@ export const LoginButton = styled.button`
      &:hover {
        filter: brightness(85%);
      }
+
+    &:disabled{
+      background-color: gray;
+      filter: brightness(100%);
+    }
+  
+  @media(max-width: 1400px){
+    height: 3rem;
+    width: 13rem;
+    font-size: 1.5rem;
 
   @media(max-width: 950px){
     height: 2.5rem;

@@ -77,7 +77,8 @@ export const Login = () => {
   };
 
   return (
-      <LoginForm height={32}>
+      <LoginForm height={33}>
+
         <LoginHeader>
           Logowanie
         </LoginHeader>

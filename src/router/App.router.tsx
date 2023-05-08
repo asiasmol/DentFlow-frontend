@@ -101,9 +101,7 @@ export const AppRouter = () => {
             <Route
                 path="/clinic-registration"
                 element={
-                    <ProtectedRoute>
                         <ClinicRegistration />
-                    </ProtectedRoute>
                 }
             ></Route>
             <Route
