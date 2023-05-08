@@ -1,6 +1,4 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
 import {ProfileDiv,
     Modal,
     ModalOverlay,
@@ -10,16 +8,14 @@ import {ProfileDiv,
     ModalFooter,
     } from "./Profile.style";
 import img from "../../resources/img/profile.png";
-import Avatar from "@mui/material/Avatar";
 import {useCallback, useEffect, useState} from "react";
 import {UserApi} from "../../api/UserApi";
 import {ProfileUserResponse} from "../../models/api/ProfileUserResponse";
-import {Fields, StyledBox, WelcomeText, WindowRegistration} from "../registration/Registration.style";
-import TextField from "@mui/material/TextField";
+import {Fields} from "../registration/Registration.style";
 import {useNavigate} from "react-router-dom";
-import {UserRegistrationData} from "../../models/api/UserRegistrationData";
 import {toast} from "react-toastify";
 import {UserUpdateData} from "../../models/api/UserUpdateData";
+import {Avatar, Button, CardActionArea, CardActions, TextField, Typography } from '@mui/material';
 
 export default function MultiActionAreaCard() {
     const [showModal, setShowModal] = useState(false);

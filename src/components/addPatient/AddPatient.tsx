@@ -1,11 +1,10 @@
 import React, {useCallback, useContext, useState} from "react";
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
 import {StyledBox, WelcomeText, WindowRegistration, Fields} from "./AddPatient.styles";
 import {ClinicContext} from "../../context/ClinicContext";
 import {PatientApi} from "../../api/PatientApi";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
+import {Button, TextField } from "@mui/material";
 
 export const AddPatient = () => {
     const [firstName, setFirstName] = useState('');

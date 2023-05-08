@@ -9,6 +9,7 @@ export type CalendarContextType = {
   noFilterVisits:VisitResponse[] |[];
   currentVisit: VisitResponse | null;
   currentVisits: VisitResponse[] |[];
+  fetchVisits:()=> void;
   visitModifier: (visit: VisitResponse) => void;
   visitsModifier: (visits: VisitResponse[] | []) => void;
   dateModifier: (date:dayjs.Dayjs) => void;

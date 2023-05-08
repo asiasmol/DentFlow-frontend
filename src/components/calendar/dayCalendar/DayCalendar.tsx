@@ -1,6 +1,5 @@
 import React, {useContext} from "react"
-import dayjs from "dayjs";
-import { DayBody } from "./Day.styles";
+import { DayBody } from "./DayCalendar.styles";
 import {WeekDay} from "../weekCalendar/WeekDay";
 import {Visit} from "./Visit";
 import {CalendarContext} from "../../../context/CalendarContext";

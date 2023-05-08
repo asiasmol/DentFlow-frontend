@@ -1,10 +1,9 @@
 import React, {useContext, useState} from "react"
 import dayjs from "dayjs";
 import {DayBody, DayBodyHeader, DayLabel, DayTextLabel, Hour, HourHeader, Visit} from "./Week.styles";
-import { AddVisitModal } from "../addVisit/AddVisitModal";
 import {CalendarContext} from "../../../context/CalendarContext";
-import { Tooltip } from "@mui/material";
 import {VisitResponse} from "../../../models/api/VisitResponse";
+import Tooltip from "@mui/material/Tooltip";
 
 
 
@@ -13,8 +12,6 @@ type Props = {
     column: number,
 };
 export  const WeekDay: React.FC<Props> = (props:Props) =>{
-    const [showModal, setShowModal] = useState(false);
-    const [hour, setHour] = useState("");
     const {currentVisits,visitModifier} = useContext(CalendarContext);
 
     const getMatchingVisits = (hour:string) => {
@@ -25,16 +22,8 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
         });
     }
 
-    const handleHourClick = (hour:number) => {
-        setHour(hour+":00")
-        setShowModal(true);
-    };
-    const handleModalClose = () => {
-        setShowModal(false);
-    };
     const setCurrentVisit = (visit:VisitResponse) => {
         visitModifier(visit);
-        setShowModal(false);
     };
     return(
         <>
@@ -46,7 +35,7 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
 
                 {[...Array(12)].map((_, i) => (
                     <>
-                            <Hour key={i}  row={i+2} onClick={() => handleHourClick(i+8)}>
+                            <Hour key={i}  row={i+2} >
                                 <HourHeader>{i+8}.00</HourHeader>
                                  {getMatchingVisits(i+8+"").map((visit) => (
                                     <Tooltip id={`visit-${i}`} title={
@@ -66,9 +55,7 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                     </>
                 ))}
             </DayBody>
-            {showModal && (
-                <AddVisitModal selectedDate={props.day.format("DD.MM.YYYY")} selectedTime={hour} handleModalClose={handleModalClose}/>
-            )}
+
     </>
     )
 }

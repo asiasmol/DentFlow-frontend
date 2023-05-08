@@ -1,10 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext,useState} from 'react';
 import { getWeek} from "../../utils/utils";
 import {Slidebar} from "./slider/Slidebar";
 import { Week } from './weekCalendar/Week';
 import {Arrow, CalendarBody, CalendarHeaderBody, BackButton, HeaderLabel, HScreen, Toggle} from "./Calendar.styles";
 import {CalendarContext} from "../../context/CalendarContext";
 import { DayCalendar } from './dayCalendar/DayCalendar';
+import {AddVisitModal} from "./addVisit/AddVisitModal";
 
 
 export const Calendar = () => {
@@ -14,8 +15,14 @@ export const Calendar = () => {
     const {currenDate,weekDays,dateModifier} = useContext(CalendarContext)
     const [isOpen, setIsOpen] = useState(false);
     const [isWeekCalendar, setIsWeekCalendar] = useState(true);
+    const [showModal, setShowModal] = useState(false);
 
-
+    const handleModalOpen = () => {
+        setShowModal(true);
+    };
+    const handleModalClose = () => {
+        setShowModal(false);
+    };
     const toggle = () => {
         setIsOpen(!isOpen);
     }
@@ -32,6 +39,7 @@ export const Calendar = () => {
         dateModifier(currenDate.subtract(1, 'week'));
     }
     return (
+        <>
            <HScreen>
                <Toggle onClick={toggle}>
                    <span />
@@ -47,6 +55,9 @@ export const Calendar = () => {
                    </Arrow>
                    <HeaderLabel>{getWeek(currenDate)[0].format("MMMM YYYY")}</HeaderLabel>
                    <HeaderLabel> Wizyty</HeaderLabel>
+                   <BackButton onClick={handleModalOpen}>
+                       Dodaj wizyte
+                   </BackButton>
                    <BackButton onClick={goToday}>
                        Dzisiaj
                    </BackButton>
@@ -62,7 +73,10 @@ export const Calendar = () => {
 
                </CalendarBody>
            </HScreen>
-
+            {showModal && (
+                <AddVisitModal  handleModalClose={handleModalClose}/>
+            )}
+    </>
     );
 };
 

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { DataGrid, GridColDef} from '@mui/x-data-grid';
 import {TableDiv} from"./Profile.style";
 import {useState, useEffect, useCallback} from "react";
 import { ClinicResponse } from '../../models/api/ClinicResponse';
 import {ClinicApi} from "../../api/ClinicApi";
+import { DataGrid } from '@mui/x-data-grid/DataGrid';
+import { GridColDef } from '@mui/x-data-grid/models';
 
 const columns: GridColDef[] = [
     {

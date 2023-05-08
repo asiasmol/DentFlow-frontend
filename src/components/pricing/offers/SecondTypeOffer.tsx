@@ -7,10 +7,8 @@ import {
     H1, H2, H3,
     CurrencyTextArea, H4
 } from "./SecondTypeOffer.style";
-import {HomeButton1, HomeButton2} from "../../../pages/homePage/HomePage.style";
+import { HomeButton2} from "../../../pages/homePage/HomePage.style";
 import React from "react";
-import Typography from "@mui/material/Typography";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {CheckCircle} from "react-bootstrap-icons";
 
 

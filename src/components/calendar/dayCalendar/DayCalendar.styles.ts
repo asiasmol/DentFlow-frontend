@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const DayBody = styled.div<{isOpen:boolean}>`
   float: left;
-  width: ${props => props.isOpen ? '85%' : '100%'};;
+  width: ${props => props.isOpen ? '85%' : '100%'};
   display: grid;
   grid-template-columns: repeat(3,1fr);
 `;
@@ -15,7 +15,7 @@ export const VisitBody = styled.div`
 export const VisitOptions = styled.div`
   grid-column: 2;
   display:grid;
-  grid-template-rows:repeat(2,1fr);
+  grid-template-rows:repeat(3,1fr);
 `
 export const Description = styled.input`
     grid-row: 1;
@@ -24,7 +24,7 @@ export const Description = styled.input`
 export const TeethOptions = styled.div`
     display:grid;
     grid-template-columns: repeat(2,1fr);
-    grid-row:2;
+    grid-row:span 2;
    
 `
 

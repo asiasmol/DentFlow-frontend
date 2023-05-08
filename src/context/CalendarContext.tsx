@@ -14,6 +14,7 @@ const defaultSettings: CalendarContextType = {
     noFilterVisits:[],
     currentVisit: null,
     currentVisits: [],
+    fetchVisits:()=>{},
     visitModifier: (visit: VisitResponse) => {},
     visitsModifier: (visits: VisitResponse[]) => {},
     dateModifier: (date:dayjs.Dayjs ) => {},
@@ -60,7 +61,7 @@ export const CalendarContextProvider = ({ children }: React.PropsWithChildren) =
         fetchVisits();
     }, [fetchVisits])
     return (
-        <CalendarContext.Provider value={{currentVisit,visitModifier,selectedDate,selectedDateModifier,weekDays,currenDate,noFilterVisits, currentVisits,dateModifier, visitsModifier }}>
+        <CalendarContext.Provider value={{fetchVisits,currentVisit,visitModifier,selectedDate,selectedDateModifier,weekDays,currenDate,noFilterVisits, currentVisits,dateModifier, visitsModifier }}>
             {children}
         </CalendarContext.Provider>
     );
