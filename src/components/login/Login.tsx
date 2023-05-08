@@ -77,8 +77,7 @@ export const Login = () => {
   };
 
   return (
-      <LoginForm>
-
+      <LoginForm height={32}>
         <LoginHeader>
           Logowanie
         </LoginHeader>
@@ -105,7 +104,7 @@ export const Login = () => {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/user-registration" variant="body2">
                 {"Nie masz konta? Dołącz do nas."}
               </Link>
             </Grid>

@@ -18,7 +18,7 @@ export const PasswordRecoveryLabel = styled(Grid)`
   margin-right: 1rem;
   @media(max-width:950px){
     position:relative;
-    margin-top: 0rem;
+    margin-top: 3rem;
     left:0rem;
   }
 `
@@ -26,19 +26,19 @@ export const ValidationError = styled.div`
   color: red;
   font-size: 13px;
   @media(max-width:950px){
+    width: 14rem;
     position:relative;
     margin-top: -1rem;
     left:3rem;
   }
-  @media (max-width: 450px) {
-    sition:relative;
-    left:3rem;
-  }
 `
+interface LoginFormProps{
+    height: number
+}
 
-export const LoginForm = styled.div`
+export const LoginForm = styled.div<LoginFormProps>`
   width: 26rem;
-  height: 33rem;
+  height: ${(props) => props.height}rem;
   background: #ffffff;
   border: 1px solid #1784b3;
   border-radius: 1rem;
@@ -48,7 +48,7 @@ export const LoginForm = styled.div`
 
   @media (max-width: 950px) {
     width: 20rem;
-    height: 30rem;
+    height: ${(props) => props.height}rem;
     margin: 5rem auto;
   }
 `
@@ -163,26 +163,6 @@ export const LoginButton = styled.button`
      &:hover {
        filter: brightness(85%);
      }
-  
-  @media(max-width: 1400px){
-    height: 3rem;
-    width: 13rem;
-    font-size: 1.5rem;
-
-    background-color: #FFBE5C;
-    color: white;
-    margin-top: 2rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    flex-direction: row;
-    
-  }
 
   @media(max-width: 950px){
     height: 2.5rem;
@@ -190,7 +170,7 @@ export const LoginButton = styled.button`
     font-size: 1.5rem;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 1rem;
+    margin-top: 3rem;
     margin-bottom: 1rem;
     display: block;
   }
