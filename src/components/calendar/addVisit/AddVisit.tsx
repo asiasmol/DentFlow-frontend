@@ -161,7 +161,7 @@ export default function SignIn(props:Props) {
         } finally {
             // setIsLoading(false);
         }
-    }, [patientId,doctorEmail,currentClinic?.id]);
+    }, [patientId,doctorEmail,currentClinic?.id,props,time,date]);
 
     return (
         <ThemeProvider theme={theme}>

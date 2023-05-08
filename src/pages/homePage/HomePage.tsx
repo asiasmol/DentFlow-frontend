@@ -10,7 +10,6 @@ import {
     Links,
     Logo,
     TextArea,
-    PriceContainer,
     H1, H2,
     HomeButton2,
     StyledTextFieldMedium,

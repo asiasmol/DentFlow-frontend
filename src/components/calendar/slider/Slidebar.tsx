@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react"
+import React, { useState} from "react"
 import {Arrow, HeaderLabel, SlidebarBody, SlidebarHeader} from "./Slidebar.styles";
 import {getMonth,} from "../../../utils/utils";
 import dayjs from "dayjs";

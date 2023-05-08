@@ -18,7 +18,7 @@ import PatientsList from "../components/PatientsList/PatientsList";
 import {Calendar} from "../components/calendar/Calendar";
 import {CalendarContextProvider} from "../context/CalendarContext";
 import {Pricing} from "../components/pricing/Pricing";
-import {Home} from "../components/home/Home";
+
 
 
 

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react"
+import React, {useContext} from "react"
 import dayjs from "dayjs";
 import {DayBody, DayBodyHeader, DayLabel, DayTextLabel, Hour, HourHeader, Visit} from "./Week.styles";
 import {CalendarContext} from "../../../context/CalendarContext";
