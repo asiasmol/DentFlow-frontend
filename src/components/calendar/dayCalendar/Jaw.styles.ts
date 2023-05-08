@@ -12,6 +12,7 @@ export const UpperJawLeftFirst = styled.img`
   height: 42.82px;
   left: 160.73px;
   top: 28.48px;
+  
 `
 export const UpperJawLeftSecond = styled.img`
   position: absolute;

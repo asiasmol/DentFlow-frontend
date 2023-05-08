@@ -14,7 +14,44 @@ export const VisitBody = styled.div`
 `
 export const VisitOptions = styled.div`
   grid-column: 2;
+  display:grid;
+  grid-template-rows:repeat(2,1fr);
 `
 export const Description = styled.input`
-  
+    grid-row: 1;
+`
+
+export const TeethOptions = styled.div`
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-row:2;
+   
+`
+
+export const ToothDescription = styled.div`
+    display:flex;
+    flex-direction:column;
+    grid-column:1;
+`
+
+export const ToothStatus = styled.div`
+    grid-column:2;
+    display:flex;
+    flex-direction:column;
+`
+
+export const StatusLabel = styled.label`
+`
+
+export const StatusCheckbox = styled.input`
+`
+
+export const ToothDescriptionTextField = styled.input`
+
+`
+
+export const ToothDescriptionHistory = styled.div`
+`
+
+export const ToothDescriptionHistoryElement = styled.div`
 `

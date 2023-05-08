@@ -1,4 +1,4 @@
-import React, {useContext} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import {
     UpperJawLeftEight,
     Jaw,
@@ -32,7 +32,7 @@ import {
 } from "./Jaw.styles";
 import {
     Description,
-    VisitBody, VisitOptions
+    VisitBody, VisitOptions, TeethOptions, ToothDescription, ToothStatus,StatusLabel,StatusCheckbox, ToothDescriptionTextField,ToothDescriptionHistory, ToothDescriptionHistoryElement
 } from "./Day.styles";
 import UpLEight from "../../../resources/img/Jaw/8-UP-L.png";
 import UpLSeven from "../../../resources/img/Jaw/7-UP-L.png";
@@ -67,6 +67,7 @@ import DownRThird from "../../../resources/img/Jaw/3-DOWN-R.png";
 import DownRSecond from "../../../resources/img/Jaw/2-DOWN-R.png";
 import DownRFirst from "../../../resources/img/Jaw/1-DOWN-R.png";
 import {CalendarContext} from "../../../context/CalendarContext";
+import {Tooth} from "../../../models/Tooth";
 
 
 
@@ -79,50 +80,123 @@ type Props = {
 
 export  const Visit: React.FC<Props> = (props:Props) =>{
     const {currentVisit} = useContext(CalendarContext);
-    function handleChoseTooth()  {
-        console.log(currentVisit?.patient);
-    };
+    const [teeth,setTeeth] = useState<Tooth[]>([]);
+    const [tooth,setTooth] = useState <Tooth|null>(null);
+    const [caries, setCaries] = useState <boolean>(false);
+    const [cavity, setCavity] = useState <boolean>(false);
+    const [noTooth, setNoTooth] = useState <boolean>(false);
+    const [filling, setFilling] = useState <boolean>(false);
+    const [rootCanal, setRootCanal] = useState <boolean>(false);
+    const [toothName,setToothName] = useState("");
 
+    function handleChoseTooth(event:React.MouseEvent<HTMLImageElement>,tooth:Tooth)  {
+        setToothName(event.currentTarget.alt)
+        setTooth(tooth);
+        setCaries(tooth.caries);
+        setCavity(tooth.cavity);
+        setNoTooth(tooth.noTooth);
+        setFilling(tooth.filling);
+        setRootCanal(tooth.rootCanal);
+    };
+    function changeCariesStatus(){
+        if(tooth)
+            tooth.caries = !tooth.caries;
+        setCaries(!caries);
+    }
+    function changeCavityStatus(){
+        if(tooth)
+            tooth.cavity = !tooth.cavity;
+        setCavity(!cavity);
+    }
+    function changeNoToothStatus(){
+        if(tooth)
+            tooth.noTooth = !tooth.noTooth;
+        setNoTooth(!noTooth);
+    }
+    function changeFillingStatus(){
+        if(tooth)
+            tooth.filling = !tooth.filling;
+        setFilling(!filling);
+    }
+    function changeRootCanalsStatus(){
+        if(tooth)
+            tooth.rootCanal = !tooth.rootCanal;
+        setRootCanal(!rootCanal);
+    }
+    useEffect(() => {
+        if(currentVisit)
+        setTeeth(currentVisit.patient.teeth.sort((a,b) => a.number-b.number))
+    },[currentVisit])
     return(
        <VisitBody>
            {currentVisit != null ? (
                <>
                    <Jaw>
-                       <UpperJawLeftFirst src={UpLFirst} alt="ząb" onClick={() => handleChoseTooth()}/>
-                       <UpperJawLeftSecond src={UpLSecond} alt="ząb" onClick={()=>handleChoseTooth()}/>
-                       <UpperJawLeftThird src={UpLThird} alt="ząb"/>
-                       <UpperJawLeftFour src={UpLFour} alt="ząb"/>
-                       <UpperJawLeftFive src={UpLFive} alt="ząb"/>
-                       <UpperJawLeftSix src={UpLSix} alt="ząb"/>
-                       <UpperJawLeftSeven src={UpLSeven} alt="ząb"/>
-                       <UpperJawLeftEight src={UpLEight} alt="ząb"/>
-                       <UpperJawRightFirst src={UpRFirst} alt="ząb"/>
-                       <UpperJawRightSecond src={UpRSecond} alt="ząb"/>
-                       <UpperJawRightThird src={UpRThird} alt="ząb"/>
-                       <UpperJawRightFour src={UpRFour} alt="ząb"/>
-                       <UpperJawRightFive src={UpRFive} alt="ząb"/>
-                       <UpperJawRightSix src={UpRSix} alt="ząb"/>
-                       <UpperJawRightSeven src={UpRSeven} alt="ząb"/>
-                       <UpperJawRightEight src={UpREight} alt="ząb"/>
-                       <DownJawLeftFirst src={DownLFirst} alt="ząb"/>
-                       <DownJawLeftSecond src={DownLSecond} alt="ząb"/>
-                       <DownJawLeftThird src={DownLThird} alt="ząb"/>
-                       <DownJawLeftFour src={DownLFour} alt="ząb"/>
-                       <DownJawLeftFive src={DownLFive} alt="ząb"/>
-                       <DownJawLeftSix src={DownLSix} alt="ząb"/>
-                       <DownJawLeftSeven src={DownLSeven} alt="ząb"/>
-                       <DownJawLeftEight src={DownLEight} alt="ząb"/>
-                       <DownJawRightFirst src={DownRFirst} alt="ząb"/>
-                       <DownJawRightSecond src={DownRSecond} alt="ząb"/>
-                       <DownJawRightThird src={DownRThird} alt="ząb"/>
-                       <DownJawRightFour src={DownRFour} alt="ząb"/>
-                       <DownJawRightFive src={DownRFive} alt="ząb"/>
-                       <DownJawRightSix src={DownRSix} alt="ząb"/>
-                       <DownJawRightSeven src={DownRSeven} alt="ząb"/>
-                       <DownJawRightEight src={DownREight} alt="ząb"/>
+                       <UpperJawLeftFirst src={UpLFirst} alt="11" onClick={(event) => handleChoseTooth(event,teeth[0])}/>
+                       <UpperJawLeftSecond src={UpLSecond} alt="12" onClick={(event)=>handleChoseTooth(event,teeth[1])}/>
+                       <UpperJawLeftThird src={UpLThird} alt="13" onClick={(event) => handleChoseTooth(event,teeth[2])}/>
+                       <UpperJawLeftFour src={UpLFour} alt="14" onClick={(event) => handleChoseTooth(event,teeth[3])}/>
+                       <UpperJawLeftFive src={UpLFive} alt="15" onClick={(event) => handleChoseTooth(event,teeth[4])}/>
+                       <UpperJawLeftSix src={UpLSix} alt="16" onClick={(event) => handleChoseTooth(event,teeth[5])}/>
+                       <UpperJawLeftSeven src={UpLSeven} alt="17" onClick={(event) => handleChoseTooth(event,teeth[6])}/>
+                       <UpperJawLeftEight src={UpLEight} alt="18" onClick={(event) => handleChoseTooth(event,teeth[7])}/>
+                       <UpperJawRightFirst src={UpRFirst} alt="21" onClick={(event) => handleChoseTooth(event,teeth[8])}/>
+                       <UpperJawRightSecond src={UpRSecond} alt="22" onClick={(event) => handleChoseTooth(event,teeth[9])}/>
+                       <UpperJawRightThird src={UpRThird} alt="23" onClick={(event) => handleChoseTooth(event,teeth[10])}/>
+                       <UpperJawRightFour src={UpRFour} alt="24" onClick={(event) => handleChoseTooth(event,teeth[11])}/>
+                       <UpperJawRightFive src={UpRFive} alt="25" onClick={(event) => handleChoseTooth(event,teeth[12])}/>
+                       <UpperJawRightSix src={UpRSix} alt="26" onClick={(event) => handleChoseTooth(event,teeth[13])}/>
+                       <UpperJawRightSeven src={UpRSeven} alt="27" onClick={(event) => handleChoseTooth(event,teeth[14])}/>
+                       <UpperJawRightEight src={UpREight} alt="28" onClick={(event) => handleChoseTooth(event,teeth[15])}/>
+                       <DownJawLeftFirst src={DownLFirst} alt="41" onClick={(event) => handleChoseTooth(event,teeth[16])}/>
+                       <DownJawLeftSecond src={DownLSecond} alt="42" onClick={(event) => handleChoseTooth(event,teeth[17])}/>
+                       <DownJawLeftThird src={DownLThird} alt="43" onClick={(event) => handleChoseTooth(event,teeth[18])}/>
+                       <DownJawLeftFour src={DownLFour} alt="44" onClick={(event) => handleChoseTooth(event,teeth[19])}/>
+                       <DownJawLeftFive src={DownLFive} alt="45" onClick={(event) => handleChoseTooth(event,teeth[20])}/>
+                       <DownJawLeftSix src={DownLSix} alt="46" onClick={(event) => handleChoseTooth(event,teeth[21])}/>
+                       <DownJawLeftSeven src={DownLSeven} alt="47" onClick={(event) => handleChoseTooth(event,teeth[22])}/>
+                       <DownJawLeftEight src={DownLEight} alt="48" onClick={(event) => handleChoseTooth(event,teeth[23])}/>
+                       <DownJawRightFirst src={DownRFirst} alt="31" onClick={(event) => handleChoseTooth(event,teeth[24])}/>
+                       <DownJawRightSecond src={DownRSecond} alt="32" onClick={(event) => handleChoseTooth(event,teeth[25])}/>
+                       <DownJawRightThird src={DownRThird} alt="33" onClick={(event) => handleChoseTooth(event,teeth[26])}/>
+                       <DownJawRightFour src={DownRFour} alt="34" onClick={(event) => handleChoseTooth(event,teeth[27])}/>
+                       <DownJawRightFive src={DownRFive} alt="35" onClick={(event) => handleChoseTooth(event,teeth[28])}/>
+                       <DownJawRightSix src={DownRSix} alt="36" onClick={(event) => handleChoseTooth(event,teeth[29])}/>
+                       <DownJawRightSeven src={DownRSeven} alt="37" onClick={(event) => handleChoseTooth(event,teeth[30])}/>
+                       <DownJawRightEight src={DownREight} alt="38" onClick={(event) => handleChoseTooth(event,teeth[31])}/>
                    </Jaw>
                    <VisitOptions>
                        <Description type="text"  />
+                       {tooth && (
+                           <TeethOptions>
+                           <ToothDescription>
+                                Ząb : {toothName}
+                               <ToothDescriptionTextField type="text"/>
+                               <ToothDescriptionHistory>
+                                   {tooth.descriptions.map((description,i) => (
+                                       <>
+                                           <ToothDescriptionHistoryElement key={i}>
+                                               {description}
+                                           </ToothDescriptionHistoryElement>
+                                       </>
+                                       ))}
+                               </ToothDescriptionHistory>
+                           </ToothDescription>
+                           <ToothStatus>
+                           <StatusLabel>Próchnica</StatusLabel>
+                           <StatusCheckbox type="checkbox" checked={caries} onChange={changeCariesStatus}/>
+                           <StatusLabel>Ubytek</StatusLabel>
+                           <StatusCheckbox type="checkbox" checked={cavity} onChange={changeCavityStatus}/>
+                           <StatusLabel>Brak Zęba</StatusLabel>
+                           <StatusCheckbox type="checkbox" checked={noTooth} onChange={changeNoToothStatus}/>
+                           <StatusLabel>Wypełnienie</StatusLabel>
+                           <StatusCheckbox type="checkbox" checked={filling} onChange={changeFillingStatus}/>
+                           <StatusLabel>Kanałowe</StatusLabel>
+                           <StatusCheckbox type="checkbox" checked={rootCanal} onChange={changeRootCanalsStatus}/>
+                           </ToothStatus>
+                           </TeethOptions>
+                           )}
+
                    </VisitOptions>
                </>
            ):(
