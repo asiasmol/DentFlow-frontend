@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {ACCESS_TOKEN} from "../../constants/constants";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../context/UserContext";
-import {Checkbox, FormControlLabel, Link, Grid} from "@mui/material";
+import {Checkbox, Link, Grid} from "@mui/material";
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -56,7 +56,7 @@ export const Login = () => {
 
 
   useEffect(() => {
-    setIsEmailValid(email.length > 0);
+    setIsEmailValid(validateEmail(email));
   }, [email]);
 
   useEffect(() => {
@@ -70,6 +70,12 @@ export const Login = () => {
   const onPasswordChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setPassword(event.target.value);
   };
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   return (
       <LoginForm>
 
@@ -78,9 +84,9 @@ export const Login = () => {
         </LoginHeader>
 
         <LoginInputs>
-          <StyledTextFieldMedium label="Email" size={"medium"} onChange={(e) => onEmailChange(e)}/>
-          <StyledTextFieldSmall label="Email" size={"small"} onChange={(e) => onEmailChange(e)}/>
-          {!isEmailValid && (<ValidationError>Podaj Email</ValidationError>)}
+          <StyledTextFieldMedium label="Email" size={"medium"} value = {email} onChange={(e) => onEmailChange(e)}/>
+          <StyledTextFieldSmall label="Email" size={"small"} value = {email} onChange={(e) => onEmailChange(e)}/>
+          {!isEmailValid && (<ValidationError>Podaj poprawny adres email</ValidationError>)}
 
           <StyledTextFieldMedium onChange={(e) => onPasswordChange(e)} label="Hasło" type="password" size={"medium"}/>
           <StyledTextFieldSmall onChange={(e) => onPasswordChange(e)} label="Hasło" type="password" size={"small"}/>
