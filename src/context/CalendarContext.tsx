@@ -12,7 +12,9 @@ const defaultSettings: CalendarContextType = {
     currenDate: dayjs(new Date()),
     weekDays:getWeek(dayjs(new Date())),
     noFilterVisits:[],
+    currentVisit: null,
     currentVisits: [],
+    visitModifier: (visit: VisitResponse) => {},
     visitsModifier: (visits: VisitResponse[]) => {},
     dateModifier: (date:dayjs.Dayjs ) => {},
     selectedDateModifier: (date:dayjs.Dayjs) => {},
@@ -27,9 +29,13 @@ export const CalendarContextProvider = ({ children }: React.PropsWithChildren) =
     const [currenDate,setCurrenDate] = useState(dayjs(new Date()))
     const [selectedDate,setSelectedDate] = useState(dayjs(new Date()))
     const [weekDays,setWeekDays] = useState(getWeek(currenDate))
+    const [currentVisit, setCurrentVisit] = useState<VisitResponse |null>(null);
     const [currentVisits, setCurrentVisits] = useState<VisitResponse[] >([]);
     const [noFilterVisits,setNoFilterVisits] = useState<VisitResponse[] >([]);
     const {currentClinic} = useContext(ClinicContext);
+    const visitModifier = (visit: VisitResponse ) => {
+        setCurrentVisit(visit);
+    };
     const visitsModifier = (visits: VisitResponse[] ) => {
         setCurrentVisits(visits);
     };
@@ -54,7 +60,7 @@ export const CalendarContextProvider = ({ children }: React.PropsWithChildren) =
         fetchVisits();
     }, [fetchVisits])
     return (
-        <CalendarContext.Provider value={{selectedDate,selectedDateModifier,weekDays,currenDate,noFilterVisits, currentVisits,dateModifier, visitsModifier }}>
+        <CalendarContext.Provider value={{currentVisit,visitModifier,selectedDate,selectedDateModifier,weekDays,currenDate,noFilterVisits, currentVisits,dateModifier, visitsModifier }}>
             {children}
         </CalendarContext.Provider>
     );

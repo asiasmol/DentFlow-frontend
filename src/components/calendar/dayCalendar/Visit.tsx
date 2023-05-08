@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useContext} from "react"
 import {
     UpperJawLeftEight,
     Jaw,
@@ -66,6 +66,8 @@ import DownRFour from "../../../resources/img/Jaw/4-DOWN-R.png";
 import DownRThird from "../../../resources/img/Jaw/3-DOWN-R.png";
 import DownRSecond from "../../../resources/img/Jaw/2-DOWN-R.png";
 import DownRFirst from "../../../resources/img/Jaw/1-DOWN-R.png";
+import {CalendarContext} from "../../../context/CalendarContext";
+
 
 
 
@@ -76,49 +78,58 @@ type Props = {
 };
 
 export  const Visit: React.FC<Props> = (props:Props) =>{
+    const {currentVisit} = useContext(CalendarContext);
     function handleChoseTooth()  {
-        console.log("nie")
+        console.log(currentVisit?.patient);
     };
 
     return(
        <VisitBody>
-            <Jaw>
-                        <UpperJawLeftFirst src={UpLFirst} alt="ząb" onClick={() => handleChoseTooth()}/>
-                        <UpperJawLeftSecond src={UpLSecond} alt="ząb" onClick={()=>handleChoseTooth()}/>
-                        <UpperJawLeftThird src={UpLThird} alt="ząb"/>
-                        <UpperJawLeftFour src={UpLFour} alt="ząb"/>
-                        <UpperJawLeftFive src={UpLFive} alt="ząb"/>
-                        <UpperJawLeftSix src={UpLSix} alt="ząb"/>
-                        <UpperJawLeftSeven src={UpLSeven} alt="ząb"/>
-                        <UpperJawLeftEight src={UpLEight} alt="ząb"/>
-                        <UpperJawRightFirst src={UpRFirst} alt="ząb"/>
-                        <UpperJawRightSecond src={UpRSecond} alt="ząb"/>
-                        <UpperJawRightThird src={UpRThird} alt="ząb"/>
-                        <UpperJawRightFour src={UpRFour} alt="ząb"/>
-                        <UpperJawRightFive src={UpRFive} alt="ząb"/>
-                        <UpperJawRightSix src={UpRSix} alt="ząb"/>
-                        <UpperJawRightSeven src={UpRSeven} alt="ząb"/>
-                        <UpperJawRightEight src={UpREight} alt="ząb"/>
-                        <DownJawLeftFirst src={DownLFirst} alt="ząb"/>
-                        <DownJawLeftSecond src={DownLSecond} alt="ząb"/>
-                        <DownJawLeftThird src={DownLThird} alt="ząb"/>
-                        <DownJawLeftFour src={DownLFour} alt="ząb"/>
-                        <DownJawLeftFive src={DownLFive} alt="ząb"/>
-                        <DownJawLeftSix src={DownLSix} alt="ząb"/>
-                        <DownJawLeftSeven src={DownLSeven} alt="ząb"/>
-                        <DownJawLeftEight src={DownLEight} alt="ząb"/>
-                        <DownJawRightFirst src={DownRFirst} alt="ząb"/>
-                        <DownJawRightSecond src={DownRSecond} alt="ząb"/>
-                        <DownJawRightThird src={DownRThird} alt="ząb"/>
-                        <DownJawRightFour src={DownRFour} alt="ząb"/>
-                        <DownJawRightFive src={DownRFive} alt="ząb"/>
-                        <DownJawRightSix src={DownRSix} alt="ząb"/>
-                        <DownJawRightSeven src={DownRSeven} alt="ząb"/>
-                        <DownJawRightEight src={DownREight} alt="ząb"/>
-            </Jaw>
-           <VisitOptions>
-               <Description type="text"  />
-           </VisitOptions>
+           {currentVisit != null ? (
+               <>
+                   <Jaw>
+                       <UpperJawLeftFirst src={UpLFirst} alt="ząb" onClick={() => handleChoseTooth()}/>
+                       <UpperJawLeftSecond src={UpLSecond} alt="ząb" onClick={()=>handleChoseTooth()}/>
+                       <UpperJawLeftThird src={UpLThird} alt="ząb"/>
+                       <UpperJawLeftFour src={UpLFour} alt="ząb"/>
+                       <UpperJawLeftFive src={UpLFive} alt="ząb"/>
+                       <UpperJawLeftSix src={UpLSix} alt="ząb"/>
+                       <UpperJawLeftSeven src={UpLSeven} alt="ząb"/>
+                       <UpperJawLeftEight src={UpLEight} alt="ząb"/>
+                       <UpperJawRightFirst src={UpRFirst} alt="ząb"/>
+                       <UpperJawRightSecond src={UpRSecond} alt="ząb"/>
+                       <UpperJawRightThird src={UpRThird} alt="ząb"/>
+                       <UpperJawRightFour src={UpRFour} alt="ząb"/>
+                       <UpperJawRightFive src={UpRFive} alt="ząb"/>
+                       <UpperJawRightSix src={UpRSix} alt="ząb"/>
+                       <UpperJawRightSeven src={UpRSeven} alt="ząb"/>
+                       <UpperJawRightEight src={UpREight} alt="ząb"/>
+                       <DownJawLeftFirst src={DownLFirst} alt="ząb"/>
+                       <DownJawLeftSecond src={DownLSecond} alt="ząb"/>
+                       <DownJawLeftThird src={DownLThird} alt="ząb"/>
+                       <DownJawLeftFour src={DownLFour} alt="ząb"/>
+                       <DownJawLeftFive src={DownLFive} alt="ząb"/>
+                       <DownJawLeftSix src={DownLSix} alt="ząb"/>
+                       <DownJawLeftSeven src={DownLSeven} alt="ząb"/>
+                       <DownJawLeftEight src={DownLEight} alt="ząb"/>
+                       <DownJawRightFirst src={DownRFirst} alt="ząb"/>
+                       <DownJawRightSecond src={DownRSecond} alt="ząb"/>
+                       <DownJawRightThird src={DownRThird} alt="ząb"/>
+                       <DownJawRightFour src={DownRFour} alt="ząb"/>
+                       <DownJawRightFive src={DownRFive} alt="ząb"/>
+                       <DownJawRightSix src={DownRSix} alt="ząb"/>
+                       <DownJawRightSeven src={DownRSeven} alt="ząb"/>
+                       <DownJawRightEight src={DownREight} alt="ząb"/>
+                   </Jaw>
+                   <VisitOptions>
+                       <Description type="text"  />
+                   </VisitOptions>
+               </>
+           ):(
+               <>
+               </>
+           )}
+
        </VisitBody>
     )
 }

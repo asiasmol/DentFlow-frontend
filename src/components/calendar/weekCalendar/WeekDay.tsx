@@ -4,6 +4,7 @@ import {DayBody, DayBodyHeader, DayLabel, DayTextLabel, Hour, HourHeader, Visit}
 import { AddVisitModal } from "../addVisit/AddVisitModal";
 import {CalendarContext} from "../../../context/CalendarContext";
 import { Tooltip } from "@mui/material";
+import {VisitResponse} from "../../../models/api/VisitResponse";
 
 
 
@@ -14,7 +15,7 @@ type Props = {
 export  const WeekDay: React.FC<Props> = (props:Props) =>{
     const [showModal, setShowModal] = useState(false);
     const [hour, setHour] = useState("");
-    const {currentVisits} = useContext(CalendarContext);
+    const {currentVisits,visitModifier} = useContext(CalendarContext);
 
     const getMatchingVisits = (hour:string) => {
         const day = props.day.format("YYYYMMDD");
@@ -29,6 +30,10 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
         setShowModal(true);
     };
     const handleModalClose = () => {
+        setShowModal(false);
+    };
+    const setCurrentVisit = (visit:VisitResponse) => {
+        visitModifier(visit);
         setShowModal(false);
     };
     return(
@@ -51,7 +56,7 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                                             <strong>Pacjent:</strong> {visit.patient.firstName} {visit.patient.lastName}
                                         </div>
                                     }>
-                                        <Visit  onClick={handleModalClose} min={Number(dayjs(visit.visitDate, 'YYYY-MM-DD HH:mm').format("mm"))}>
+                                        <Visit  onClick={() => setCurrentVisit(visit)} min={Number(dayjs(visit.visitDate, 'YYYY-MM-DD HH:mm').format("mm"))}>
                                             {visit.doctor.firstName}
                                             {visit.doctor.lastName}
                                         </Visit>
