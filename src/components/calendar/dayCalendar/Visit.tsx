@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react"
+import React, {useCallback, useContext, useEffect, useState} from "react"
 import {
     UpperJawLeftEight,
     Jaw,
@@ -32,7 +32,7 @@ import {
 } from "./Jaw.styles";
 import {
     Description,
-    VisitBody, VisitOptions, TeethOptions, ToothDescription, ToothStatus,StatusLabel,StatusCheckbox, ToothDescriptionTextField,ToothDescriptionHistory, ToothDescriptionHistoryElement
+    VisitBody, VisitOptions, TeethOptions, ToothDescription, ToothStatus,StatusLabel,StatusCheckbox, ToothDescriptionTextField,ToothDescriptionHistory, ToothDescriptionHistoryElement, Descriptions, ToothDescriptionSaveButton
 } from "./DayCalendar.styles";
 import UpLEight from "../../../resources/img/Jaw/8-UP-L.png";
 import UpLSeven from "../../../resources/img/Jaw/7-UP-L.png";
@@ -68,6 +68,7 @@ import DownRSecond from "../../../resources/img/Jaw/2-DOWN-R.png";
 import DownRFirst from "../../../resources/img/Jaw/1-DOWN-R.png";
 import {CalendarContext} from "../../../context/CalendarContext";
 import {Tooth} from "../../../models/Tooth";
+import {VisitApi} from "../../../api/VisitApi";
 
 
 
@@ -99,6 +100,7 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
     const [developmentalDefect,setDevelopmentalDefect]=useState<boolean>(false)
     const [pathologicalClash,setPathologicalClash]=useState<boolean>(false)
     const [toothName,setToothName] = useState("");
+    const [descriptionTooth, setDescriptionTooth] = useState("")
 
     function handleChoseTooth(event:React.MouseEvent<HTMLImageElement>,tooth:Tooth)  {
         setToothName(event.currentTarget.alt)
@@ -120,6 +122,17 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
         setDevelopmentalDefect(tooth.developmentalDefect)
         setPathologicalClash(tooth.pathologicalClash)
     };
+
+    // function safeVisitDescription(event:React.ChangeEvent<HTMLTextAreaElement>){
+    //
+    // }
+    const safeVisitDescription = useCallback(async (event:React.ChangeEvent<HTMLTextAreaElement>) =>{
+        await VisitApi.safeDescription({
+            visitId:currentVisit?.id,
+            description:event.target.value
+        })
+    },[]);
+
     function changeCariesStatus(){
         if(tooth)
             tooth.caries = !tooth.caries;
@@ -201,6 +214,7 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
         setPathologicalClash(!pathologicalClash);
     }
     useEffect(() => {
+        console.log(currentVisit)
         if(currentVisit)
         setTeeth(currentVisit.patient.teeth.sort((a,b) => a.number-b.number))
     },[currentVisit])
@@ -243,12 +257,16 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
                        <DownJawRightEight src={DownREight} isSelected = {tooth?.number ===32}  isNoTooth={teeth[31]?.noTooth}  alt="38" onClick={(event) => handleChoseTooth(event,teeth[31])}/>
                    </Jaw>
                    <VisitOptions>
-                       <Description type="text"  />
+                       <Descriptions>
+                           <Description   onChange={safeVisitDescription}/>
+                           <Description/> //TODO dodać blokade tylko dla recepcjonistów
+                       </Descriptions>
                        {tooth && (
                            <TeethOptions>
                            <ToothDescription>
                                 Ząb : {toothName}
                                <ToothDescriptionTextField type="text"/>
+                               <ToothDescriptionSaveButton>Dodaj notatkę do zęba</ToothDescriptionSaveButton>
                                <ToothDescriptionHistory>
                                    {tooth.descriptions.map((description,i) => (
                                        <>

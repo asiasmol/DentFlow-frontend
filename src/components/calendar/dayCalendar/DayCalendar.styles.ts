@@ -17,9 +17,16 @@ export const VisitOptions = styled.div`
   display:grid;
   grid-template-rows:repeat(3,1fr);
 `
-export const Description = styled.input`
+export const Descriptions = styled.div`
     grid-row: 1;
 `
+export const Description = styled.textarea`
+    
+`
+export const ToothDescriptionSaveButton = styled.button`
+    height:30px;
+`
+
 
 export const TeethOptions = styled.div`
     display:grid;
