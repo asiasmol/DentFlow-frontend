@@ -86,11 +86,11 @@ export const Login = () => {
         <LoginInputs>
           <StyledTextFieldMedium label="Email" size={"medium"} value = {email} onChange={(e) => onEmailChange(e)}/>
           <StyledTextFieldSmall label="Email" size={"small"} value = {email} onChange={(e) => onEmailChange(e)}/>
-          {!isEmailValid && (<ValidationError>Podaj poprawny adres email</ValidationError>)}
+          {!isEmailValid && email.length != 0 && (<ValidationError>Podaj poprawny adres email</ValidationError>)}
 
           <StyledTextFieldMedium onChange={(e) => onPasswordChange(e)} label="Hasło" type="password" size={"medium"}/>
           <StyledTextFieldSmall onChange={(e) => onPasswordChange(e)} label="Hasło" type="password" size={"small"}/>
-          {!isPasswordValid && <ValidationError>Podaj hasło</ValidationError>}
+          {!isPasswordValid && password.length != 0 && <ValidationError>Podaj hasło</ValidationError>}
 
           <RememberMeLabel control={<Checkbox value="remember" color="primary" />} label="Zapamiętaj mnie"/>
 

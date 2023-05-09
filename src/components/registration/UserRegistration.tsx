@@ -64,6 +64,28 @@ const UserRegistration = () => {
     }
 
 
+    const onFirstnameChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setFirstName(event.target.value)
+    }
+    const onLastnameChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setLastName(event.target.value)
+    }
+    const onEmailChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setEmail(event.target.value)
+    }
+    const onPasswordChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        setPassword(event.target.value)
+    }
+
+    const onRepeatedPasswordChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        setRepeatedPassword(event.target.value)
+    }
+
+    const onTelNumberChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        setTelNumber(event.target.value)
+    }
+
+
     return (
         <LoginForm height={55}>
 
@@ -72,27 +94,27 @@ const UserRegistration = () => {
             </LoginHeader>
 
             <LoginInputs>
-                <StyledTextFieldMedium label="Imię" size={"medium"} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFirstName(event.target.value)}/>
-                <StyledTextFieldSmall label="Imię" size={"small"} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFirstName(event.target.value)}/>
+                <StyledTextFieldMedium label="Imię" size={"medium"} onChange={onFirstnameChange}/>
+                <StyledTextFieldSmall label="Imię" size={"small"} onChange={onFirstnameChange}/>
 
-                <StyledTextFieldMedium label="Nazwisko" size={"medium"} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setLastName(event.target.value)}/>
-                <StyledTextFieldSmall label="Nazwisko" size={"small"} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setLastName(event.target.value)}/>
+                <StyledTextFieldMedium label="Nazwisko" size={"medium"} onChange={onLastnameChange}/>
+                <StyledTextFieldSmall label="Nazwisko" size={"small"} onChange={onLastnameChange}/>
 
-                <StyledTextFieldMedium label="Email" size={"medium"} type="email" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}/>
-                <StyledTextFieldSmall label="Email" size={"small"} type="email" onChange={(event: React.ChangeEvent<HTMLInputElement> )=> setEmail(event.target.value)}/>
-                {!isEmailValid && (<ValidationError>Podaj poprawny adres email</ValidationError>)}
+                <StyledTextFieldMedium label="Email" size={"medium"} type="email" onChange={onEmailChange}/>
+                <StyledTextFieldSmall label="Email" size={"small"} type="email" onChange={onEmailChange}/>
+                {!isEmailValid && email.length != 0 && <ValidationError>Podaj poprawny adres email</ValidationError>}
 
 
-                <StyledTextFieldMedium label="Hasło" type="password" size={"medium"} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}/>
-                <StyledTextFieldSmall label="Hasło" type="password" size={"small"} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}/>
-                {!isPasswordValid && (<ValidationError>Hasło musi mieć co najmniej 8 znaków i zawierać jedną cyfrę, jedną małą i jedną dużą literę</ValidationError>)}
+                <StyledTextFieldMedium label="Hasło" type="password" size={"medium"} onChange={onPasswordChange}/>
+                <StyledTextFieldSmall label="Hasło" type="password" size={"small"} onChange={onPasswordChange}/>
+                {!isPasswordValid && password.length != 0 && <ValidationError>Hasło musi mieć co najmniej 8 znaków i zawierać jedną cyfrę, jedną małą i jedną dużą literę</ValidationError>}
 
-                <StyledTextFieldMedium label="Powtórz hasło" type="password" size={"medium"} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRepeatedPassword(event.target.value)}/>
-                <StyledTextFieldSmall label="Powtórz hasło" type="password" size={"small"} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRepeatedPassword(event.target.value)}/>
-                {!isRepeatedPasswordValid && (<ValidationError>Hasła nie są zgodne</ValidationError>)}
+                <StyledTextFieldMedium label="Powtórz hasło" type="password" size={"medium"} onChange={onRepeatedPasswordChange}/>
+                <StyledTextFieldSmall label="Powtórz hasło" type="password" size={"small"} onChange={onRepeatedPasswordChange}/>
+                {!isRepeatedPasswordValid && password.length != 0 && <ValidationError>Hasła nie są zgodne</ValidationError>}
 
-                <StyledTextFieldMedium label="Numer telefonu" type="tel" size={"medium"} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setLastName(event.target.value)}/>
-                <StyledTextFieldSmall label="Numer telefonu" type="tel" size={"small"} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setLastName(event.target.value)}/>
+                <StyledTextFieldMedium label="Numer telefonu" type="tel" size={"medium"} onChange={onTelNumberChange}/>
+                <StyledTextFieldSmall label="Numer telefonu" type="tel" size={"small"} onChange={onTelNumberChange}/>
 
                 <LoginButton onClick={handleSubmit} disabled={!isDataValid}>
                     Dołącz
