@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from "react";
-
-import './Registration.style';
 import {UserApi} from "../../api/UserApi";
 import {UserRegistrationData} from "../../models/api/UserRegistrationData";
 import {useNavigate} from "react-router-dom";

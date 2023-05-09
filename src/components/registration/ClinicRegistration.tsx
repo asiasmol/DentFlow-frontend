@@ -1,9 +1,4 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-
-import './Registration.style';
-import {StyledBox, WelcomeText, WindowRegistration, Fields} from "./Registration.style";
 import {ClinicApi} from "../../api/ClinicApi";
 import {UserContext} from "../../context/UserContext";
 import {useNavigate} from "react-router-dom";
@@ -15,7 +10,6 @@ import {
     StyledTextFieldMedium,
     StyledTextFieldSmall, ValidationError
 } from "../login/Login.styles";
-import {color} from "@chakra-ui/react";
 
 const ClinicRegistration = () => {
     const [clinicName, setClinicName] = useState('');

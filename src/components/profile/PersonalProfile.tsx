@@ -11,7 +11,6 @@ import img from "../../resources/img/profile.png";
 import {useCallback, useEffect, useState} from "react";
 import {UserApi} from "../../api/UserApi";
 import {ProfileUserResponse} from "../../models/api/ProfileUserResponse";
-import {Fields} from "../registration/Registration.style";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import {UserUpdateData} from "../../models/api/UserUpdateData";
@@ -89,7 +88,7 @@ export default function MultiActionAreaCard() {
                             <ModalContent>
                                 <ModalHeader>Edytuj Profil</ModalHeader>
                                 <ModalBody>
-                                    <Fields>
+
                                         <TextField
                                             required
                                             id="firstName"
@@ -113,7 +112,7 @@ export default function MultiActionAreaCard() {
                                             variant="standard"
                                             onChange={event => setEmail(event.target.value)}
                                         />
-                                    </Fields>
+
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button onClick={closeModal}>
