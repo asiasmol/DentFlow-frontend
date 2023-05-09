@@ -6,4 +6,5 @@ export type VisitResponse = {
     doctor:EmployeeResponse,
     patient:PatientResponse,
     visitDate: string
+    id: number;
 }

@@ -7,4 +7,8 @@ export class VisitApi {
 
     static getVisitsFromClinic = async(request: { clinicId: number | undefined }) =>
         await authorizedApi.get("/visits", {params:request})
+
+    static async safeDescription(request: {description: string, visitId:number|undefined}) {
+        await authorizedApi.post('/visits/description', request)
+    }
 }
