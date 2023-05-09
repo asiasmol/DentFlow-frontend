@@ -34,11 +34,10 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                 </DayBodyHeader>
 
                 {[...Array(12)].map((_, i) => (
-                    <>
                             <Hour key={i}  row={i+2} >
                                 <HourHeader>{i+8}.00</HourHeader>
                                  {getMatchingVisits(i+8+"").map((visit) => (
-                                    <Tooltip id={`visit-${i}`} title={
+                                    <Tooltip key={i} title={
                                         <div>
                                             <strong>Opis wizyty:</strong> {visit.description}<br />
                                             <strong>Lekarz:</strong> {visit.doctor.firstName} {visit.doctor.lastName}<br />
@@ -49,10 +48,9 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                                             {visit.doctor.firstName}
                                             {visit.doctor.lastName}
                                         </Visit>
-                                    </Tooltip>
+                                    </Tooltip >
                                 ))}
                             </Hour>
-                    </>
                 ))}
             </DayBody>
 

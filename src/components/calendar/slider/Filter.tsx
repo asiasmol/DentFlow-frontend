@@ -34,10 +34,10 @@ export function Filter(){
 
     return(
         <FilterBody>
-                {doctors.map((doctor)=>(
+                {doctors.map((doctor,i)=>(
                     <>
-                        <input type="checkbox" value={doctor.email} onChange={handleCheckChange} />
-                        <label style={{ marginLeft: 8 }}>{doctor.email}</label>
+                        <input key={i}   type="checkbox" value={doctor.email} onChange={handleCheckChange} />
+                        <label key={i} style={{ marginLeft: 8 }}>{doctor.email}</label>
                     </>
                     ))}
         </FilterBody>

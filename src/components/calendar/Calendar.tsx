@@ -69,8 +69,7 @@ export const Calendar = () => {
                    {isOpen &&(
                        <Slidebar />
                    )}
-                   {isWeekCalendar ?(<Week isOpen = {isOpen} week = {weekDays}/>):(<DayCalendar isOpen = {isOpen}/>)}
-
+                   {isWeekCalendar ?(<Week  isOpen = {isOpen} week = {weekDays}/>):(<DayCalendar isOpen = {isOpen}/>)}
                </CalendarBody>
            </HScreen>
             {showModal && (

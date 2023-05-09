@@ -5,6 +5,7 @@ import {VisitApi} from "../api/VisitApi";
 import {ClinicContext} from "./ClinicContext";
 import {getWeek} from "../utils/utils";
 import dayjs from "dayjs";
+import {ACCESS_TOKEN} from "../constants/constants";
 
 
 const defaultSettings: CalendarContextType = {
@@ -52,7 +53,10 @@ export const CalendarContextProvider = ({ children }: React.PropsWithChildren) =
             const result = await VisitApi.getVisitsFromClinic({clinicId: currentClinic?.id})
             setCurrentVisits(result.data);
             setNoFilterVisits(result.data)
-        } finally {
+        }catch (e) {
+            console.log("nie załaduje")
+        }
+        finally {
             // setIsLoading(false);
         }
     }, [currentClinic?.id]);
