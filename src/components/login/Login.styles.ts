@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import TextField from "@mui/material/TextField";
 import {FormControlLabel, Grid} from "@mui/material";
 
@@ -92,6 +92,23 @@ export const LoginP = styled.div`
   margin-left: auto;
   margin-right: auto;
   flex-direction: column;
+`
+const spinAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+export const Loader = styled.div`
+  margin: auto;
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: ${spinAnimation} 1s linear infinite;
 `
 
 export const StyledTextFieldMedium = styled(TextField)`

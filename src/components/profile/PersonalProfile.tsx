@@ -15,6 +15,8 @@ import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import {UserUpdateData} from "../../models/api/UserUpdateData";
 import {Avatar, Button, CardActionArea, CardActions, TextField, Typography } from '@mui/material';
+import {CLINIC_ID, CLINIC_NAME} from "../../constants/constants";
+import {UnLoginPages} from "../../models/pages/UnLoginPages";
 
 export default function MultiActionAreaCard() {
     const [showModal, setShowModal] = useState(false);
