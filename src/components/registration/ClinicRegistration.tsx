@@ -1,6 +1,5 @@
-import React, {useCallback, useContext, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {ClinicApi} from "../../api/ClinicApi";
-import {UserContext} from "../../context/UserContext";
 import {useNavigate} from "react-router-dom";
 import {
     LoginButton,
@@ -18,16 +17,15 @@ const ClinicRegistration = () => {
     const [ownerLastname, setOwnerLastname] = useState('');
     const [isEmailValid, setEmailValid] = useState<boolean>(false)
     const [city, setCity] = useState('');
-    const [address, setAdress] = useState('');
+    const [address, setAddress] = useState('');
     const [password, setPassword] = useState('');
     const [secondPassword, setSecondPassword] = useState('');
     const [isPasswordValid, setPasswordValid] = useState<boolean | null>(false)
-    const {currentUser, userModifier} = useContext(UserContext);
     const navigate = useNavigate();
 
     const [isFormValid, setFormValid] = useState<boolean>(false)
 
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
     const registerClinic = useCallback(async () => {
         try {
@@ -75,7 +73,7 @@ const ClinicRegistration = () => {
         setCity(event.target.value)
     }
     const onStreetChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setAdress(event.target.value)
+        setAddress(event.target.value)
     }
     const onEmailChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setEmail(event.target.value)
@@ -121,20 +119,20 @@ const ClinicRegistration = () => {
 
                 <StyledTextFieldMedium label="Email" size={'medium'} value={email} onChange={onEmailChange}/>
                 <StyledTextFieldSmall label="Email" size={'small'} value={email} onChange={onEmailChange}/>
-                {!isEmailValid && email.length != 0 && <ValidationError>Błędny adres Email</ValidationError>}
+                {!isEmailValid && email.length !== 0 && <ValidationError>Błędny adres Email</ValidationError>}
 
                 <StyledTextFieldMedium label="Hasło" size={'medium'} type='password' value={password}
                                        onChange={onPasswordChange}/>
                 <StyledTextFieldSmall label="Hasło" size={'small'} type='password' value={password}
                                       onChange={onPasswordChange}/>
-                {password.length < 8 && password.length != 0 &&
+                {password.length < 8 && password.length !== 0 &&
                     <ValidationError>Hasło jest zbyt krótkie</ValidationError>}
 
                 <StyledTextFieldMedium label="Powtórz Hasło" size={'medium'} type='password' value={secondPassword}
                                        onChange={onSecondPasswordChange}/>
                 <StyledTextFieldSmall label="Powtórz Hasło" size={'small'} type='password' value={secondPassword}
                                       onChange={onSecondPasswordChange}/>
-                {!isPasswordValid && secondPassword.length != 0 &&
+                {!isPasswordValid && secondPassword.length !== 0 &&
                     <ValidationError>Hasła nie są takie same</ValidationError>}
 
                 <LoginButton disabled={!isEmailValid || !isPasswordValid || !isFormValid} onClick={registerClinic}>

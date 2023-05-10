@@ -102,16 +102,16 @@ const UserRegistration = () => {
 
                 <StyledTextFieldMedium label="Email" size={"medium"} type="email" onChange={onEmailChange}/>
                 <StyledTextFieldSmall label="Email" size={"small"} type="email" onChange={onEmailChange}/>
-                {!isEmailValid && email.length != 0 && <ValidationError>Podaj poprawny adres email</ValidationError>}
+                {!isEmailValid && email.length !== 0 && <ValidationError>Podaj poprawny adres email</ValidationError>}
 
 
                 <StyledTextFieldMedium label="Hasło" type="password" size={"medium"} onChange={onPasswordChange}/>
                 <StyledTextFieldSmall label="Hasło" type="password" size={"small"} onChange={onPasswordChange}/>
-                {!isPasswordValid && password.length != 0 && <ValidationError>Hasło musi mieć co najmniej 8 znaków i zawierać jedną cyfrę, jedną małą i jedną dużą literę</ValidationError>}
+                {!isPasswordValid && password.length !== 0 && <ValidationError>Hasło musi mieć co najmniej 8 znaków i zawierać jedną cyfrę, jedną małą i jedną dużą literę</ValidationError>}
 
                 <StyledTextFieldMedium label="Powtórz hasło" type="password" size={"medium"} onChange={onRepeatedPasswordChange}/>
                 <StyledTextFieldSmall label="Powtórz hasło" type="password" size={"small"} onChange={onRepeatedPasswordChange}/>
-                {!isRepeatedPasswordValid && password.length != 0 && <ValidationError>Hasła nie są zgodne</ValidationError>}
+                {!isRepeatedPasswordValid && password.length !== 0 && <ValidationError>Hasła nie są zgodne</ValidationError>}
 
                 <StyledTextFieldMedium label="Numer telefonu" type="tel" size={"medium"} onChange={onTelNumberChange}/>
                 <StyledTextFieldSmall label="Numer telefonu" type="tel" size={"small"} onChange={onTelNumberChange}/>

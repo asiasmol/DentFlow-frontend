@@ -118,7 +118,7 @@ export const AppRouter = () => {
                 path="/add-patient"
                 element={
                     <ProtectedRoute>
-                                <AddPatient />
+                        <AddPatient />
                     </ProtectedRoute>
                 }
             ></Route>
