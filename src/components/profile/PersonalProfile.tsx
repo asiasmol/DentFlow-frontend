@@ -47,7 +47,6 @@ export default function MultiActionAreaCard() {
             let user: UserUpdateData = {
                 firstName: firstName,
                 lastName: lastName,
-                email: email,
             }
             UserApi.updateUser(user).then(r => {
             })

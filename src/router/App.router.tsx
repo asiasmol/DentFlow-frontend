@@ -18,10 +18,7 @@ import PatientsList from "../components/PatientsList/PatientsList";
 import {Calendar} from "../components/calendar/Calendar";
 import {CalendarContextProvider} from "../context/CalendarContext";
 import {Pricing} from "../components/pricing/Pricing";
-
-
-
-
+import {NotFound} from "../pages/notFoundPage/NotFound";
 
 
 export const AppRouter = () => {
@@ -122,6 +119,10 @@ export const AppRouter = () => {
                     </ProtectedRoute>
                 }
             ></Route>
+            <Route
+                path="*"
+                element={<NotFound />}>
+            </Route>
         </Route>
 
     </Routes>
