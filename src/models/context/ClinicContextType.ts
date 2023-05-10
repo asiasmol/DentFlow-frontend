@@ -1,4 +1,4 @@
-import {Clinic} from "./Clinic";
+import {Clinic} from "../Clinic";
 
 
 export type ClinicContextType = {

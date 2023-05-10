@@ -1,12 +1,5 @@
 import * as React from 'react';
 
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {AddEmplyeeInput, SearchElement, SearchList} from "../../addEmployee/AddEmplyee.styles";
 import {useCallback, useContext, useEffect, useState} from "react";
 import {ClinicApi} from "../../../api/ClinicApi";
@@ -14,6 +7,11 @@ import {ClinicContext} from "../../../context/ClinicContext";
 import {EmployeeResponse} from "../../../models/api/EmployeeResponse";
 import {PatientResponse} from "../../../models/api/PatientResponse";
 import { VisitApi } from '../../../api/VisitApi';
+import {toast} from "react-toastify";
+import {CalendarContext} from "../../../context/CalendarContext";
+import {Box, Button, Container, createTheme, CssBaseline, Link, ThemeProvider, Typography } from '@mui/material';
+import dayjs from "dayjs";
+
 
 
 function Copyright(props: any) {
@@ -31,11 +29,12 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 type Props = {
-    date: string;
-    time:string;
+    handleModalClose:()=>void;
 };
 
 export default function SignIn(props:Props) {
+    const [time, setTime] = useState("");
+    const [date, setDate] = useState("");
     const [doctorFullName, setDoctorFullName] = useState("");
     const [doctorEmail, setDoctorEmail] = useState<string>("");
     const [doctorSearchResults, setDoctorSearchResults] = useState<EmployeeResponse[]>([]);
@@ -45,6 +44,7 @@ export default function SignIn(props:Props) {
     const [patientSearchResults, setPatientSearchResults] = useState<PatientResponse[]>([]);
     const [patients, setPatients] = useState<PatientResponse[]>([]);
     const {currentClinic} = useContext(ClinicContext);
+    const {fetchVisits} = useContext(CalendarContext);
 
     function splitString(str: string): string[] | null {
         if (str.includes(" ")) {
@@ -133,7 +133,16 @@ export default function SignIn(props:Props) {
         }
     }, [currentClinic?.id]);
 
+    const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTime(event.target.value);
+    };
+    const handleDataChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDate(event.target.value);
+    };
+
     useEffect(() => {
+        setTime("08:00");
+        setDate(dayjs(new Date()).format("YYYY-MM-DD"));
         fetchDoctors();
         fetchPatients();
     }, [fetchDoctors,fetchPatients])
@@ -141,15 +150,18 @@ export default function SignIn(props:Props) {
         try {
             await VisitApi.add({
                 clinicId:currentClinic?.id,
-                visitDate:props.date,
-                visitTime:props.time,
+                visitDate:date,
+                visitTime:time,
                 doctorEmail:doctorEmail,
                 patientId:patientId,
             })
+            props.handleModalClose();
+            fetchVisits()
+            toast.success("Dodano wizyte");
         } finally {
             // setIsLoading(false);
         }
-    }, [patientId,doctorEmail,props.date,props.time]);
+    }, [patientId,doctorEmail,currentClinic?.id,props,time,date]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -163,6 +175,14 @@ export default function SignIn(props:Props) {
                         alignItems: 'center',
                     }}
                 >
+                    <input type="time"
+                           value={time}
+                           onChange={handleTimeChange}
+                    />
+                    <input type="date"
+                        value={date}
+                        onChange={handleDataChange}
+                    />
                     <Box component="form" noValidate sx={{ mt: 1 }}>
                         <AddEmplyeeInput
                             type="text"
@@ -174,12 +194,13 @@ export default function SignIn(props:Props) {
 
                         <SearchList>
                             {doctorSearchResults.map((doctor) => (
-                                <SearchElement  onClick={() => doctorHandleResultClick(doctor)}>
+                                <SearchElement key={doctor.email}  onClick={() => doctorHandleResultClick(doctor)}>
                                     {doctor.firstName +" "+doctor.lastName}
                                 </SearchElement>
                             ))}
 
                         </SearchList>
+
                         <AddEmplyeeInput
                             type="text"
                             value={patientFullName}
@@ -190,7 +211,7 @@ export default function SignIn(props:Props) {
 
                         <SearchList>
                             {patientSearchResults.map((patient) => (
-                                <SearchElement  onClick={() => patientHandleResultClick(patient)}>
+                                <SearchElement key={patient.patientId}   onClick={() => patientHandleResultClick(patient)}>
                                     {patient.firstName +" "+patient.lastName}
                                 </SearchElement>
                             ))}

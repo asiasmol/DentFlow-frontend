@@ -1,13 +1,14 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {
-  InputContainer,
-  LoginButton,
-  LoginContainer,
-  LoginInfoText,
-  LoginInput,
-  ValidationError,
-    EmailLabel,
-    PasswordLabel,
+    LoginInputs,
+    LoginForm,
+    LoginHeader,
+    ValidationError,
+    StyledTextFieldMedium,
+    StyledTextFieldSmall,
+    LoginButton,
+    RememberMeLabel,
+    PasswordRecoveryLabel
 } from "./Login.styles";
 import {AuthApi} from "../../api/AuthApi";
 import { toast } from "react-toastify";
@@ -15,6 +16,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import {ACCESS_TOKEN} from "../../constants/constants";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../context/UserContext";
+import {Checkbox, Link, Grid} from "@mui/material";
+import {NavbarContext} from "../../context/NavbarContext";
+import {DoctorPages} from "../../models/pages/DoctorPages";
+import {OwnerPages} from "../../models/pages/OwnerPages";
+import {UnLoginPages} from "../../models/pages/UnLoginPages";
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -22,7 +28,7 @@ export const Login = () => {
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
   const {userModifier} = useContext(UserContext);
-
+  const {pagesModifier} = useContext(NavbarContext);
   const navigate = useNavigate();
 
   const onLoginClicked = useCallback(async () => {
@@ -36,8 +42,10 @@ export const Login = () => {
         roles: user.data.roles,
       });
       localStorage.setItem(ACCESS_TOKEN, user.data.token);
-      toast.success("Poprawnie zalogowano");
+
+
       navigate("/my-clinic");
+
     } catch (error: any) {
       let errorMessage;
 
@@ -55,49 +63,64 @@ export const Login = () => {
 
 
   useEffect(() => {
-    setIsEmailValid(email.length > 0);
+    setIsEmailValid(validateEmail(email));
   }, [email]);
 
   useEffect(() => {
     setIsPasswordValid(password.length > 0);
   }, [password]);
 
-  const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onEmailChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
-  const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onPasswordChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   return (
-    <LoginContainer>
-      <LoginInfoText>Login</LoginInfoText>
-      <InputContainer>
-        <EmailLabel>Email</EmailLabel>
-        <LoginInput
-          placeholder="Email"
-          type="email"
-          onChange={(e) => onEmailChange(e)}
-        ></LoginInput>
-        {!isEmailValid && (
-          <ValidationError>Wpisz Email</ValidationError>
-        )}
-        <PasswordLabel>Hasło</PasswordLabel>
-        <LoginInput
-          onChange={(e) => onPasswordChange(e)}
-          placeholder="Hasło"
-          type="password"
-        ></LoginInput>
-        {!isPasswordValid && <ValidationError>Wpisz hasło</ValidationError>}
-        <LoginButton
-          disabled={!isEmailValid || !isPasswordValid}
-          onClick={onLoginClicked}
-        >
-          Zaloguj się
-        </LoginButton>
-      </InputContainer>
-     </LoginContainer>
+      <LoginForm height={33}>
+
+        <LoginHeader>
+          Logowanie
+        </LoginHeader>
+
+        <LoginInputs>
+          <StyledTextFieldMedium label="Email" size={"medium"} value = {email} onChange={(e) => onEmailChange(e)}/>
+          <StyledTextFieldSmall label="Email" size={"small"} value = {email} onChange={(e) => onEmailChange(e)}/>
+          {!isEmailValid && email.length != 0 && (<ValidationError>Podaj poprawny adres email</ValidationError>)}
+
+          <StyledTextFieldMedium onChange={(e) => onPasswordChange(e)} label="Hasło" type="password" size={"medium"}/>
+          <StyledTextFieldSmall onChange={(e) => onPasswordChange(e)} label="Hasło" type="password" size={"small"}/>
+          {!isPasswordValid && password.length != 0 && <ValidationError>Podaj hasło</ValidationError>}
+
+          <RememberMeLabel control={<Checkbox value="remember" color="primary" />} label="Zapamiętaj mnie"/>
+
+          <LoginButton disabled={!isEmailValid || !isPasswordValid} onClick={onLoginClicked}>
+            Zaloguj
+          </LoginButton>
+
+          <PasswordRecoveryLabel container color={"white"}>
+            <Grid>
+              <Link href="#" variant="body2">
+                Nie pamiętasz hasła?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="/user-registration" variant="body2">
+                {"Nie masz konta? Dołącz do nas."}
+              </Link>
+            </Grid>
+          </PasswordRecoveryLabel>
+
+        </LoginInputs>
+
+      </LoginForm>
+
   );
 };

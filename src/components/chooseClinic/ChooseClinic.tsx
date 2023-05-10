@@ -61,11 +61,6 @@ export const ChooseClinic = () => {
             {clinicsWhereWork.length === 0 ? (
                 <MainContainer>
                     <ChooseClinicLabel>Niestety nikt cię nie zatrudnił </ChooseClinicLabel>
-                    <a href="/clinic-registration">
-                        <ClinicButton>
-                            Załóż Klinike
-                        </ClinicButton>
-                    </a>
                 </MainContainer>
 
             ):(

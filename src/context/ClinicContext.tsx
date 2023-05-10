@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
-import {ClinicContextType} from "../models/ClinicContextType";
+import {ClinicContextType} from "../models/context/ClinicContextType";
 import {Clinic} from "../models/Clinic";
 import {ClinicApi} from "../api/ClinicApi";
 import {CLINIC_ID, CLINIC_NAME} from "../constants/constants";

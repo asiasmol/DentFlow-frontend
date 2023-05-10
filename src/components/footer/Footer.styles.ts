@@ -7,8 +7,9 @@ export const Box = styled.div`
   bottom: 0;
   width: 100%;
   height: 15rem;
-  @media (max-width: 768px) {
-    padding: 70px 30px;
+  @media only screen and (max-width: 950px){
+    flex-direction: column;
+    align-items: center;
   }
 `;
    
@@ -18,7 +19,6 @@ export const Container = styled.div`
     justify-content: center;
     max-width: 1000px;
     margin: 0 auto;
-    /* background: red; */
 `
    
 export const Column = styled.div`
@@ -27,6 +27,14 @@ export const Column = styled.div`
   text-align: left;
   margin-left: 60px;
   height: 10rem;
+  
+  @media(max-width: 1350px) {
+    margin-left: 40px;
+  }
+  
+  @media(max-width: 950px) {
+    margin-left: 0;
+  } 
 `;
    
 export const Row = styled.div`
@@ -52,6 +60,10 @@ export const FooterLink = styled.a`
       color: black;
       transition: 200ms ease-in;
   }
+
+  @media(max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 
 export const FooterText = styled.a`
@@ -59,6 +71,10 @@ export const FooterText = styled.a`
   margin-bottom: 20px;
   font-size: 18px;
   text-decoration: none;
+  
+  @media(max-width: 768px) {
+    font-size: 10px;
+  }
 `;
    
 export const Heading = styled.p`
@@ -66,4 +82,8 @@ export const Heading = styled.p`
   color: #fff;
   margin-bottom: 40px;
   font-weight: bold;
+
+  @media(max-width: 768px) {
+    font-size: 14px;
+  }
 `;

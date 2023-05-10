@@ -6,10 +6,6 @@ export const UnLoginPages: link[] = [
         link: "/profile"
     },
     {
-        label: "my Kliniki",
-        link: "/my-clinic"
-    },
-    {
         label: "Kontakt",
         link: "/contact"
     },

@@ -1,152 +1,192 @@
 import styled from "styled-components";
+import TextField from "@mui/material/TextField";
+import {FormControlLabel, Grid} from "@mui/material";
 
 
-export const LoginContainer = styled.div`
-  //position: fixed;
-  //top: 50%;
-  //left: 50%;
-  //transform: translate(-50%, -50%);
-  margin: 40px auto;
-  width: 500px;
-  height: 555px;
-  display: flex;
-  background: #1784B3;
-  border: 2px solid rgba(84, 166, 204, 0.92);
-  border-radius: 30px;
-  color: white;
-  box-shadow: 0 0 70px rgba(84, 166, 204, 0.92);
-  align-items: center;
-  flex-direction: column;
-
-  @media (max-width: 767px) {
-    width: 25rem;
-    height: 30rem;
-  }
-  @media (max-width: 450px) {
-    width: 15rem;
-    height: 22rem;
-  }
-`;
-
-export const LoginInfoText = styled.h1`
-    margin-top: 100px;
-    @media (max-width: 767px) {
-    top:0;
-    left:30%
-  ;
-  }
-   @media(max-width: 767px){  
-     margin-top: 40px;
-    left:35%;
-    top:0;
-  }
-  @media (max-width: 450px) {
-    margin-top: 20px;
-    left:35%;
-    top:0;
-    margin-bottom: 3px;
+export const RememberMeLabel = styled(FormControlLabel)`
+  margin-left: 3rem;
+  margin-right: 1rem;
+  @media(max-width:950px){
+    position:relative;
+    margin-top: 0rem;
+    left:3rem;
   }
 `
 
-export const InputContainer = styled.div`
+export const PasswordRecoveryLabel = styled(Grid)`
+  margin-left: 3rem;
+  margin-right: 1rem;
+  @media(max-width:950px){
+    position:relative;
+    margin-top: 3rem;
+    left:0rem;
+  }
+`
+export const ValidationError = styled.div`
+  color: red;
+  font-size: 13px;
+  @media(max-width:950px){
+    width: 14rem;
+    position:relative;
+    margin-top: -1rem;
+    left:3rem;
+  }
+  @media (max-width: 450px) {
+    position:relative;
+    left:3rem;
+  }
+`
+
+interface LoginFormProps{
+    height: number
+}
+
+export const LoginForm = styled.div<LoginFormProps>`
+  width: 26rem;
+  height: ${(props) => props.height}rem;
+  background: #ffffff;
+  border: 1px solid #1784b3;
+  border-radius: 1rem;
+  margin: 5rem auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+
+  @media (max-width: 950px) {
+    width: 20rem;
+    height: ${(props) => props.height}rem;
+    margin: 5rem auto;
+  }
+`
+
+export const LoginHeader = styled.div`
+  white-space: nowrap;
+  color: #1784b3;
+  font-weight: bold;
+  font-size: 2rem;
+  align-self: center;
+  font-family: Montserrat;
+  margin-bottom: 0rem;
+  margin-top: 2rem;
+  flex-direction: column;
+
+  @media (max-width: 950px) {
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+`
+
+export const LoginInputs = styled.div`
   width: 20rem;
-  margin-top: 16px;
-  @media (max-width: 450px) {
-    width:15rem;
+  height: 40rem;
+  margin-top: 0rem;
+  align-self: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  flex-direction: column;
+`
+
+export const StyledTextFieldMedium = styled(TextField)`
+  && {
+    display: flex;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 0;
+    .MuiInputLabel-root {
+      font-weight: normal;
+    }
+    .MuiInputBase-input {
+      font-size: 17px;
+    }
   }
 
+  @media(max-width: 950px) {
+    && {
+      display: none;
+      width: 80%;
+      margin-top: 1rem;
+      padding: 0;
+      .MuiInputLabel-root {
+        font-size: 14px;
+      }
+      .MuiInputBase-input {
+        font-size: 14px;
+      }
+    }
+  }
 `;
 
-export const LoginInput = styled.input`
-  padding: 6px 12px;
-  font-size: 18px;
-  border-radius: 4px;
-  border-width: 1px;
-  border-style: solid;
-  outline: transparent solid 2px;
-  @media (max-width: 767px) {
-    margin-left: auto;
-    margin-right: auto;
-    width:15rem;
+export const StyledTextFieldSmall = styled(TextField)`
+  && {
+    display: none;
+    width: 80%;
+    margin-top: 1rem;
+    padding: 0;
+    .MuiInputLabel-root {
+      font-weight: normal;
+    }
+    .MuiInputBase-input {
+      font-size: 16px;
+    }
   }
-  @media (max-width: 450px) {
-    margin-left: auto;
-    margin-right: auto;
-    width:10rem;
-    height: 1rem;
+
+  @media(max-width: 950px) {
+    && {
+      display: flex;
+      width: 70%;
+      margin-right: auto;
+      margin-left: auto;
+      padding: 0;
+      .MuiInputLabel-root {
+        font-size: 14px;
+        
+      }
+      .MuiInputBase-input {
+        font-size: 14px;
+      }
+    }
   }
 `;
 
 export const LoginButton = styled.button`
-  margin-top: 40px;
-  bottom: 10%;
-  width: 320px;
-  padding: 16px;
-  border: 0;
-  background-color: rgb(255, 190, 92);
-  border-radius: 8px;
+  background-color: #FFBE5C;
   color: white;
-  font-weight: 600;
-  font-size: 16px;
+  height: 3rem;
+  width: 13rem;
+  font-size: 1.5rem;
+
+
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   cursor: pointer;
+  margin-right: auto;
+  border: none;
+  border-radius: 10px;
+  margin-left: auto;
+  display: block;
 
-  &:disabled {
-    background-color: #cccccc;
-    color: #666666;
-  }
+     &:hover {
+       filter: brightness(85%);
+     }
 
-  &:hover {
-    filter: brightness(85%);
-  }
+    &:disabled{
+      background-color: gray;
+      filter: brightness(100%);
+    }
   
-  
-  @media (max-width: 767px) {
-    bottom:-40%;
-    width:15rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  @media (max-width: 450px) {
-    bottom:-40%;
-    font-size: 0.8rem;
-    width:5rem;
+  @media(max-width: 1400px){
     height: 3rem;
-    margin-left: auto;
+    width: 13rem;
+    font-size: 1.5rem;
+
+  @media(max-width: 950px){
+    height: 2.5rem;
+    width: 10rem;
+    font-size: 1.5rem;
     margin-right: auto;
-    margin-top: 5px;
-    padding:0;
+    margin-left: auto;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    display: block;
   }
-`;
-
-export const ValidationError = styled.span`
-  color: red;
-  font-size: 13px;
-  @media(max-width:767px){
-  position:relative;
-  left:2rem;
-  }
-  @media (max-width: 450px) {
-    sition:relative;
-    left:2rem;
-  }
-  
-`
-
-export const PasswordLabel = styled.label`
-
-    @media(max-width:767px){
-    position:relative;
-    left:2rem;
-    }
-`
-
-export const EmailLabel = styled.label`
-    @media(max-width:767px){
-    position:relative;
-    left:2rem;
-    }
-  
 `

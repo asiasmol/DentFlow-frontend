@@ -1,6 +1,4 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
 import {ProfileDiv,
     Modal,
     ModalOverlay,
@@ -10,16 +8,13 @@ import {ProfileDiv,
     ModalFooter,
     } from "./Profile.style";
 import img from "../../resources/img/profile.png";
-import Avatar from "@mui/material/Avatar";
 import {useCallback, useEffect, useState} from "react";
 import {UserApi} from "../../api/UserApi";
 import {ProfileUserResponse} from "../../models/api/ProfileUserResponse";
-import {Fields, StyledBox, WelcomeText, WindowRegistration} from "../registration/Registration.style";
-import TextField from "@mui/material/TextField";
 import {useNavigate} from "react-router-dom";
-import {UserRegistrationData} from "../../models/api/UserRegistrationData";
 import {toast} from "react-toastify";
 import {UserUpdateData} from "../../models/api/UserUpdateData";
+import {Avatar, Button, CardActionArea, CardActions, TextField, Typography } from '@mui/material';
 
 export default function MultiActionAreaCard() {
     const [showModal, setShowModal] = useState(false);
@@ -45,18 +40,20 @@ export default function MultiActionAreaCard() {
 
         const [firstName, setFirstName] = useState('');
         const [lastName, setLastName] = useState('');
-        // const [email, setEmail] = useState('');
+        const [email, setEmail] = useState('');
 
         const navigate = useNavigate();
         const handleSubmit = () => {
-                let userRequest: UserUpdateData = {
-                    firstName: firstName,
-                    lastName: lastName
-                }
-                UserApi.updateUser(userRequest)
-                toast.success("Zaktualizowano profil");
-                closeModal();
-               navigate("/login");
+            let user: UserUpdateData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+            }
+            UserApi.updateUser(user).then(r => {
+            })
+            toast.success("Zaktualizowano profil");
+            // navigate("/profile");
+            closeModal();
         }
 
 
@@ -91,7 +88,7 @@ export default function MultiActionAreaCard() {
                             <ModalContent>
                                 <ModalHeader>Edytuj Profil</ModalHeader>
                                 <ModalBody>
-                                    <Fields>
+
                                         <TextField
                                             required
                                             id="firstName"
@@ -107,15 +104,15 @@ export default function MultiActionAreaCard() {
                                             variant="standard"
                                             onChange={(event) => setLastName(event.target.value)}
                                         />
-                                        {/*<TextField*/}
-                                        {/*    required*/}
-                                        {/*    id="email"*/}
-                                        {/*    label="Email"*/}
-                                        {/*    type='email'*/}
-                                        {/*    variant="standard"*/}
-                                        {/*    onChange={event => setEmail(event.target.value)}*/}
-                                        {/*/>*/}
-                                    </Fields>
+                                        <TextField
+                                            required
+                                            id="email"
+                                            label="Email"
+                                            type='email'
+                                            variant="standard"
+                                            onChange={event => setEmail(event.target.value)}
+                                        />
+
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button onClick={closeModal}>

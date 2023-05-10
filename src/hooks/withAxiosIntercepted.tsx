@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axios, { AxiosRequestConfig } from "axios";
 import { ACCESS_TOKEN } from "../constants/constants";
 import { useNavigate } from "react-router-dom";
+import axios, {AxiosRequestConfig} from "axios";
 
 
 export const authorizedApi = axios.create();

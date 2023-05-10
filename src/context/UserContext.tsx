@@ -1,11 +1,10 @@
 import React, {createContext, useCallback, useContext, useEffect, useState} from "react";
-import { UserContextType } from "../models/UserContextType";
+import { UserContextType } from "../models/context/UserContextType";
 import { User } from "../models/User";
 import {ACCESS_TOKEN, CLINIC_ID, CLINIC_NAME} from "../constants/constants";
 import { UserApi } from "../api/UserApi";
 import jwt_decode from "jwt-decode";
 import {NavbarContext} from "./NavbarContext";
-import {OwnerPages} from "../models/pages/OwnerPages";
 import {UnLoginPages} from "../models/pages/UnLoginPages";
 
 const defaultSettings: UserContextType = {
@@ -17,7 +16,7 @@ export const UserContext = createContext<UserContextType>(defaultSettings);
 
 export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const {pagesModifier } = useContext(NavbarContext);
+  const { pagesModifier } = useContext(NavbarContext);
 
   const userModifier = (user: User | null) => {
     setCurrentUser(user);
@@ -27,10 +26,10 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
     const user = await UserApi.getUser();
     userModifier({
       email: user.data.email,
-      roles: user.data.roles,
+      roles: user.data.roles
     });
-    pagesModifier(OwnerPages);
   }, [pagesModifier]);
+
 
   useEffect(() => {
     const token = localStorage.getItem(ACCESS_TOKEN);

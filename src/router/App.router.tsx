@@ -10,12 +10,16 @@ import HomePage from "../pages/homePage/HomePage";
 import ClinicRegistration from "../components/registration/ClinicRegistration";
 import { AddEmplyee } from "../components/addEmployee/AddEmplyee";
 import {OwnerProtectedRoute} from "../components/OwnerProtectedRoute";
-import { Clinic } from "../components/clinic/Clinic";
 import {SetContainter} from "../components/SetContainter";
 import {AddPatient} from "../components/addPatient/AddPatient";
 import {MyClinic} from "../components/MyClinic/MyClinic";
 import { NonOwnerProtectedRoot } from "../components/NonOwnerProtectedRoot";
 import PatientsList from "../components/PatientsList/PatientsList";
+import {Calendar} from "../components/calendar/Calendar";
+import {CalendarContextProvider} from "../context/CalendarContext";
+import {Pricing} from "../components/pricing/Pricing";
+
+
 
 
 
@@ -23,7 +27,13 @@ import PatientsList from "../components/PatientsList/PatientsList";
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />}></Route>
+      <Route path="/"
+             element={
+          <>
+              <HomePage />
+              <Pricing />
+          </>
+      }></Route>
         <Route element={<SetContainter/>}>
             <Route
                 path="/my-clinic"
@@ -33,6 +43,12 @@ export const AppRouter = () => {
                             <MyClinic />
                         </OwnerProtectedRoute>
                     </ProtectedRoute>
+                }
+            ></Route>
+            <Route
+                path="/test"
+                element={
+                    <Calendar />
                 }
             ></Route>
             <Route
@@ -56,7 +72,9 @@ export const AppRouter = () => {
                 path="/clinic"
                 element={
                     <ProtectedRoute>
-                        <Clinic  />
+                        <CalendarContextProvider>
+                            <Calendar />
+                        </CalendarContextProvider>
                     </ProtectedRoute>
                 }
             ></Route>
@@ -83,9 +101,7 @@ export const AppRouter = () => {
             <Route
                 path="/clinic-registration"
                 element={
-                    <ProtectedRoute>
                         <ClinicRegistration />
-                    </ProtectedRoute>
                 }
             ></Route>
             <Route
@@ -102,11 +118,12 @@ export const AppRouter = () => {
                 path="/add-patient"
                 element={
                     <ProtectedRoute>
-                                <AddPatient />
+                        <AddPatient />
                     </ProtectedRoute>
                 }
             ></Route>
         </Route>
+
     </Routes>
   );
 };

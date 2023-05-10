@@ -23,16 +23,14 @@ export const Navbar= () =>  {
     const navigate = useNavigate()
 
     const toggle = () => {
-        console.log(currentUser)
         setIsOpen(!isOpen);
     }
-
 
     return (
 
         <>
         <Wrapper>
-            <LogoLink href={"/clinic"}>
+            <LogoLink href={"/"}>
                 <Logo src={logo} alt="Logo"></Logo>
             </LogoLink>
             <Toggle onClick={toggle}>
