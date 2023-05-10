@@ -1,7 +1,9 @@
+import { Description } from "./Description"
+
 export type Tooth = {
     number: number,
     description: string,
-    descriptions: string[],
+    descriptions: Description[],
     cavity : boolean,
     rootCanal : boolean,
     forObservation:boolean,
