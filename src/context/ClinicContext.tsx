@@ -21,7 +21,6 @@ export const ClinicContextProvider = ({ children }: React.PropsWithChildren) => 
     const {currentUser} = useContext(UserContext);
     const clinicModifier = (clinic: Clinic  | null) => {
         setCurrentClinic(clinic);
-        // localStorage.setItem(CLINIC_ID,)
     };
 
     useEffect(() => {

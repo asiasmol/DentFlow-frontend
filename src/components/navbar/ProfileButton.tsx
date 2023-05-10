@@ -10,6 +10,8 @@ import {UserContext} from "../../context/UserContext";
 import {useNavigate} from "react-router-dom";
 import {CLINIC_ID, CLINIC_NAME} from "../../constants/constants";
 import {ClinicContext} from "../../context/ClinicContext";
+import {NavbarContext} from "../../context/NavbarContext";
+import {UnLoginPages} from "../../models/pages/UnLoginPages";
 
 
 
@@ -18,6 +20,7 @@ export const ProfileButton= () => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const { userModifier } = useContext(UserContext);
     const { clinicModifier } = useContext(ClinicContext);
+    const {pagesModifier}=useContext(NavbarContext);
     const navigate = useNavigate();
     const logout = useCallback(() => {
         userModifier(null);
@@ -25,6 +28,7 @@ export const ProfileButton= () => {
         localStorage.removeItem('ACCESS_TOKEN')
         localStorage.removeItem(CLINIC_NAME)
         localStorage.removeItem(CLINIC_ID)
+        pagesModifier(UnLoginPages)
         navigate("/");
     }, [navigate,  userModifier,clinicModifier]);
 
