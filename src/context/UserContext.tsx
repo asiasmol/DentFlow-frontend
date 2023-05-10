@@ -16,7 +16,7 @@ export const UserContext = createContext<UserContextType>(defaultSettings);
 
 export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const { pagesModifier } = useContext(NavbarContext);
+  const {pagesModifier } = useContext(NavbarContext);
 
   const userModifier = (user: User | null) => {
     setCurrentUser(user);
@@ -26,7 +26,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
     const user = await UserApi.getUser();
     userModifier({
       email: user.data.email,
-      roles: user.data.roles
+      roles: user.data.roles,
     });
   }, [pagesModifier]);
 

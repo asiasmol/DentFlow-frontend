@@ -3,7 +3,7 @@ import React, {useContext} from "react";
 import {UserContext} from "../context/UserContext";
 
 
-export const OwnerProtectedRoute = ({ children }: React.PropsWithChildren) => {
+export const DoctorProtectedRoute = ({ children }: React.PropsWithChildren) => {
   const { currentUser} = useContext(UserContext);
   if (!currentUser?.roles.includes("DOCTOR")) {
     return <Navigate to={"/"} replace />;

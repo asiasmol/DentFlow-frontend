@@ -8,8 +8,8 @@ import {ClinicContext} from "../../context/ClinicContext";
 
 
 export const MyClinic = ( ) => {
-    const {pagesModifier } = useContext(NavbarContext);
     const {currentClinic } = useContext(ClinicContext);
+    const {pagesModifier } = useContext(NavbarContext);
     useEffect(() => {
         pagesModifier(OwnerPages);
     }, [pagesModifier]);

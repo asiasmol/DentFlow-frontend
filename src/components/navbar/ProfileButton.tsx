@@ -20,7 +20,7 @@ export const ProfileButton= () => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const { userModifier } = useContext(UserContext);
     const { clinicModifier } = useContext(ClinicContext);
-    const {pagesModifier} = useContext(NavbarContext);
+    const {pagesModifier}=useContext(NavbarContext);
     const navigate = useNavigate();
     const logout = useCallback(() => {
         userModifier(null);
