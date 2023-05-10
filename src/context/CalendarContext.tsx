@@ -5,7 +5,6 @@ import {VisitApi} from "../api/VisitApi";
 import {ClinicContext} from "./ClinicContext";
 import {getWeek} from "../utils/utils";
 import dayjs from "dayjs";
-import {ACCESS_TOKEN} from "../constants/constants";
 
 
 const defaultSettings: CalendarContextType = {

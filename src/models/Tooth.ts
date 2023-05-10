@@ -1,5 +1,6 @@
 export type Tooth = {
     number: number,
+    description: string,
     descriptions: string[],
     cavity : boolean,
     rootCanal : boolean,

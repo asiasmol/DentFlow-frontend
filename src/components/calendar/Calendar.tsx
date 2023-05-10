@@ -26,7 +26,7 @@ export const Calendar = () => {
     const toggle = () => {
         setIsOpen(!isOpen);
     }
-    const changeCalendar = () => {
+    function changeCalendar(){
         setIsWeekCalendar(!isWeekCalendar);
     }
     const goToday =() => {
@@ -69,7 +69,7 @@ export const Calendar = () => {
                    {isOpen &&(
                        <Slidebar />
                    )}
-                   {isWeekCalendar ?(<Week  isOpen = {isOpen} week = {weekDays}/>):(<DayCalendar isOpen = {isOpen}/>)}
+                   {isWeekCalendar ?(<Week changeCalendar={changeCalendar} isWeekCalendar={isWeekCalendar} isOpen = {isOpen} week = {weekDays}/>):(<DayCalendar isOpen = {isOpen}/>)}
                </CalendarBody>
            </HScreen>
             {showModal && (

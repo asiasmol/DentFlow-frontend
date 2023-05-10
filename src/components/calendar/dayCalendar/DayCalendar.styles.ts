@@ -53,7 +53,7 @@ export const StatusLabel = styled.label`
 export const StatusCheckbox = styled.input`
 `
 
-export const ToothDescriptionTextField = styled.input`
+export const ToothDescriptionTextField = styled.textarea`
 
 `
 
