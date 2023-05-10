@@ -19,6 +19,12 @@ import {Calendar} from "../components/calendar/Calendar";
 import {CalendarContextProvider} from "../context/CalendarContext";
 import {Pricing} from "../components/pricing/Pricing";
 import {NotFound} from "../pages/notFoundPage/NotFound";
+import { SendEmail } from "../components/resetPassword/SendEmail";
+import {ResetPassword} from "../components/resetPassword/ResetPassword";
+
+
+
+
 
 
 export const AppRouter = () => {
@@ -43,9 +49,15 @@ export const AppRouter = () => {
                 }
             ></Route>
             <Route
-                path="/test"
+                path="/forgot-password"
                 element={
-                    <Calendar />
+                    <SendEmail/>
+                }
+            ></Route>
+            <Route
+                path="/reset-password"
+                element={
+                    <ResetPassword/>
                 }
             ></Route>
             <Route

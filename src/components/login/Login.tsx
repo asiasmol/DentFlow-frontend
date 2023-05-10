@@ -18,9 +18,6 @@ import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../context/UserContext";
 import {Checkbox, Link, Grid} from "@mui/material";
 import {NavbarContext} from "../../context/NavbarContext";
-import {DoctorPages} from "../../models/pages/DoctorPages";
-import {OwnerPages} from "../../models/pages/OwnerPages";
-import {UnLoginPages} from "../../models/pages/UnLoginPages";
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -42,8 +39,7 @@ export const Login = () => {
         roles: user.data.roles,
       });
       localStorage.setItem(ACCESS_TOKEN, user.data.token);
-
-
+      toast.success("Poprawnie zalogowano");
       navigate("/my-clinic");
 
     } catch (error: any) {
@@ -107,7 +103,7 @@ export const Login = () => {
 
           <PasswordRecoveryLabel container color={"white"}>
             <Grid>
-              <Link href="#" variant="body2">
+              <Link href="/forgot-password" variant="body2">
                 Nie pamiętasz hasła?
               </Link>
             </Grid>

@@ -26,9 +26,8 @@ const UserRegistration = () => {
     const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
     const [isRepeatedPasswordValid, setIsRepeatedPasswordValid] = useState<boolean>(true);
     const [isDataValid, setIsDataValid] = useState<boolean>(false);
-
-
     const navigate = useNavigate();
+
     const handleSubmit = () => {
         let user: UserRegistrationData = {
             firstName: firstName,

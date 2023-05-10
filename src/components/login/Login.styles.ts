@@ -85,6 +85,14 @@ export const LoginInputs = styled.div`
   margin-right: 1rem;
   flex-direction: column;
 `
+export const LoginP = styled.div`
+  margin-top: 1rem;
+  text-align: center;
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+`
 
 export const StyledTextFieldMedium = styled(TextField)`
   && {
