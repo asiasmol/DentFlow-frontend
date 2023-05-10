@@ -9,7 +9,9 @@ import Tooltip from "@mui/material/Tooltip";
 
 type Props = {
     day:dayjs.Dayjs,
+    changeCalendar:() => void;
     column: number,
+    isWeekCalendar:boolean;
 };
 export  const WeekDay: React.FC<Props> = (props:Props) =>{
     const {currentVisits,visitModifier} = useContext(CalendarContext);
@@ -24,6 +26,9 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
 
     const setCurrentVisit = (visit:VisitResponse) => {
         visitModifier(visit);
+        if(props.isWeekCalendar){
+            props.changeCalendar()
+        }
     };
     return(
         <>
@@ -37,7 +42,7 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                             <Hour key={i}  row={i+2} >
                                 <HourHeader>{i+8}.00</HourHeader>
                                  {getMatchingVisits(i+8+"").map((visit) => (
-                                    <Tooltip key={i} title={
+                                    <Tooltip key={i}  title={
                                         <div>
                                             <strong>Opis wizyty:</strong> {visit.description}<br />
                                             <strong>Lekarz:</strong> {visit.doctor.firstName} {visit.doctor.lastName}<br />
