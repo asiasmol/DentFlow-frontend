@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 // import { Icon } from "@chakra-ui/icons";
 import { CheckCircle } from 'react-bootstrap-icons';
 import {H4} from "./FirstTypeOffer.style";
+import {useNavigate} from "react-router-dom";
 
 interface OfferProps {
     header: string;
@@ -22,6 +23,7 @@ interface OfferProps {
 }
 
 export const ThirdTypeOffer: React.FC<OfferProps> = ({ price, header, currency }) => {
+    const navigate = useNavigate();
     return (
         <ThirdOfferContainer>
             <Header>
@@ -69,7 +71,7 @@ export const ThirdTypeOffer: React.FC<OfferProps> = ({ price, header, currency }
 
                 </OfferIcon>
             </OfferParam>
-            <HomeButton2>
+            <HomeButton2 onClick={() => navigate("/clinic-registration")}>
                 Kup
             </HomeButton2>
         </ThirdOfferContainer>

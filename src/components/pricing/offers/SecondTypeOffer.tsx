@@ -10,6 +10,7 @@ import {
 import { HomeButton2} from "../../../pages/homePage/HomePage.style";
 import React from "react";
 import {CheckCircle} from "react-bootstrap-icons";
+import {useNavigate} from "react-router-dom";
 
 
 interface OfferProps {
@@ -19,6 +20,7 @@ interface OfferProps {
 }
 
 export const SecondTypeOffer: React.FC<OfferProps> = ({ currency, price, header }) => {
+    const navigate = useNavigate();
     return (
         <SecondOfferContainer>
             <Header>
@@ -60,7 +62,7 @@ export const SecondTypeOffer: React.FC<OfferProps> = ({ currency, price, header 
                     <H4>bezpłatna pomoc</H4>
                 </OfferIcon>
             </OfferParam>
-            <HomeButton2>
+            <HomeButton2 onClick={() => navigate("/clinic-registration")}>
                 Kup
             </HomeButton2>
         </SecondOfferContainer>

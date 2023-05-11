@@ -132,6 +132,12 @@ export const AppRouter = () => {
                 }
             ></Route>
             <Route
+                path="/pricing"
+                element={
+                    <Pricing/>
+                }
+            ></Route>
+            <Route
                 path="*"
                 element={<NotFound />}>
             </Route>

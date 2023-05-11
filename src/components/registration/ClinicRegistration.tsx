@@ -9,6 +9,16 @@ import {
     StyledTextFieldMedium,
     StyledTextFieldSmall, ValidationError
 } from "../login/Login.styles";
+import {
+    Button, Modal,
+    ModalBody,
+    ModalContent,
+    ModalFooter,
+    ModalOverlay,
+    TextFieldModal,
+    UserName
+} from "../profile/Profile.style";
+
 
 const ClinicRegistration = () => {
     const [clinicName, setClinicName] = useState('');
@@ -26,8 +36,16 @@ const ClinicRegistration = () => {
     const [isFormValid, setFormValid] = useState<boolean>(false)
 
     const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const [showModal, setShowModal] = useState(false);
 
+    const openModal = () => {
+        setShowModal(true)
+    }
+    const closeModal = () => {
+        setShowModal(false);
+    };
     const registerClinic = useCallback(async () => {
+
         try {
             await ClinicApi.register({
                 clinicName: clinicName,
@@ -85,62 +103,115 @@ const ClinicRegistration = () => {
         setSecondPassword(event.target.value)
     }
 
+    const [cardNumber, setCardNumber] = useState('');
+    const [cardHolder, setCardHolder] = useState('');
+    const [expiration, setExpiration] = useState('');
+    const [cvv, setCvv] = useState('');
+
 
     return (
+        <>
+            {showModal?(
+                <Modal>
+                    <ModalOverlay/>
+                    <ModalContent>
+                        <UserName>Płatność</UserName>
+                        <ModalBody>
+                            <TextFieldModal
+                                required
+                                id="cardNumber"
+                                type={"text"}
+                                label="Numer karty"
+                                defaultValue={cardNumber}
+                                onChange={e => setCardNumber(e.target.value)}/>
+                            <TextFieldModal
+                                required
+                                id="Cardholder's"
+                                type={"text"}
+                                label="Cardholder's Name:"
+                                defaultValue={cardHolder}
+                                onChange={e => setCardHolder(e.target.value)}/>
+                            <TextFieldModal
+                                required
+                                id="expiration"
+                                type={"text"}
+                                label="Expiration:"
+                                defaultValue={expiration}
+                                onChange={e => setExpiration(e.target.value)}/>
+                            <TextFieldModal
+                                required
+                                id="cvv"
+                                type={"text"}
+                                label="CVV:"
+                                defaultValue={cvv}
+                                onChange={e => setCvv(e.target.value)}/>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button onClick={registerClinic} disabled={!isEmailValid || !isPasswordValid || !isFormValid}>
+                                Zapłać
+                            </Button>
+                            {/*disabled={!isEmailValid || !isPasswordValid || !isFormValid}*/}
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
+                ):(
+                <LoginForm height={60}>
+                    <LoginHeader>
+                        Załóż przychodnię
+                    </LoginHeader>
 
-        <LoginForm height={60}>
-            <LoginHeader>
-                Załóż przychodnię
-            </LoginHeader>
 
+                    <LoginInputs>
 
-            <LoginInputs>
+                        <StyledTextFieldMedium label='Nazwa przychodni' size={"medium"} value={clinicName}
+                                               onChange={onClinicNameChange}/>
+                        <StyledTextFieldSmall label='Nazwa przychodni' size={"small"} value={clinicName}
+                                              onChange={onClinicNameChange}/>
 
-                <StyledTextFieldMedium label='Nazwa przychodni' size={"medium"} value={clinicName}
-                                       onChange={onClinicNameChange}/>
-                <StyledTextFieldSmall label='Nazwa przychodni' size={"small"} value={clinicName}
-                                      onChange={onClinicNameChange}/>
+                        <StyledTextFieldMedium label='Imię właściciela' size={"medium"} value={ownerName}
+                                               onChange={onOwnerNameChange}/>
+                        <StyledTextFieldSmall label='Imię właściciela' size={"small"} value={ownerName}
+                                              onChange={onOwnerNameChange}/>
 
-                <StyledTextFieldMedium label='Imię właściciela' size={"medium"} value={ownerName}
-                                       onChange={onOwnerNameChange}/>
-                <StyledTextFieldSmall label='Imię właściciela' size={"small"} value={ownerName}
-                                      onChange={onOwnerNameChange}/>
+                        <StyledTextFieldMedium label='Nazwisko właściciela' size={"medium"} value={ownerLastname}
+                                               onChange={onOwnerLastnameChange}/>
+                        <StyledTextFieldSmall label='Nazwisko właściciela' size={"small"} value={ownerLastname}
+                                              onChange={onOwnerLastnameChange}/>
 
-                <StyledTextFieldMedium label='Nazwisko właściciela' size={"medium"} value={ownerLastname}
-                                       onChange={onOwnerLastnameChange}/>
-                <StyledTextFieldSmall label='Nazwisko właściciela' size={"small"} value={ownerLastname}
-                                      onChange={onOwnerLastnameChange}/>
+                        <StyledTextFieldMedium label='Miasto' size={"medium"} value={city} onChange={onCityChange}/>
+                        <StyledTextFieldSmall label='Miasto' size={"small"} value={city} onChange={onCityChange}/>
 
-                <StyledTextFieldMedium label='Miasto' size={"medium"} value={city} onChange={onCityChange}/>
-                <StyledTextFieldSmall label='Miasto' size={"small"} value={city} onChange={onCityChange}/>
+                        <StyledTextFieldMedium label='Adres' size={"medium"} value={address} onChange={onStreetChange}/>
+                        <StyledTextFieldSmall label='Adres' size={"small"} value={address} onChange={onStreetChange}/>
 
-                <StyledTextFieldMedium label='Adres' size={"medium"} value={address} onChange={onStreetChange}/>
-                <StyledTextFieldSmall label='Adres' size={"small"} value={address} onChange={onStreetChange}/>
+                        <StyledTextFieldMedium label="Email" size={'medium'} value={email} onChange={onEmailChange}/>
+                        <StyledTextFieldSmall label="Email" size={'small'} value={email} onChange={onEmailChange}/>
+                        {!isEmailValid && email.length !== 0 && <ValidationError>Błędny adres Email</ValidationError>}
 
-                <StyledTextFieldMedium label="Email" size={'medium'} value={email} onChange={onEmailChange}/>
-                <StyledTextFieldSmall label="Email" size={'small'} value={email} onChange={onEmailChange}/>
-                {!isEmailValid && email.length !== 0 && <ValidationError>Błędny adres Email</ValidationError>}
+                        <StyledTextFieldMedium label="Hasło" size={'medium'} type='password' value={password}
+                                               onChange={onPasswordChange}/>
+                        <StyledTextFieldSmall label="Hasło" size={'small'} type='password' value={password}
+                                              onChange={onPasswordChange}/>
+                        {password.length < 8 && password.length !== 0 &&
+                            <ValidationError>Hasło jest zbyt krótkie</ValidationError>}
 
-                <StyledTextFieldMedium label="Hasło" size={'medium'} type='password' value={password}
-                                       onChange={onPasswordChange}/>
-                <StyledTextFieldSmall label="Hasło" size={'small'} type='password' value={password}
-                                      onChange={onPasswordChange}/>
-                {password.length < 8 && password.length !== 0 &&
-                    <ValidationError>Hasło jest zbyt krótkie</ValidationError>}
+                        <StyledTextFieldMedium label="Powtórz Hasło" size={'medium'} type='password' value={secondPassword}
+                                               onChange={onSecondPasswordChange}/>
+                        <StyledTextFieldSmall label="Powtórz Hasło" size={'small'} type='password' value={secondPassword}
+                                              onChange={onSecondPasswordChange}/>
+                        {!isPasswordValid && secondPassword.length !== 0 &&
+                            <ValidationError>Hasła nie są takie same</ValidationError>}
 
-                <StyledTextFieldMedium label="Powtórz Hasło" size={'medium'} type='password' value={secondPassword}
-                                       onChange={onSecondPasswordChange}/>
-                <StyledTextFieldSmall label="Powtórz Hasło" size={'small'} type='password' value={secondPassword}
-                                      onChange={onSecondPasswordChange}/>
-                {!isPasswordValid && secondPassword.length !== 0 &&
-                    <ValidationError>Hasła nie są takie same</ValidationError>}
+                        <LoginButton  onClick={openModal} disabled={!isEmailValid || !isPasswordValid || !isFormValid}>
+                            Zarejestruj
+                        </LoginButton>
+                        {/*// disabled={!isEmailValid || !isPasswordValid || !isFormValid}*/}
 
-                <LoginButton disabled={!isEmailValid || !isPasswordValid || !isFormValid} onClick={registerClinic}>
-                    Zarejestruj
-                </LoginButton>
-            </LoginInputs>
+                    </LoginInputs>
 
-        </LoginForm>
+                </LoginForm>
+            )}
+        </>
     )
 }
 
