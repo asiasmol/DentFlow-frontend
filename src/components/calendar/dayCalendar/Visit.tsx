@@ -32,7 +32,11 @@ import {
 } from "./Jaw.styles";
 import {
     Description,
-    VisitBody, VisitOptions, TeethOptions, ToothDescription, ToothStatus,StatusLabel,StatusCheckbox, ToothDescriptionTextField,ToothDescriptionHistory, ToothDescriptionHistoryElement, Descriptions, ToothDescriptionSaveButton
+    VisitBody, VisitOptions, TeethOptions, ToothDescription,
+    ToothStatus,StatusLabel,StatusCheckbox, ToothDescriptionTextField,
+    ToothDescriptionHistory, ToothDescriptionHistoryElement, Descriptions,
+    ToothDescriptionSaveButton, DescriptionTitle, DescriptionRow, ToothNumberText,ToothText
+
 } from "./DayCalendar.styles";
 import UpLEight from "../../../resources/img/Jaw/8-UP-L.png";
 import UpLSeven from "../../../resources/img/Jaw/7-UP-L.png";
@@ -71,6 +75,7 @@ import {Tooth} from "../../../models/Tooth";
 import {VisitApi} from "../../../api/VisitApi";
 import {ClinicContext} from "../../../context/ClinicContext";
 import { TeethApi } from "../../../api/TeethApi";
+import {VirtualizedList} from "./ToothNoteList";
 
 
 
@@ -308,58 +313,43 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
                    </Jaw>
                    <VisitOptions>
                        <Descriptions>
-                           <Description value={currentVisit.doctorDescription}  onChange={safeVisitDescription}/>
-                           <Description/> //TODO dodać blokade tylko dla recepcjonistów
+                           <DescriptionRow>
+                               <DescriptionTitle>Notatka Lekarska</DescriptionTitle>
+                               <Description value={currentVisit.doctorDescription}  onChange={safeVisitDescription}/>
+                           </DescriptionRow>
+                           <DescriptionRow>
+                               <DescriptionTitle>Notatka z Recepcji</DescriptionTitle>
+                               <Description/>
+                           </DescriptionRow>
                        </Descriptions>
                        {currentTooth && (
                            <TeethOptions>
                            <ToothDescription>
-                                Ząb : {toothName}
+                                <ToothNumberText>Ząb : {toothName}</ToothNumberText>
                                <ToothDescriptionTextField value={descriptionTooth} onChange={changeToothDescription}/>
                                <ToothDescriptionSaveButton onClick={safeToothDescription}>Dodaj notatkę do zęba</ToothDescriptionSaveButton>
                                <ToothDescriptionHistory>
-                                   {currentTooth?.descriptions.sort((a, b) => b.id - a.id).map((description) => (
-                                       <>
-                                           <ToothDescriptionHistoryElement key={description.id}>
-                                               {description.description}
-                                           </ToothDescriptionHistoryElement>
-                                       </>
-                                       ))}
+                                   <VirtualizedList descriptions={currentTooth.descriptions.sort((a, b) => b.id - a.id)}/>
                                </ToothDescriptionHistory>
                            </ToothDescription>
                            <ToothStatus>
-                           <StatusLabel>Do obserwacji</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={forObservation} onChange={changeForObservationStatus}/>
-                           <StatusLabel>Próchnica</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={caries} onChange={changeCariesStatus}/>
-                           <StatusLabel>Próchnica wtórna</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={secondaryCaries} onChange={changeSecondaryCariesStatus}/>
-                           <StatusLabel>Wypełnienie</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={filling} onChange={changeFillingStatus}/>
-                           <StatusLabel>Korona protetyczna </StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={prostheticCrown} onChange={changeProstheticCrownStatus}/>
-                           <StatusLabel>Kanały wypełnione prawidłowo </StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={channelsFilledCorrectly} onChange={changeChannelsFilledCorrectlyStatus}/>
-                           <StatusLabel>Kanał niedopelniony</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={channelNotCompleted} onChange={changeChannelNotCompletedStatus}/>
-                           <StatusLabel>Zmiana okolowierzcholko</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={periapicalChange} onChange={changePeriapicalChangeStatus}/>
-                           <StatusLabel>Wkład koronowo-korzeniowy </StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={crownRootInsert} onChange={changeCrownRootInsertStatus}/>
-                           <StatusLabel>Kamień naddziąslowy</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={supragingivalCalculus} onChange={changeSupragingivalCalculusStatus}/>
-                           <StatusLabel>Kamień poddziąslowy</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={subgingivalCalculus} onChange={changeSubgingivalCalculusStatus}/>
-                           <StatusLabel>Ząb zatrzymany</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={impactedTooth} onChange={changeImpactedToothStatus}/>
-                           <StatusLabel>Brak zęba</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={noTooth} onChange={changeNoToothStatus}/>
-                           <StatusLabel>Ząb mikrodontyczny </StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={microdonticTooth} onChange={changeMicrodonticToothStatus}/>
-                           <StatusLabel>Wada rozwojowa</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={developmentalDefect} onChange={changeDevelopmentalDefectStatus}/>
-                           <StatusLabel>Starcie patologiczne</StatusLabel>
-                           <StatusCheckbox type="checkbox" checked={pathologicalClash} onChange={changePathologicalClashStatus}/>
+                               <ToothText>Statusy Zęba</ToothText>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={forObservation} onChange={changeForObservationStatus}/> Do obserwacji</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={caries} onChange={changeCariesStatus}/> Próchnica</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={secondaryCaries} onChange={changeSecondaryCariesStatus}/> Próchnica wtórna</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={filling} onChange={changeFillingStatus}/> Wypełnienie</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={prostheticCrown} onChange={changeProstheticCrownStatus}/> Korona protetyczna </StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={channelsFilledCorrectly} onChange={changeChannelsFilledCorrectlyStatus}/> Kanały wypełnione prawidłowo </StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={channelNotCompleted} onChange={changeChannelNotCompletedStatus}/> Kanał niedopelniony</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={periapicalChange} onChange={changePeriapicalChangeStatus}/> Zmiana okolowierzcholko</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={crownRootInsert} onChange={changeCrownRootInsertStatus}/> Wkład koronowo-korzeniowy </StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={supragingivalCalculus} onChange={changeSupragingivalCalculusStatus}/> Kamień naddziąslowy</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={subgingivalCalculus} onChange={changeSubgingivalCalculusStatus}/> Kamień poddziąslowy</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={impactedTooth} onChange={changeImpactedToothStatus}/> Ząb zatrzymany</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={noTooth} onChange={changeNoToothStatus}/> Brak zęba</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={microdonticTooth} onChange={changeMicrodonticToothStatus}/> Ząb mikrodontyczny </StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={developmentalDefect} onChange={changeDevelopmentalDefectStatus}/> Wada rozwojowa</StatusLabel>
+                           <StatusLabel><StatusCheckbox type="checkbox" checked={pathologicalClash} onChange={changePathologicalClashStatus}/> Starcie patologiczne</StatusLabel>
                            </ToothStatus>
                            </TeethOptions>
                            )}
