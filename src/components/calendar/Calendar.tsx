@@ -2,7 +2,7 @@ import React, {useContext,useState} from 'react';
 import { getWeek} from "../../utils/utils";
 import {Slidebar} from "./slider/Slidebar";
 import { Week } from './weekCalendar/Week';
-import {Arrow, CalendarBody, CalendarHeaderBody, BackButton, HeaderLabel, HScreen, Toggle} from "./Calendar.styles";
+import {Arrow, CalendarBody, CalendarHeaderBody, BackButton,BackVisitButton, HeaderLabel, HScreen, Toggle} from "./Calendar.styles";
 import {CalendarContext} from "../../context/CalendarContext";
 import { DayCalendar } from './dayCalendar/DayCalendar';
 import {AddVisitModal} from "./addVisit/AddVisitModal";
@@ -47,23 +47,24 @@ export const Calendar = () => {
                    <span />
                </Toggle>
                <CalendarHeaderBody>
-                   <Arrow onClick={prevWeek}>
-                       &lt;
-                   </Arrow>
-                   <Arrow onClick={nextWeek}>
-                       &gt;
-                   </Arrow>
-                   <HeaderLabel>{getWeek(currenDate)[0].format("MMMM YYYY")}</HeaderLabel>
-                   <HeaderLabel> Wizyty</HeaderLabel>
-                   <BackButton onClick={handleModalOpen}>
+                   <BackVisitButton onClick={handleModalOpen}>
                        Dodaj wizyte
-                   </BackButton>
+                   </BackVisitButton>
                    <BackButton onClick={goToday}>
                        Dzisiaj
                    </BackButton>
                    <BackButton onClick={changeCalendar}>
                        {isWeekCalendar ?(<>Dzień</>):(<>Tydzień</>)}
                    </BackButton>
+                   <HeaderLabel>{getWeek(currenDate)[0].format("MMMM YYYY")}</HeaderLabel>
+                   <Arrow onClick={prevWeek}>
+                       &lt;
+                   </Arrow>
+                   <Arrow onClick={nextWeek}>
+                       &gt;
+                   </Arrow>
+
+
                </CalendarHeaderBody>
                <CalendarBody >
                    {isOpen &&(
