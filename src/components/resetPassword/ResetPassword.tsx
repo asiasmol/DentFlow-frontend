@@ -53,7 +53,6 @@ export const ResetPassword = () => {
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         setToken(searchParams.get('token'))
-        console.log(token)
         setIsDataValid((hasLength &&hasLowercase &&hasUppercase &&hasSpecialChar &&hasDigit && isRepeatedPasswordValid))
     }, [hasLength,hasLowercase,hasUppercase,hasSpecialChar,hasDigit,isRepeatedPasswordValid]);
 

@@ -39,7 +39,7 @@ export const AddPatient = () => {
 
 
     return (
-        <LoginForm height={35}>
+        <LoginForm height={39}>
 
             <LoginHeader>
                 Dodaj Pacjenta

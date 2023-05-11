@@ -30,9 +30,7 @@ export const SendEmail = () => {
         toast.success("Wiadomość wysłana :D ");
         navigate("/");
     } catch (error: any) {
-
       let errorMessage;
-
       if (error.response && error.response.status === 401) {
         errorMessage = "Podałeś błędne dane, spróbuj ponownie.";
       } else {

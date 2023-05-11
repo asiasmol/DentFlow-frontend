@@ -55,17 +55,18 @@ export default function MultiActionAreaCard() {
 
 
     const handleSubmit = async () => {
-        try {
-            const updatedUser = await UserApi.updateUser({
-                firstName: firstName,
-                lastName: lastName
-            });
-            setUser(updatedUser.data);
-            toast.success("Zaktualizowano profil");
-            closeModal();
-        } catch (error) {
-            toast.error("Nie udało się zaktualizować profilu");
-        }
+            try {
+                const updatedUser = await UserApi.updateUser({
+                    firstName: firstName,
+                    lastName: lastName
+                });
+                setUser(updatedUser.data);
+                toast.success("Zaktualizowano profil");
+                closeModal();
+            } catch (error) {
+                toast.error("Nie udało się zaktualizować profilu");
+            }
+
     };
 
         return (
@@ -99,8 +100,7 @@ export default function MultiActionAreaCard() {
                                         id="email"
                                         label="Email"
                                         defaultValue={email}
-                                        type='email'
-                                        onChange={event => setEmail(event.target.value)}/>
+                                        type='email'/>
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button onClick={closeModal}>

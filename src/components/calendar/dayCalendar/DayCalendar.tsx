@@ -16,7 +16,7 @@ export  const DayCalendar: React.FC<Props> = (props:Props) =>{
 
     return(
         <DayBody isOpen={props.isOpen}>
-            <WeekDay  key={0} column={1}  day={selectedDate}    changeCalendar={()=>{}} isWeekCalendar={false}/>
+            <WeekDay  key={"dayCalendar_WeekDay"} column={1}  day={selectedDate}    changeCalendar={()=>{}} isWeekCalendar={false}/>
            < Visit/>
         </DayBody>
     )

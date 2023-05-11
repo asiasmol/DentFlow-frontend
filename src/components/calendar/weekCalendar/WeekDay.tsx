@@ -40,7 +40,7 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                 </DayBodyHeader>
 
                 {[...Array(12)].map((_, i) => (
-                            <Hour key={i}  row={i+2} >
+                            <Hour key={`${props.day.format("DD")}_${i}`}  row={i+2} >
                                 <HourHeader>{i+8}.00</HourHeader>
                                  {getMatchingVisits(i+8+"").map((visit) => (
                                     <Tooltip key={i}  title={
