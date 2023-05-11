@@ -9,7 +9,6 @@ export const SetContainter=() => {
         <>
         <Navbar/>
             <Outlet/>
-            {/*<Footer/>*/}
         </>
     );
 }
