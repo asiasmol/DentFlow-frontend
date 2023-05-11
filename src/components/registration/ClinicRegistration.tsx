@@ -155,7 +155,7 @@ const ClinicRegistration = () => {
                     </ModalContent>
                 </Modal>
                 ):(
-                <LoginForm height={60}>
+                <LoginForm height={63}>
                     <LoginHeader>
                         Załóż przychodnię
                     </LoginHeader>
