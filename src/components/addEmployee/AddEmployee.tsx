@@ -13,6 +13,7 @@ export const AddEmployee = ()=>{
     const [role, setRole] = useState<string>("");
     const [isRole, setIsRole] = useState<boolean>(false);
     const [emailList, setEmailList] = useState<string[]>([]);
+    const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,10 +35,17 @@ export const AddEmployee = ()=>{
             setEmailList(result.data);
     }, []);
 
-
     useEffect(() => {
         fetchEmails();
     }, [fetchEmails])
+
+    useEffect(() => {
+        if (emailList.includes(email)) {
+            setIsEmailValid(true);
+        } else {
+            setIsEmailValid(false);
+        }
+    }, [email, emailList]);
 
     return (
         <LoginForm height={30}>
@@ -60,7 +68,7 @@ export const AddEmployee = ()=>{
                         <FormControlLabel value="RECEPTIONIST" control={<Radio onChange={handleChange}/>} label="Recepcjonista" />
                     </RadioGroupStyled>
                 </FormControl>
-                <LoginButton onClick={addEmployee} disabled={!isRole}>
+                <LoginButton onClick={addEmployee} disabled={!isRole || !isEmailValid}>
                     Dodaj
                 </LoginButton>
             </LoginInputs>
