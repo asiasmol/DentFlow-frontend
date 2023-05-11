@@ -1,41 +1,82 @@
 import styled from "styled-components";
 import Box from "@mui/material/Box";
-
-
-export const HomeContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  margin-top: 64px;
-`;
-
-export const StyledHeading = styled.span`
-    font-size: 36px;
-    font-weight: 600;
-    margin-top: 32px;
-    margin-bottom: 8px;
-`;
-
-export const TableDiv = styled(Box)`
-  height: 318px;
-  width: 50%;
-  padding-right: 5rem;
-  padding-left: 5rem;
-  flex: 2;
-  @media(max-width: 768px){
-    padding-right: 1rem;
-    flex-direction: column;
-    padding-left: 1rem;
-  }
-`;
+import {TextField} from "@mui/material";
 
 export const ProfileDiv = styled.div`
-  margin-left: 5rem;
-  flex: 1;
   @media(max-width: 768px){
     margin-left: 1rem;
     flex-direction: column;
+  }
+`;
+export const ProfilePicture = styled.img`
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+`;
+
+export const TextFieldModal = styled(TextField)`
+  @media(max-width: 1950px){
+    width: 15rem;
+  }
+  @media(max-width: 1200px){
+    width: 10rem;
+  }
+  
+`;
+
+export const UserName = styled.div`
+  color: #1784b3;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  font-family: Montserrat;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  @media (max-width: 950px) {
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+`;
+
+export const Button = styled.button`
+  background-color: #FFBE5C;
+  color: white;
+  height: 3rem;
+  width: 13rem;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  margin-right: auto;
+  border: none;
+  border-radius: 10px;
+  margin-left: auto;
+  display: block;
+     &:hover {
+       filter: brightness(85%);
+     }
+    &:disabled{
+      background-color: gray;
+      filter: brightness(100%);
+    }
+  
+  @media(max-width: 1400px){
+    height: 3rem;
+    width: 13rem;
+    font-size: 1.5rem;
+    
+  @media(max-width: 950px){
+    height: 2.5rem;
+    width: 10rem;
+    font-size: 1.5rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    display: block;
   }
 `;
 
@@ -66,16 +107,19 @@ export const ModalContent = styled.div`
   background-color: #fff;
   width: 500px;
   padding: 20px;
-`;
-
-export const ModalHeader = styled.h3`
-  font-size: 24px;
-  margin: 0;
-  margin-bottom: 20px;
+  border: 1px solid #1784b3;
+  border-radius: 1rem;
+  @media(max-width: 1950px){
+    width: 20rem;
+  }
+  @media(max-width: 1200px){
+    width: 15rem;
+  }
 `;
 
 export const ModalBody = styled.div`
   margin-bottom: 20px;
+  text-align: center;
 `;
 
 export const ModalFooter = styled.div`
@@ -83,17 +127,33 @@ export const ModalFooter = styled.div`
   justify-content: flex-end;
 `;
 
-export const Button = styled.button`
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #0077ff;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+export const HomeContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10rem;
+  height: 60rem;
+`;
 
-  &:hover {
-    background-color: #0056d3;
+export const TableDiv = styled(Box)`
+  width: 120rem;
+  padding-top: 5rem;
+  padding-right: 5rem;
+  padding-left: 5rem;
+  flex: 2;
+  @media(max-width: 1950px){
+    padding-top: 2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    width: 80rem;
+    flex-direction: column;
+  }
+  @media(max-width: 1200px){
+    padding-top: 2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    width: 20rem;
+    flex-direction: column;
   }
 `;

@@ -12,8 +12,6 @@ export const Profile = () => {
           <ClinicsTable/>
       </HomeContainer>
       </>
-      // <StyledHeading>Profile</StyledHeading>
-
   );
 };
 

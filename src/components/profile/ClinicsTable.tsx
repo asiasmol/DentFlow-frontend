@@ -38,8 +38,8 @@ export default function DataGridDemo() {
     return (
                 <TableDiv>
                     <DataGrid sx={{
-                        boxShadow: 2,
-                        border: 2,
+                        borderRadius: 3,
+                        border: 3,
                         borderColor: '#1784B3',
                         '& .MuiDataGrid-cell:hover': {
                             color: 'primary.main',
@@ -55,8 +55,6 @@ export default function DataGridDemo() {
                             },
                         }}
                         pageSizeOptions={[4]}
-                        // checkboxSelection
-                        // disableRowSelectionOnClick
                     />
                  </TableDiv>
     );
