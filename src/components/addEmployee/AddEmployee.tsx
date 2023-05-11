@@ -6,9 +6,9 @@ import {UserApi} from "../../api/UserApi";
 import {LoginButton, LoginForm, LoginHeader, LoginInputs, ValidationError} from "../login/Login.styles";
 import {FormControlLabel, FormLabel, Radio, RadioGroup, TextField} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-import {AutocompleteEmail} from "./AddEmplyee.styles";
+import {AutocompleteEmail, FormLabelStyled, RadioGroupStyled} from "./AddEmployee.styles";
 
-export const AddEmplyee = ()=>{
+export const AddEmployee = ()=>{
     const [email, setEmail] = useState<string>("");
     const [role, setRole] = useState<string>("");
     const [isRole, setIsRole] = useState<boolean>(false);
@@ -54,11 +54,11 @@ export const AddEmplyee = ()=>{
                     onInputChange={(event, email) => {setEmail(email);}}
                 />
                 <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">Rola</FormLabel>
-                    <RadioGroup aria-labelledby="demo-radio-buttons-group-label" name="radio-buttons-group">
+                    <FormLabelStyled id="demo-radio-buttons-group-label">Rola</FormLabelStyled>
+                    <RadioGroupStyled aria-labelledby="demo-radio-buttons-group-label" name="radio-buttons-group">
                         <FormControlLabel value="DOCTOR" control={<Radio onChange={handleChange}/>} label="Lekarz" />
                         <FormControlLabel value="RECEPTIONIST" control={<Radio onChange={handleChange}/>} label="Recepcjonista" />
-                    </RadioGroup>
+                    </RadioGroupStyled>
                 </FormControl>
                 <LoginButton onClick={addEmployee} disabled={!isRole}>
                     Dodaj

@@ -8,7 +8,7 @@ import UserRegistration from "../components/registration/UserRegistration";
 import {ChooseClinic} from "../components/chooseClinic/ChooseClinic";
 import HomePage from "../pages/homePage/HomePage";
 import ClinicRegistration from "../components/registration/ClinicRegistration";
-import { AddEmplyee } from "../components/addEmployee/AddEmplyee";
+import { AddEmployee } from "../components/addEmployee/AddEmployee";
 import {OwnerProtectedRoute} from "../components/OwnerProtectedRoute";
 import {SetContainter} from "../components/SetContainter";
 import {AddPatient} from "../components/addPatient/AddPatient";
@@ -118,7 +118,7 @@ export const AppRouter = () => {
                 element={
                     <ProtectedRoute>
                         <OwnerProtectedRoute>
-                                <AddEmplyee />
+                                <AddEmployee />
                         </OwnerProtectedRoute>
                     </ProtectedRoute>
                 }
