@@ -22,6 +22,8 @@ export class ClinicApi {
         await authorizedApi.get<PatientResponse[]>("/clinics/patients", {params:request});
     static addEmployees = async (request:EmployeeRequest) =>
         await authorizedApi.patch("/clinics/personnel",request);
+    static deleteEmployee = async(request: { email: string | undefined }) =>
+        await authorizedApi.delete("/clinics/personnel", { data: request })
 
     static getDoctors = async (request: { clinicId: number | undefined }) =>
         await authorizedApi.get<EmployeeResponse[]>("/clinics/doctors", {params:request});

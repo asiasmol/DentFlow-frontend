@@ -20,4 +20,5 @@ export class UserApi {
 
   static updateUser = async (request: UserUpdateData) =>
       await authorizedApi.patch("/users/profile", request)
+
 }

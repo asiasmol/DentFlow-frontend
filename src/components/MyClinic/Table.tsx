@@ -9,6 +9,8 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import {Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableFooter,
     TablePagination, TableRow, useTheme} from '@mui/material';
+import {UserApi} from "../../api/UserApi";
+import {toast} from "react-toastify";
 
 interface TablePaginationActionsProps {
     count: number;
@@ -115,6 +117,21 @@ export default function CustomPaginationActionsTable() {
         setPage(0);
     };
 
+    const handleEmployeeDelete = async (
+        event: React.MouseEvent<HTMLTableCellElement>
+    ) => {
+        try {
+            await ClinicApi.deleteEmployee({
+                email: event.currentTarget.title
+            });
+            const result = await ClinicApi.getEmployees()
+            setEmployees(result.data)
+            toast.success("Pracownik usunięty");
+        } catch (error) {
+            toast.error("Nie udało się usunąć pracownika")
+        }
+    };
+
     return (
         <Container>
             <TableContainer component={Paper}>
@@ -134,7 +151,7 @@ export default function CustomPaginationActionsTable() {
                                 <TableCell style={{ width: 60,marginLeft:0 }} >
                                     {employee.email}
                                 </TableCell>
-                                <TableCell style={{ width: 60,marginLeft:0 }} align="right">
+                                <TableCell style={{ width: 60,marginLeft:0 }} align="right" onClick={handleEmployeeDelete} title={employee.email}>
                                     X
                                 </TableCell>
                             </TableRow>
