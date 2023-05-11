@@ -309,7 +309,7 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
                    <VisitOptions>
                        <Descriptions>
                            <Description value={currentVisit.description}  onChange={safeVisitDescription}/>
-                           <Description/>
+                           <Description/> //TODO dodać blokade tylko dla recepcjonistów
                        </Descriptions>
                        {currentTooth && (
                            <TeethOptions>
