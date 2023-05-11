@@ -15,7 +15,6 @@ export const UpperJawLeftFirst = styled.img<{
   height: 42.82px;
   left: 160.73px;
   top: 28.48px;
-  border-radius: 18px;
   opacity: ${props => props.isNoTooth ? '5%': props.isSelected ? '70%' : '100%'};
   border: ${props =>  props.isSelected ? '4px solid red' : ''};
   cursor: pointer;

@@ -41,7 +41,6 @@ export const CalendarHeaderBody = styled.div`
   height: 50px;
 `;
 export const BackButton = styled.button`
-  float: right;
 `;
 
 

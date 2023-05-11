@@ -12,11 +12,11 @@ type Props = {
 };
 
 export  const DayCalendar: React.FC<Props> = (props:Props) =>{
-    const {currenDate} = useContext(CalendarContext)
+    const {selectedDate} = useContext(CalendarContext)
 
     return(
         <DayBody isOpen={props.isOpen}>
-            <WeekDay  key={0} column={1}  day={currenDate}    changeCalendar={()=>{}} isWeekCalendar={false}/>
+            <WeekDay  key={0} column={1}  day={selectedDate}    changeCalendar={()=>{}} isWeekCalendar={false}/>
            < Visit/>
         </DayBody>
     )

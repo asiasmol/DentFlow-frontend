@@ -85,11 +85,15 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 export default function CustomPaginationActionsTable() {
     const [patients, setPatients] = React.useState<PatientResponse[]>([]);
     const {currentClinic} = useContext(ClinicContext);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const fetchPatients= useCallback(async () => {
         try {
-            const result = await ClinicApi.getPatients({clinicId: currentClinic?.id})
-            setPatients(result.data);
+            const result = await ClinicApi.getPatients({
+                clinicId:currentClinic?.id
+            });
+            setPatients(result.data)
         } finally {
             // setIsLoading(false);
         }
@@ -99,8 +103,6 @@ export default function CustomPaginationActionsTable() {
         fetchPatients();
     }, [fetchPatients])
 
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =

@@ -132,7 +132,7 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
         await VisitApi.safeDescription({
             clinicId:currentClinic?.id,
             visitId:currentVisit?.id,
-            description:event.target.value
+            doctorDescription:event.target.value
         })
     },[currentClinic?.id,currentVisit?.id]);
 
@@ -308,7 +308,7 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
                    </Jaw>
                    <VisitOptions>
                        <Descriptions>
-                           <Description value={currentVisit.description}  onChange={safeVisitDescription}/>
+                           <Description value={currentVisit.doctorDescription}  onChange={safeVisitDescription}/>
                            <Description/> //TODO dodać blokade tylko dla recepcjonistów
                        </Descriptions>
                        {currentTooth && (

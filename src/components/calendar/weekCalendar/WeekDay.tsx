@@ -14,7 +14,7 @@ type Props = {
     isWeekCalendar:boolean;
 };
 export  const WeekDay: React.FC<Props> = (props:Props) =>{
-    const {currentVisits,visitModifier} = useContext(CalendarContext);
+    const {currentVisits,visitModifier,selectedDateModifier,currentVisit} = useContext(CalendarContext);
 
     const getMatchingVisits = (hour:string) => {
         const day = props.day.format("YYYYMMDD");
@@ -25,6 +25,7 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
     }
 
     const setCurrentVisit = (visit:VisitResponse) => {
+        selectedDateModifier(dayjs(visit.visitDate))
         visitModifier(visit);
         if(props.isWeekCalendar){
             props.changeCalendar()
@@ -44,12 +45,11 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                                  {getMatchingVisits(i+8+"").map((visit) => (
                                     <Tooltip key={i}  title={
                                         <div>
-                                            <strong>Opis wizyty:</strong> {visit.description}<br />
                                             <strong>Lekarz:</strong> {visit.doctor.firstName} {visit.doctor.lastName}<br />
                                             <strong>Pacjent:</strong> {visit.patient.firstName} {visit.patient.lastName}
                                         </div>
                                     }>
-                                        <Visit  onClick={() => setCurrentVisit(visit)} min={Number(dayjs(visit.visitDate, 'YYYY-MM-DD HH:mm').format("mm"))}>
+                                        <Visit  onClick={() => setCurrentVisit(visit)} min={Number(dayjs(visit.visitDate, 'YYYY-MM-DD HH:mm').format("mm"))} selectedVisit={visit==currentVisit}>
                                             {visit.doctor.firstName}
                                             {visit.doctor.lastName}
                                         </Visit>

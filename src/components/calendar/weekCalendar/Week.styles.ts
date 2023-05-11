@@ -67,14 +67,16 @@ export const Hour = styled.div<{row:number}>`
   }
 `;
 
-export const Visit = styled.div<{min:number}>`
+export const Visit = styled.div<{selectedVisit:boolean,min:number}>`
+  border-radius: 5px;
+  cursor: pointer;
   border: 1px solid #1784B3;
   width: 100%;
   margin-top: ${props => props.min}px;
   height: 30px;
   font-size: 80%;
   color: #fff;
-  background-color: #1784B3;
+  background-color: ${props => props.selectedVisit ? '#81a0be' : "#1784B3"};
   float: right;
   opacity: 0.5;
   margin-left: 10px;
