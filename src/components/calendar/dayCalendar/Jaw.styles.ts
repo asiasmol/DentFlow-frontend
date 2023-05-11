@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 export const Jaw = styled.div`
+  margin-top: 50px;
   position: absolute;
+  width: 100px;
+  margin-right: 0;
+  margin-left: 60px;
   grid-column: 1;
-  width: 422px;
   height: 639px;
 `
 export const UpperJawLeftFirst = styled.img<{

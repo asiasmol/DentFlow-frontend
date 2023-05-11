@@ -13,6 +13,8 @@ import {useCallback, useEffect, useState} from "react";
 import {UserApi} from "../../api/UserApi";
 import {ProfileUserResponse} from "../../models/api/ProfileUserResponse";
 import {toast} from "react-toastify";
+import {UserUpdateData} from "../../models/api/UserUpdateData";
+import {Avatar, Button, CardActionArea, CardActions, TextField, Typography } from '@mui/material';
 import {CardActions} from '@mui/material';
 
 export default function MultiActionAreaCard() {

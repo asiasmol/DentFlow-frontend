@@ -50,7 +50,6 @@ export const CalendarContextProvider = ({ children }: React.PropsWithChildren) =
     const fetchVisits= useCallback(async () => {
         try {
             const result = await VisitApi.getVisitsFromClinic({clinicId: currentClinic?.id})
-            console.log(result.data)
             setCurrentVisits(result.data);
             setNoFilterVisits(result.data)
         }catch (e) {

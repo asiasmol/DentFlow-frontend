@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ListItem from '@mui/material/ListItem';
 
 export const DayBody = styled.div<{isOpen:boolean}>`
   float: left;
@@ -119,15 +120,11 @@ export const ToothDescriptionHistory = styled.div`
     
 `
 
-export const ToothDescriptionHistoryElement = styled.div`
-    // border:1px solid black;
-    // border-radius: 10px;
-    // width:95%;
-    // height:50px;
-    // margin-bottom:2%;
-    // margin-left:1%;
-    // margin-top:2%;
-    // background-color:#fff;
-    // text-align:center;
-    
+export const PatientInformation = styled.div`
+  text-align: center;
+    font-size: 1.5rem;
+`
+export const MyListItem = styled(ListItem)`
+  display: inline-block;
+  padding: 3px;
 `

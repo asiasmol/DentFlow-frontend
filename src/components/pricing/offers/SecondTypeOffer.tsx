@@ -4,8 +4,7 @@ import {
     PriceArea,
     OfferParam,
     OfferIcon,
-    H1, H2, H3,
-    CurrencyTextArea, H4
+    H1, H2, H3, H4
 } from "./SecondTypeOffer.style";
 import { HomeButton2} from "../../../pages/homePage/HomePage.style";
 import React from "react";

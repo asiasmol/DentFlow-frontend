@@ -34,7 +34,7 @@ import {
     Description,
     VisitBody, VisitOptions, TeethOptions, ToothDescription,
     ToothStatus,StatusLabel,StatusCheckbox, ToothDescriptionTextField,
-    ToothDescriptionHistory, ToothDescriptionHistoryElement, Descriptions,
+    ToothDescriptionHistory, PatientInformation, Descriptions,
     ToothDescriptionSaveButton, DescriptionTitle, DescriptionRow, ToothNumberText,ToothText
 
 } from "./DayCalendar.styles";
@@ -277,6 +277,9 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
        <VisitBody>
            {currentVisit && (
                <>
+                   <PatientInformation>
+                       Pacjent :{currentVisit.patient.lastName}     {currentVisit.patient.firstName}
+                   </PatientInformation>
                    <Jaw>
                        <UpperJawLeftFirst src={UpLFirst} isSelected = {currentTooth?.number ===1}  isNoTooth={teeth[0]?.noTooth}  alt="11" onClick={(event) => handleChoseTooth(event,teeth[0])}/>
                        <UpperJawLeftSecond src={UpLSecond} isSelected = {currentTooth?.number ===2}  isNoTooth={teeth[1]?.noTooth}   alt="12" onClick={(event)=>handleChoseTooth(event,teeth[1])}/>

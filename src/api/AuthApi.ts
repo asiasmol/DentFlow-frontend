@@ -1,8 +1,6 @@
 import axios from "axios";
 import { SignInRequest } from "../models/api/SignInRequest";
 import { SignInResponse } from "../models/api/SignInResponse";
-import {ClinicRequest} from "../models/api/ClinicRequest";
-import {authorizedApi} from "../hooks/withAxiosIntercepted";
 
 export class AuthApi {
   static signIn = async (request: SignInRequest) =>

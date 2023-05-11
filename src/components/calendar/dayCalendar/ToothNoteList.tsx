@@ -1,12 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { FixedSizeList,ListChildComponentProps } from 'react-window';
 import {Description} from "../../../models/Description";
-import {useEffect} from "react";
-import {Descriptions} from "./DayCalendar.styles";
+import {FixedSizeList, ListChildComponentProps} from "react-window";
+import {MyListItem} from "./DayCalendar.styles";
+
 
 
 type Props = {
@@ -15,23 +14,19 @@ type Props = {
 
 function renderRow(props: ListChildComponentProps) {
     const { index, style,data } = props;
-    console.log(data)
     return (
-        <ListItem   component="div" disablePadding>
-            <ListItemButton>
-                <ListItemText primary={`${data.descriptions[index]}`} />
+        <MyListItem  key={index} >
+            <ListItemButton >
+                <ListItemText primary={`${data[index].id}#${data[index].description}`} />
             </ListItemButton>
-        </ListItem>
+        </MyListItem>
 );
 }
 
 export const VirtualizedList:React.FC<Props> = (props:Props) => {
-    useEffect(()=>{
-        console.log(props.descriptions)
-    },[props.descriptions])
     return (
         <Box
-            sx={{ width: '100%', height: 400, maxWidth: 360, bgcolor: 'background.paper' }}
+            sx={{ width: '100%', height: 400, borderRadius: 10, maxWidth: 360, bgcolor: 'background.paper' }}
         >
             <FixedSizeList
                 height={400}

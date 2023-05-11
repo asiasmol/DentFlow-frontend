@@ -28,7 +28,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
       email: user.data.email,
       roles: user.data.roles,
     });
-  }, [pagesModifier]);
+  }, []);
 
 
   useEffect(() => {

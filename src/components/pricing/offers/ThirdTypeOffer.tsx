@@ -4,14 +4,10 @@ import {
     PriceArea,
     OfferParam,
     OfferIcon,
-    CurrencyTextArea,
     H1, H2, H3
 } from "./ThirdTypeOffer.styles";
-import {HomeButton1, HomeButton2} from "../../../pages/homePage/HomePage.style";
+import {HomeButton2} from "../../../pages/homePage/HomePage.style";
 import React from "react";
-import Typography from "@mui/material/Typography";
-// import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-// import { Icon } from "@chakra-ui/icons";
 import { CheckCircle } from 'react-bootstrap-icons';
 import {H4} from "./FirstTypeOffer.style";
 import {useNavigate} from "react-router-dom";

@@ -17,7 +17,7 @@ import {ACCESS_TOKEN} from "../../constants/constants";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../context/UserContext";
 import {Checkbox, Link, Grid} from "@mui/material";
-import {NavbarContext} from "../../context/NavbarContext";
+
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -25,7 +25,6 @@ export const Login = () => {
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
   const {userModifier} = useContext(UserContext);
-  const {pagesModifier} = useContext(NavbarContext);
   const navigate = useNavigate();
 
   const onLoginClicked = useCallback(async () => {
@@ -39,7 +38,6 @@ export const Login = () => {
         roles: user.data.roles,
       });
       localStorage.setItem(ACCESS_TOKEN, user.data.token);
-      toast.success("Poprawnie zalogowano");
       navigate("/my-clinic");
 
     } catch (error: any) {
