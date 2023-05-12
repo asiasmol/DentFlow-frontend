@@ -28,6 +28,7 @@ export const Description = styled.textarea`
     resize:none;    
     width:90%;
     margin-right:5%;
+  background-color: white;
     margin-left:5%;
     height:80%;
     margin-bottom:5%;
@@ -123,8 +124,4 @@ export const ToothDescriptionHistory = styled.div`
 export const PatientInformation = styled.div`
   text-align: center;
     font-size: 1.5rem;
-`
-export const MyListItem = styled(ListItem)`
-  display: inline-block;
-  padding: 3px;
 `

@@ -322,7 +322,7 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
                            </DescriptionRow>
                            <DescriptionRow>
                                <DescriptionTitle>Notatka z Recepcji</DescriptionTitle>
-                               <Description/>
+                               <Description value={currentVisit.receptionistDescription} disabled/>
                            </DescriptionRow>
                        </Descriptions>
                        {currentTooth && (
