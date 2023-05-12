@@ -2,7 +2,7 @@ import * as React from 'react';
 import {EmployeeResponse} from "../../models/api/EmployeeResponse";
 import {useCallback, useEffect, useState} from "react";
 import {ClinicApi} from "../../api/ClinicApi";
-import {Container} from "./Table.styles";
+import {Container,SearchElement,SearchElementInput} from "./Table.styles";
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -16,10 +16,11 @@ import {
     ModalOverlay,
     ModalContent,
     ModalBody,
-    ModalFooter, UserName, TextFieldModal, Button,
+    ModalFooter, UserName, Button,
 } from "../../components/profile/Profile.style";
 import {toast} from "react-toastify";
-import Typography from "@mui/material/Typography";
+import {PatientResponse} from "../../models/api/PatientResponse";
+
 
 interface TablePaginationActionsProps {
     count: number;
@@ -54,36 +55,39 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
     };
 
     return (
-        <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-            <IconButton
-                onClick={handleFirstPageButtonClick}
-                disabled={page === 0}
-                aria-label="first page"
-            >
-                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-            </IconButton>
-            <IconButton
-                onClick={handleBackButtonClick}
-                disabled={page === 0}
-                aria-label="previous page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            </IconButton>
-            <IconButton
-                onClick={handleNextButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="next page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </IconButton>
-            <IconButton
-                onClick={handleLastPageButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="last page"
-            >
-                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-            </IconButton>
-        </Box>
+        <>
+            <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+                <IconButton
+                    onClick={handleFirstPageButtonClick}
+                    disabled={page === 0}
+                    aria-label="first page"
+                >
+                    {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+                </IconButton>
+                <IconButton
+                    onClick={handleBackButtonClick}
+                    disabled={page === 0}
+                    aria-label="previous page"
+                >
+                    {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                </IconButton>
+                <IconButton
+                    onClick={handleNextButtonClick}
+                    disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                    aria-label="next page"
+                >
+                    {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                </IconButton>
+                <IconButton
+                    onClick={handleLastPageButtonClick}
+                    disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                    aria-label="last page"
+                >
+                    {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+                </IconButton>
+            </Box>
+        </>
+
     );
 }
 
@@ -91,9 +95,41 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
 export default function CustomPaginationActionsTable() {
     const [employees, setEmployees] = React.useState<EmployeeResponse[]>([]);
+    const [employeesSearchResults, setEmployeesSearchResults] = React.useState<EmployeeResponse[]>([]);
     const [employeeMail, setEmployeeMail] = React.useState<string>("");
     const [showModal, setShowModal] = useState(false);
-    const [isDeleteConfirmed, setIsDeleteConfirmed] = useState<boolean>(false);
+
+    function splitString(str: string): string[] | null {
+        if (str.includes(" ")) {
+            return str.split(" ");
+        }
+        return null;
+    }
+    function searchEmployees( firstName:string,lastName:string) {
+
+        return employees.filter((employee) =>{
+            const firstNameMatch = employee.firstName.toLowerCase().includes(firstName.toLowerCase());
+            const lastNameMatch = employee.lastName.toLowerCase().includes(lastName.toLowerCase());
+
+            if ( firstName === lastName)return firstNameMatch || lastNameMatch
+            else return firstNameMatch && lastNameMatch
+        });
+    }
+    function employeeHandleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const searchTerm = event.target.value;
+        const result = splitString(searchTerm);
+        let results: EmployeeResponse[] = [];
+        if (result !== null) {
+            const [firstWord, secondWord] = result;
+            results = searchTerm ? searchEmployees(firstWord,secondWord) : [];
+        } else {
+            results = searchTerm ? searchEmployees( searchTerm , searchTerm) : [];
+        }
+        setEmployeesSearchResults(results);
+        if(event.target.value == ""){
+            setEmployeesSearchResults(employees)
+        }
+    }
     const openModal = (
         event: React.MouseEvent<HTMLTableCellElement>
     ) => {
@@ -108,6 +144,7 @@ export default function CustomPaginationActionsTable() {
         try {
             const result = await ClinicApi.getEmployees()
             setEmployees(result.data);
+            setEmployeesSearchResults(result.data);
         } finally {
             // setIsLoading(false);
         }
@@ -155,12 +192,16 @@ export default function CustomPaginationActionsTable() {
 
     return (
         <Container>
+            <SearchElement>
+                Wyszukaj pracownika:<br/>
+                <SearchElementInput onChange={employeeHandleInputChange}/>
+            </SearchElement>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
                     <TableBody>
                         {(rowsPerPage > 0
-                                ? employees.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                : employees
+                                ? employeesSearchResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                : employeesSearchResults
                         ).map((employee) => (
                             <TableRow key={employee.firstName}>
                                 <TableCell component="th" scope="row">
