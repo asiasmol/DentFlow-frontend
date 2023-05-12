@@ -181,9 +181,6 @@ export default function CustomPaginationActionsTable() {
                                 <TableCell style={{ width: 60,marginLeft:0 }} >
                                     {patient.email}
                                 </TableCell>
-                                <TableCell style={{ width: 60,marginLeft:0 }} align="right">
-                                    X
-                                </TableCell>
                             </TableRow>
                         ))}
                         {emptyRows > 0 && (

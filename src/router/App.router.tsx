@@ -22,6 +22,7 @@ import {NotFound} from "../pages/notFoundPage/NotFound";
 import { SendEmail } from "../components/resetPassword/SendEmail";
 import {ResetPassword} from "../components/resetPassword/ResetPassword";
 import {SelectedProtectedRoute} from "../components/SelectedProtectedRoute";
+import { ResetEmail } from "../components/resetPassword/ResetEmail";
 
 
 
@@ -59,6 +60,12 @@ export const AppRouter = () => {
                 path="/reset-password"
                 element={
                     <ResetPassword/>
+                }
+            ></Route>
+            <Route
+                path="/reset-email"
+                element={
+                    <ResetEmail/>
                 }
             ></Route>
             <Route

@@ -26,7 +26,7 @@ export const SendEmail = () => {
   const onResetClicked = useCallback(async () => {
     try {
         setIsLoading(true);
-        await AuthApi.SendResetEmail({email:email});
+        await AuthApi.SendResetPasswordEmail({email:email});
         toast.success("Wiadomość wysłana :D ");
         navigate("/");
     } catch (error: any) {

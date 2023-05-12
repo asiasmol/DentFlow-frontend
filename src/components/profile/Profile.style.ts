@@ -79,6 +79,38 @@ export const Button = styled.button`
     display: block;
   }
 `;
+export const ChangeButton = styled.button`
+  background-color: #FFBE5C;
+  color: white;
+  height: 3rem;
+  width: 13rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: auto;
+  border: none;
+  border-radius: 10px;
+  margin-left: auto;
+  display: block;
+     &:hover {
+       filter: brightness(85%);
+     }
+    &:disabled{
+      background-color: gray;
+      filter: brightness(100%);
+    }
+  
+  @media(max-width: 1400px){
+    height: 2rem;
+    width: 10rem;
+    font-size: 1rem;
+    
+  @media(max-width: 950px){
+    height: 1.5rem;
+    width: 8rem;
+    font-size: 0.5rem;
+    display: block;
+  }
+`;
 
 export const Modal = styled.div`
   position: fixed;

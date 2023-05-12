@@ -237,13 +237,10 @@ export default function CustomPaginationActionsTable() {
                                 <TableCell >
                                     {employee.lastName}
                                 </TableCell>
-                                <TableCell >
-                                    {employee.lastName}
-                                </TableCell>
                                 <TableCell style={{ width: 60,marginLeft:0 }} >
                                     {employee.email}
                                 </TableCell>
-                                <TableCell style={{ width: 60,marginLeft:0 }} align="right" onClick={openModal} title={employee.email}>
+                                <TableCell style={{ width: 60,cursor:"pointer",marginLeft:0 }} align="right" onClick={openModal} title={employee.email}>
                                     X
                                 </TableCell>
                             </TableRow>
