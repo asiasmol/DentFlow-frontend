@@ -1,16 +1,25 @@
 import * as React from 'react';
 import {EmployeeResponse} from "../../models/api/EmployeeResponse";
-import {useCallback, useEffect} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {ClinicApi} from "../../api/ClinicApi";
 import {Container} from "./Table.styles";
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import {Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableFooter,
-    TablePagination, TableRow, useTheme} from '@mui/material';
-import {UserApi} from "../../api/UserApi";
+import {
+    Box, CardActions, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableFooter,
+    TablePagination, TableRow, useTheme
+} from '@mui/material';
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalBody,
+    ModalFooter, UserName, TextFieldModal, Button,
+} from "../../components/profile/Profile.style";
 import {toast} from "react-toastify";
+import Typography from "@mui/material/Typography";
 
 interface TablePaginationActionsProps {
     count: number;
@@ -82,6 +91,18 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
 export default function CustomPaginationActionsTable() {
     const [employees, setEmployees] = React.useState<EmployeeResponse[]>([]);
+    const [employeeMail, setEmployeeMail] = React.useState<string>("");
+    const [showModal, setShowModal] = useState(false);
+    const [isDeleteConfirmed, setIsDeleteConfirmed] = useState<boolean>(false);
+    const openModal = (
+        event: React.MouseEvent<HTMLTableCellElement>
+    ) => {
+        setEmployeeMail(event.currentTarget.title)
+        setShowModal(true)
+    }
+    const closeModal = () => {
+        setShowModal(false);
+    };
 
     const fetchEmployees= useCallback(async () => {
         try {
@@ -118,12 +139,12 @@ export default function CustomPaginationActionsTable() {
     };
 
     const handleEmployeeDelete = async (
-        event: React.MouseEvent<HTMLTableCellElement>
     ) => {
         try {
-            await ClinicApi.deleteEmployee({
-                email: event.currentTarget.title
-            });
+             await ClinicApi.deleteEmployee({
+                email: employeeMail
+            })
+            closeModal()
             const result = await ClinicApi.getEmployees()
             setEmployees(result.data)
             toast.success("Pracownik usunięty");
@@ -151,7 +172,7 @@ export default function CustomPaginationActionsTable() {
                                 <TableCell style={{ width: 60,marginLeft:0 }} >
                                     {employee.email}
                                 </TableCell>
-                                <TableCell style={{ width: 60,marginLeft:0 }} align="right" onClick={handleEmployeeDelete} title={employee.email}>
+                                <TableCell style={{ width: 60,marginLeft:0 }} align="right" onClick={openModal} title={employee.email}>
                                     X
                                 </TableCell>
                             </TableRow>
@@ -180,6 +201,26 @@ export default function CustomPaginationActionsTable() {
                                 onRowsPerPageChange={handleChangeRowsPerPage}
                                 ActionsComponent={TablePaginationActions}
                             />
+                            <CardActions>
+                                {showModal && (
+                                    <Modal>
+                                        <ModalOverlay/>
+                                        <ModalContent>
+                                            <UserName>Na pewno chcesz usunąć pracownika?</UserName>
+                                            <ModalBody>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <Button onClick={closeModal}>
+                                                    Anuluj
+                                                </Button>
+                                                <Button onClick={handleEmployeeDelete}>
+                                                    Potwierdz
+                                                </Button>
+                                            </ModalFooter>
+                                        </ModalContent>
+                                    </Modal>
+                                )}
+                            </CardActions>
                         </TableRow>
                     </TableFooter>
                 </Table>
