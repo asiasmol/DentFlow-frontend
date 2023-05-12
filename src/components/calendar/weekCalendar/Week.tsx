@@ -19,7 +19,7 @@ export  const Week: React.FC<Props> = (props:Props) =>{
         <WeekBody isOpen={props.isOpen}>
             {props.week.map((day, id) => (
                 <>
-                    <WeekDay key={id} column={id+1} isWeekCalendar={props.isWeekCalendar} changeCalendar={props.changeCalendar} day={day} />
+                    <WeekDay key={id} column={id+1} isWeekCalendar={props.isWeekCalendar} changeCalendar={props.changeCalendar} day={day}  isDoctor={false}/>
                 </>
             ))}
         </WeekBody>

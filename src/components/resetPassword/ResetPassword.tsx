@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import {toast} from "react-toastify";
@@ -17,7 +17,6 @@ import {AuthApi} from "../../api/AuthApi";
 
 
 export const ResetPassword = () => {
-    const [token, setToken] = useState<string|null>(null)
     const [password, setPassword] = useState('')
     const [hasLowercase, setHasLowercase] = useState<boolean>(true);
     const [hasUppercase, setHasUppercase] = useState<boolean>(true);
@@ -27,7 +26,11 @@ export const ResetPassword = () => {
     const [isRepeatedPasswordValid, setIsRepeatedPasswordValid] = useState<boolean>(true);
     const [isDataValid, setIsDataValid] = useState<boolean>(false);
     const navigate = useNavigate();
-    const location = useLocation();
+    const useUrlQuery = () => {
+        return new URLSearchParams(useLocation().search)
+    }
+    const queryRef = useRef<URLSearchParams>(useUrlQuery())
+    const token = queryRef.current.get('token')
 
     const handleSubmit = useCallback(async () => {
         try {
@@ -48,11 +51,9 @@ export const ResetPassword = () => {
                 position: toast.POSITION.TOP_RIGHT,
             });
         }
-    }, [token,password,navigate]);
+    }, [password,navigate]);
 
     useEffect(() => {
-        const searchParams = new URLSearchParams(location.search);
-        setToken(searchParams.get('token'))
         setIsDataValid((hasLength &&hasLowercase &&hasUppercase &&hasSpecialChar &&hasDigit && isRepeatedPasswordValid))
     }, [hasLength,hasLowercase,hasUppercase,hasSpecialChar,hasDigit,isRepeatedPasswordValid]);
 

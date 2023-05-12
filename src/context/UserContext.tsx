@@ -6,6 +6,7 @@ import { UserApi } from "../api/UserApi";
 import jwt_decode from "jwt-decode";
 import {NavbarContext} from "./NavbarContext";
 import {UnLoginPages} from "../models/pages/UnLoginPages";
+import {useNavigate} from "react-router-dom";
 
 const defaultSettings: UserContextType = {
   currentUser: null,
@@ -17,6 +18,7 @@ export const UserContext = createContext<UserContextType>(defaultSettings);
 export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const {pagesModifier } = useContext(NavbarContext);
+  const navigate = useNavigate();
 
   const userModifier = (user: User | null) => {
     setCurrentUser(user);
@@ -47,6 +49,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
         localStorage.removeItem(CLINIC_NAME)
         localStorage.removeItem(CLINIC_ID)
         pagesModifier(UnLoginPages);
+        navigate("/login")
       }
     }
   }, [fetchUser, currentUser,pagesModifier]);

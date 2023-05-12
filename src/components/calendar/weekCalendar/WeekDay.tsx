@@ -4,6 +4,7 @@ import {DayBody, DayBodyHeader, DayLabel, DayTextLabel, Hour, HourHeader, Visit}
 import {CalendarContext} from "../../../context/CalendarContext";
 import {VisitResponse} from "../../../models/api/VisitResponse";
 import Tooltip from "@mui/material/Tooltip";
+import {UserContext} from "../../../context/UserContext";
 
 
 
@@ -12,9 +13,11 @@ type Props = {
     changeCalendar:() => void;
     column: number,
     isWeekCalendar:boolean;
+    isDoctor:boolean;
 };
 export  const WeekDay: React.FC<Props> = (props:Props) =>{
     const {currentVisits,visitModifier,selectedDateModifier,currentVisit} = useContext(CalendarContext);
+    const {currentUser} = useContext(UserContext);
 
     const getMatchingVisits = (hour:string) => {
         const day = props.day.format("YYYYMMDD");
@@ -33,7 +36,7 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
     };
     return(
         <>
-            <DayBody column={props.column}>
+            <DayBody column={props.column} isDoctor={props.isDoctor} >
                 <DayBodyHeader  isToday={dayjs(new Date()).format("YYYYMMDD")  === props.day.format("YYYYMMDD")}>
                     <DayTextLabel className="margin marginBottom0" >{props.day.format("ddd")}.</DayTextLabel>
                     <DayLabel>{props.day.format("DD")}</DayLabel>
@@ -50,8 +53,7 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                                         </div>
                                     }>
                                         <Visit  onClick={() => setCurrentVisit(visit)} min={Number(dayjs(visit.visitDate, 'YYYY-MM-DD HH:mm').format("mm"))} selectedVisit={visit==currentVisit}>
-                                            {visit.doctor.firstName}
-                                            {visit.doctor.lastName}
+                                            {visit.patient.firstName}   {visit.patient.lastName}
                                         </Visit>
                                     </Tooltip >
                                 ))}

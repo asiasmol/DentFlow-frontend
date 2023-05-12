@@ -270,8 +270,10 @@ export  const Visit: React.FC<Props> = (props:Props) =>{
         safeToothStatus()
     }
     useEffect(() => {
-        if(currentVisit)
-        setTeeth(currentVisit.patient.teeth.sort((a,b) => a.number-b.number))
+        if(currentVisit){
+            setTeeth(currentVisit.patient.teeth.sort((a,b) => a.number-b.number))
+            setCurrentTooth(null)
+        }
     },[currentVisit])
     return(
        <VisitBody>

@@ -21,6 +21,7 @@ import {Pricing} from "../components/pricing/Pricing";
 import {NotFound} from "../pages/notFoundPage/NotFound";
 import { SendEmail } from "../components/resetPassword/SendEmail";
 import {ResetPassword} from "../components/resetPassword/ResetPassword";
+import {SelectedProtectedRoute} from "../components/SelectedProtectedRoute";
 
 
 
@@ -82,7 +83,9 @@ export const AppRouter = () => {
                 element={
                     <ProtectedRoute>
                         <CalendarContextProvider>
-                            <Calendar />
+                            <SelectedProtectedRoute>
+                                <Calendar />
+                            </SelectedProtectedRoute>
                         </CalendarContextProvider>
                     </ProtectedRoute>
                 }

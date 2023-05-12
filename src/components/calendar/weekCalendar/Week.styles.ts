@@ -6,9 +6,9 @@ export const WeekBody = styled.div<{isOpen:boolean}>`
   display: grid;
   grid-template-columns: repeat(7,1fr);
 `;
-export const DayBody = styled.div<{column:number}>`
+export const DayBody = styled.div<{column:number,isDoctor:boolean}>`
   height: fit-content;
-  grid-column: ${props => props.column};
+  grid-column: ${props => props.isDoctor ? 'span 3': props.column};
   border-left: 1px solid #1784B3;
   border-right: 1px solid #1784B3;
   text-align: center;
