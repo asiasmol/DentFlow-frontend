@@ -209,6 +209,18 @@ export default function CustomPaginationActionsTable() {
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
                     <TableBody>
+                        <TableRow>
+                            <TableCell>
+                                <strong>Imię</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong>Nazwisko</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong> Email</strong>
+                            </TableCell>
+                            <TableCell />
+                        </TableRow>
                         {(rowsPerPage > 0
                                 ? employeesSearchResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 : employeesSearchResults
@@ -221,6 +233,9 @@ export default function CustomPaginationActionsTable() {
                                        }}>
                                 <TableCell component="th" scope="row">
                                     {employee.firstName}
+                                </TableCell>
+                                <TableCell >
+                                    {employee.lastName}
                                 </TableCell>
                                 <TableCell >
                                     {employee.lastName}
