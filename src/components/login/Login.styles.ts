@@ -1,6 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import TextField from "@mui/material/TextField";
 import {FormControlLabel, Grid} from "@mui/material";
+import {DatePicker} from "@mui/x-date-pickers/DatePicker";
+import {DateTimePicker} from "@mui/x-date-pickers";
 
 
 export const RememberMeLabel = styled(FormControlLabel)`
@@ -146,6 +148,64 @@ export const StyledTextFieldSmall = styled(TextField)`
     display: none;
     width: 80%;
     margin-top: 1rem;
+    padding: 0;
+    .MuiInputLabel-root {
+      font-weight: normal;
+    }
+    .MuiInputBase-input {
+      font-size: 16px;
+    }
+  }
+
+  @media(max-width: 950px) {
+    && {
+      display: flex;
+      width: 70%;
+      margin-right: auto;
+      margin-left: auto;
+      padding: 0;
+      .MuiInputLabel-root {
+        font-size: 14px;
+        
+      }
+      .MuiInputBase-input {
+        font-size: 14px;
+      }
+    }
+  }
+`;
+
+export const StyledDatePickerMedium = styled(DatePicker)`
+  && {
+    display: flex;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 0;
+  }
+
+  @media (max-width: 950px) {
+    && {
+      display: none;
+      width: 80%;
+      margin-top: 1rem;
+      padding: 0;
+
+      .MuiInputLabel-root {
+        font-size: 14px;
+      }
+
+      .MuiInputBase-input {
+        font-size: 14px;
+      }
+    }
+  }
+;`
+
+export const StyledDatePickerSmall = styled(DatePicker)`
+  && {
+    display: none;
+    width: 80%;
+    margin-top: 0.5rem;
     padding: 0;
     .MuiInputLabel-root {
       font-weight: normal;

@@ -19,6 +19,7 @@ import {
     UserName
 } from "../profile/Profile.style";
 
+import {toast} from "react-toastify";
 
 const ClinicRegistration = () => {
     const [clinicName, setClinicName] = useState('');
@@ -57,9 +58,9 @@ const ClinicRegistration = () => {
                 password: password,
 
             });
-            // currentUser?.roles.push("OWNER")
-            // userModifier(currentUser);
+            toast.success("Założono klinikę")
             navigate("/")
+
         } catch (error: any) {
 
         }
