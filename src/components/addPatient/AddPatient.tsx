@@ -64,7 +64,7 @@ export const AddPatient = () => {
 
                 <StyledTextFieldMedium label="PESEL" size={"medium"} onChange={(event) => setPesel(event.target.value)}/>
                 <StyledTextFieldSmall label="PESEL" size={"small"} onChange={(event) => setPesel(event.target.value)}/>
-                {pesel.length != 9 && pesel.length != 0 && <ValidationError>Błędny PESEL</ValidationError>}
+                {pesel.length !== 9 && pesel.length !== 0 && <ValidationError>Błędny PESEL</ValidationError>}
 
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <StyledDatePickerMedium label={"Data urodzenia"} slotProps={{textField:{size:"medium"}}} value={birthDate} format={"DD-MM-YYYY"} onChange={(date) => handleBirthdayChange(date)}/>

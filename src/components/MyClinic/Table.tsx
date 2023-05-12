@@ -19,7 +19,7 @@ import {
     ModalFooter, UserName, Button,
 } from "../../components/profile/Profile.style";
 import {toast} from "react-toastify";
-import {PatientResponse} from "../../models/api/PatientResponse";
+
 
 
 interface TablePaginationActionsProps {
@@ -126,7 +126,7 @@ export default function CustomPaginationActionsTable() {
             results = searchTerm ? searchEmployees( searchTerm , searchTerm) : [];
         }
         setEmployeesSearchResults(results);
-        if(event.target.value == ""){
+        if(event.target.value === ""){
             setEmployeesSearchResults(employees)
         }
     }

@@ -25,9 +25,12 @@ export const NavbarContextProvider = ({ children }: React.PropsWithChildren) => 
     useEffect(() => {
         if(currentUser?.roles.includes("DOCTOR")){
             pagesModifier(DoctorPages)
-        } else if (currentUser?.roles.includes("OWNER")){
+        } else if (currentUser?.roles.includes("RECEPTIONIST")){
+            pagesModifier(DoctorPages)
+        }
+        else if (currentUser?.roles.includes("OWNER")){
             pagesModifier(OwnerPages)
-        } else {
+        }else {
             pagesModifier(UnLoginPages);
         }
 

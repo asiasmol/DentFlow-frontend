@@ -5,6 +5,8 @@ export type PatientResponse = {
     firstName: string,
     lastName: string,
     email: string,
-    phoneNumber: string
+    birthDate: string,
+    pesel: string,
+    phoneNumber: string,
     teeth : Tooth[];
 }

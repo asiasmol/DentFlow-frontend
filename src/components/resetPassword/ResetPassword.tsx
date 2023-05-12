@@ -51,7 +51,7 @@ export const ResetPassword = () => {
                 position: toast.POSITION.TOP_RIGHT,
             });
         }
-    }, [password,navigate]);
+    }, [password,navigate,token]);
 
     useEffect(() => {
         setIsDataValid((hasLength &&hasLowercase &&hasUppercase &&hasSpecialChar &&hasDigit && isRepeatedPasswordValid))

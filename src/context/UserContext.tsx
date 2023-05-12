@@ -52,7 +52,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
         navigate("/login")
       }
     }
-  }, [fetchUser, currentUser,pagesModifier]);
+  }, [fetchUser, currentUser,pagesModifier,navigate]);
 
   return (
     <UserContext.Provider value={{ currentUser, userModifier }}>

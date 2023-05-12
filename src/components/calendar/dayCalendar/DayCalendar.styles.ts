@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ListItem from '@mui/material/ListItem';
 
 export const DayBody = styled.div<{isOpen:boolean}>`
   float: left;
@@ -125,3 +124,4 @@ export const PatientInformation = styled.div`
   text-align: center;
     font-size: 1.5rem;
 `
+
