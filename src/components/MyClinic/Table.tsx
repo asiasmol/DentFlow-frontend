@@ -130,6 +130,8 @@ export default function CustomPaginationActionsTable() {
             setEmployeesSearchResults(employees)
         }
     }
+    const [highlightedRow, setHighlightedRow] = useState<number | null>(null);
+
     const openModal = (
         event: React.MouseEvent<HTMLTableCellElement>
     ) => {
@@ -138,6 +140,14 @@ export default function CustomPaginationActionsTable() {
     }
     const closeModal = () => {
         setShowModal(false);
+    };
+
+    const handleMouseEnter = (event: React.MouseEvent<HTMLElement>, index: number) => {
+        setHighlightedRow(index);
+    };
+
+    const handleMouseLeave = () => {
+        setHighlightedRow(null);
     };
 
     const fetchEmployees= useCallback(async () => {
@@ -202,8 +212,13 @@ export default function CustomPaginationActionsTable() {
                         {(rowsPerPage > 0
                                 ? employeesSearchResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 : employeesSearchResults
-                        ).map((employee) => (
-                            <TableRow key={employee.firstName}>
+                        ).map((employee, index) => (
+                            <TableRow  key={employee.firstName}
+                                       onMouseEnter={(event) => handleMouseEnter(event, index)}
+                                       onMouseLeave={handleMouseLeave}
+                                       sx={{
+                                           backgroundColor: highlightedRow === index ? '#f5f5f5' : 'transparent'
+                                       }}>
                                 <TableCell component="th" scope="row">
                                     {employee.firstName}
                                 </TableCell>
