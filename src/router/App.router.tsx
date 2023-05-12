@@ -23,7 +23,7 @@ import { SendEmail } from "../components/resetPassword/SendEmail";
 import {ResetPassword} from "../components/resetPassword/ResetPassword";
 import {SelectedProtectedRoute} from "../components/SelectedProtectedRoute";
 import { ResetEmail } from "../components/resetPassword/ResetEmail";
-
+import PatientDetails from "../patientDetails/PatientDetails";
 
 
 
@@ -85,6 +85,7 @@ export const AppRouter = () => {
                  </ProtectedRoute>
              }>
             </Route>
+            <Route path="/patients/:lastName" element={<PatientDetails />} />
             <Route
                 path="/clinic"
                 element={

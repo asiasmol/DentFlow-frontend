@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useCallback, useContext, useEffect} from "react";
 import {ClinicApi} from "../../api/ClinicApi";
-import {Container} from "./PatientsList.styles";
+import {Container, PatientDetailsButton} from "./PatientsList.styles";
 import {PatientResponse} from "../../models/api/PatientResponse";
 import {ClinicContext} from "../../context/ClinicContext";
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -15,6 +15,10 @@ import TableBody from "@mui/material/TableBody";
 import TablePagination from "@mui/material/TablePagination";
 import {EmployeeResponse} from "../../models/api/EmployeeResponse";
 import {SearchElement, SearchElementInput} from "../MyClinic/Table.styles";
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import {LoginButton} from "../login/Login.styles";
+import { Tooth } from '../../models/Tooth';
+import {useNavigate} from "react-router-dom";
 
 interface TablePaginationActionsProps {
     count: number;
@@ -28,7 +32,7 @@ interface TablePaginationActionsProps {
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
     const theme = useTheme();
-    const { count, page, rowsPerPage, onPageChange } = props;
+    const {count, page, rowsPerPage, onPageChange} = props;
 
     const handleFirstPageButtonClick = (
         event: React.MouseEvent<HTMLButtonElement>,
@@ -49,39 +53,38 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
     };
 
     return (
-        <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+        <Box sx={{flexShrink: 0, ml: 2.5}}>
             <IconButton
                 onClick={handleFirstPageButtonClick}
                 disabled={page === 0}
                 aria-label="first page"
             >
-                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+                {theme.direction === 'rtl' ? <LastPageIcon/> : <FirstPageIcon/>}
             </IconButton>
             <IconButton
                 onClick={handleBackButtonClick}
                 disabled={page === 0}
                 aria-label="previous page"
             >
-                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                {theme.direction === 'rtl' ? <KeyboardArrowRight/> : <KeyboardArrowLeft/>}
             </IconButton>
             <IconButton
                 onClick={handleNextButtonClick}
                 disabled={page >= Math.ceil(count / rowsPerPage) - 1}
                 aria-label="next page"
             >
-                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                {theme.direction === 'rtl' ? <KeyboardArrowLeft/> : <KeyboardArrowRight/>}
             </IconButton>
             <IconButton
                 onClick={handleLastPageButtonClick}
                 disabled={page >= Math.ceil(count / rowsPerPage) - 1}
                 aria-label="last page"
             >
-                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+                {theme.direction === 'rtl' ? <FirstPageIcon/> : <LastPageIcon/>}
             </IconButton>
         </Box>
     );
 }
-
 
 
 export default function CustomPaginationActionsTable() {
@@ -90,6 +93,7 @@ export default function CustomPaginationActionsTable() {
     const {currentClinic} = useContext(ClinicContext);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const navigate = useNavigate();
 
     function splitString(str: string): string[] | null {
         if (str.includes(" ")) {
@@ -97,38 +101,41 @@ export default function CustomPaginationActionsTable() {
         }
         return null;
     }
-    function searchPatients( firstName:string,lastName:string) {
 
-        return patients.filter((patient) =>{
+    function searchPatients(firstName: string, lastName: string) {
+
+        return patients.filter((patient) => {
             const firstNameMatch = patient.firstName.toLowerCase().includes(firstName.toLowerCase());
             const lastNameMatch = patient.lastName.toLowerCase().includes(lastName.toLowerCase());
 
-            if ( firstName === lastName)return firstNameMatch || lastNameMatch
+            if (firstName === lastName) return firstNameMatch || lastNameMatch
             else return firstNameMatch && lastNameMatch
         });
     }
+
     function patientHandleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         const searchTerm = event.target.value;
         const result = splitString(searchTerm);
         let results: PatientResponse[] = [];
         if (result !== null) {
             const [firstWord, secondWord] = result;
-            results = searchTerm ? searchPatients(firstWord,secondWord) : [];
+            results = searchTerm ? searchPatients(firstWord, secondWord) : [];
         } else {
-            results = searchTerm ? searchPatients( searchTerm , searchTerm) : [];
+            results = searchTerm ? searchPatients(searchTerm, searchTerm) : [];
         }
         setPatientsSearchResults(results);
-        if(event.target.value == ""){
+        if (event.target.value == "") {
             setPatientsSearchResults(patients)
         }
     }
 
-    const fetchPatients= useCallback(async () => {
+    const fetchPatients = useCallback(async () => {
         try {
             const result = await ClinicApi.getPatients({
-                clinicId:currentClinic?.id
+                clinicId: currentClinic?.id
             });
             setPatients(result.data)
+            console.log(result.data)
             setPatientsSearchResults(result.data)
         } finally {
             // setIsLoading(false);
@@ -158,6 +165,10 @@ export default function CustomPaginationActionsTable() {
         setPage(0);
     };
 
+    const handlePatientDetailsBtt = (patient: PatientResponse) => {
+        navigate(`/patients/${patient.lastName}`, {state: {patient}})
+    }
+
     return (
         <Container>
             <SearchElement>
@@ -180,6 +191,9 @@ export default function CustomPaginationActionsTable() {
                                 </TableCell>
                                 <TableCell style={{ width: 60,marginLeft:0 }} >
                                     {patient.email}
+                                </TableCell>
+                                <TableCell align={"right"}>
+                                    <PatientDetailsButton onClick={() => handlePatientDetailsBtt(patient)}>Karta pacjenta</PatientDetailsButton>
                                 </TableCell>
                             </TableRow>
                         ))}

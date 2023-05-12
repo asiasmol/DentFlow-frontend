@@ -420,9 +420,6 @@ export const StyledTextFieldSmall = styled(TextField)`
   }
 `;
 
-interface DatePicker{
-    margin_top : number
-}
 export const StyledDatePickerMedium = styled(DatePicker)`
   && {
     width: 100%;
