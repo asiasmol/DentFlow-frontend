@@ -13,6 +13,8 @@ import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TablePagination from "@mui/material/TablePagination";
+import {EmployeeResponse} from "../../models/api/EmployeeResponse";
+import {SearchElement, SearchElementInput} from "../MyClinic/Table.styles";
 
 interface TablePaginationActionsProps {
     count: number;
@@ -84,9 +86,42 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
 export default function CustomPaginationActionsTable() {
     const [patients, setPatients] = React.useState<PatientResponse[]>([]);
+    const [patientsSearchResults, setPatientsSearchResults] = React.useState<PatientResponse[]>([]);
     const {currentClinic} = useContext(ClinicContext);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+    function splitString(str: string): string[] | null {
+        if (str.includes(" ")) {
+            return str.split(" ");
+        }
+        return null;
+    }
+    function searchPatients( firstName:string,lastName:string) {
+
+        return patients.filter((patient) =>{
+            const firstNameMatch = patient.firstName.toLowerCase().includes(firstName.toLowerCase());
+            const lastNameMatch = patient.lastName.toLowerCase().includes(lastName.toLowerCase());
+
+            if ( firstName === lastName)return firstNameMatch || lastNameMatch
+            else return firstNameMatch && lastNameMatch
+        });
+    }
+    function patientHandleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const searchTerm = event.target.value;
+        const result = splitString(searchTerm);
+        let results: PatientResponse[] = [];
+        if (result !== null) {
+            const [firstWord, secondWord] = result;
+            results = searchTerm ? searchPatients(firstWord,secondWord) : [];
+        } else {
+            results = searchTerm ? searchPatients( searchTerm , searchTerm) : [];
+        }
+        setPatientsSearchResults(results);
+        if(event.target.value == ""){
+            setPatientsSearchResults(patients)
+        }
+    }
 
     const fetchPatients= useCallback(async () => {
         try {
@@ -94,6 +129,7 @@ export default function CustomPaginationActionsTable() {
                 clinicId:currentClinic?.id
             });
             setPatients(result.data)
+            setPatientsSearchResults(result.data)
         } finally {
             // setIsLoading(false);
         }
@@ -124,12 +160,16 @@ export default function CustomPaginationActionsTable() {
 
     return (
         <Container>
+            <SearchElement>
+                Wyszukaj Pacjenta:<br/>
+                <SearchElementInput onChange={patientHandleInputChange}/>
+            </SearchElement>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
                     <TableBody>
                         {(rowsPerPage > 0
-                                ? patients.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                : patients
+                                ? patientsSearchResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                : patientsSearchResults
                         ).map((patient) => (
                             <TableRow key={patient.firstName}>
                                 <TableCell component="th" scope="row">
