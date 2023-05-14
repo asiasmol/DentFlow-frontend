@@ -5,6 +5,7 @@ import {VisitApi} from "../api/VisitApi";
 import {ClinicContext} from "./ClinicContext";
 import {getWeek} from "../utils/utils";
 import dayjs from "dayjs";
+import {UserContext} from "./UserContext";
 
 
 const defaultSettings: CalendarContextType = {
@@ -31,9 +32,10 @@ export const CalendarContextProvider = ({ children }: React.PropsWithChildren) =
     const [selectedDate,setSelectedDate] = useState(dayjs(new Date()))
     const [weekDays,setWeekDays] = useState(getWeek(currenDate))
     const [currentVisit, setCurrentVisit] = useState<VisitResponse |null>(null);
-    const [currentVisits, setCurrentVisits] = useState<VisitResponse[] >([]);
-    const [noFilterVisits,setNoFilterVisits] = useState<VisitResponse[] >([]);
+    const [currentVisits, setCurrentVisits] = useState<VisitResponse[]  >([]);
+    const [noFilterVisits,setNoFilterVisits] = useState<VisitResponse[]  >([]);
     const {currentClinic} = useContext(ClinicContext);
+    const {currentUser} = useContext(UserContext);
     const visitModifier = (visit: VisitResponse ) => {
         setCurrentVisit(visit);
     };
@@ -49,9 +51,23 @@ export const CalendarContextProvider = ({ children }: React.PropsWithChildren) =
     };
     const fetchVisits= useCallback(async () => {
         try {
-            const result = await VisitApi.getVisitsFromClinic({clinicId: currentClinic?.id})
-            setCurrentVisits(result.data);
-            setNoFilterVisits(result.data)
+            if (currentUser?.roles.includes("DOCTOR")){
+                const result = await VisitApi.getDoctorVisitsFromClinic({clinicId: currentClinic?.id})
+                setCurrentVisits(result.data);
+                setNoFilterVisits(result.data)
+            }
+            else if (currentUser?.roles.includes("RECEPTIONIST")){
+                const result = await VisitApi.getVisitsFromClinic({clinicId: currentClinic?.id})
+                console.log(result.data)
+                setCurrentVisits(result.data);
+                setNoFilterVisits(result.data)
+            }else if(currentUser?.roles.includes("USER")){
+                const result = await VisitApi.getMyVisits()
+                console.log(result.data)
+                setCurrentVisits(result.data);
+                setNoFilterVisits(result.data)
+            }
+
         }catch (e) {
             console.log("nie załaduje")
         }

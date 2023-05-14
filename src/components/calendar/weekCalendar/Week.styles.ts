@@ -6,9 +6,16 @@ export const WeekBody = styled.div<{isOpen:boolean}>`
   display: grid;
   grid-template-columns: repeat(7,1fr);
 `;
-export const DayBody = styled.div<{column:number,isDoctor:boolean}>`
+export const DayBody = styled.div<{column:number,isWeekCalendar:boolean,isDoctor:boolean|undefined,isReceptionist:boolean |undefined}>`
   height: fit-content;
-  grid-column: ${props => props.isDoctor ? 'span 3': props.column};
+  ${props =>
+      props.isWeekCalendar
+          ? `grid-column: ${props.column};`
+          : props.isDoctor
+              ? `grid-column: ${props.column};`
+              : props.isReceptionist
+                  ? 'grid-column: span 3;'
+                  : 'grid-column: span 4;'};
   border-left: 1px solid #1784B3;
   border-right: 1px solid #1784B3;
   text-align: center;

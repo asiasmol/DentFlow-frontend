@@ -22,4 +22,10 @@ export class VisitApi {
     }) {
         await authorizedApi.post('/visits/ReceptionistDescription', request)
     }
+
+    static getDoctorVisitsFromClinic = async(request: { clinicId: number | undefined }) =>
+        await authorizedApi.get("/visits/doctor", {params:request})
+
+    static getMyVisits = async() =>
+        await authorizedApi.get("/visits/myVisits", )
 }

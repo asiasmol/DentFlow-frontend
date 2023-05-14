@@ -29,6 +29,7 @@ import PatientDetails from "../patientDetails/PatientDetails";
 
 
 
+
 export const AppRouter = () => {
   return (
     <Routes>
@@ -69,7 +70,7 @@ export const AppRouter = () => {
                 }
             ></Route>
             <Route
-              path="/clinics"
+              path="/clinics-choice"
               element={
                <ProtectedRoute>
                    <NonOwnerProtectedRoot>
@@ -81,9 +82,20 @@ export const AppRouter = () => {
             <Route path="/patients"
              element={
                  <ProtectedRoute>
-                         <PatientsList />
+                     <SelectedProtectedRoute>
+                        <PatientsList />
+                     </SelectedProtectedRoute>
                  </ProtectedRoute>
              }>
+            </Route>
+            <Route path="/visits"
+                   element={
+                       <ProtectedRoute>
+                           <CalendarContextProvider>
+                               <Calendar/>
+                           </CalendarContextProvider>
+                       </ProtectedRoute>
+                   }>
             </Route>
             <Route path="/patients/:lastName" element={<PatientDetails />} />
             <Route
@@ -138,14 +150,10 @@ export const AppRouter = () => {
                 path="/add-patient"
                 element={
                     <ProtectedRoute>
-                        <AddPatient />
+                        <SelectedProtectedRoute>
+                                    <AddPatient />
+                        </SelectedProtectedRoute>
                     </ProtectedRoute>
-                }
-            ></Route>
-            <Route
-                path="/pricing"
-                element={
-                    <Pricing/>
                 }
             ></Route>
             <Route

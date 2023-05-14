@@ -5,6 +5,7 @@ import {NavbarContextType} from "../models/pages/NavbarContextType";
 import {UserContext} from "./UserContext";
 import {DoctorPages} from "../models/pages/DoctorPages";
 import {OwnerPages} from "../models/pages/OwnerPages";
+import {UserPages} from "../models/pages/UserPages";
 
 
 const defaultSettings: NavbarContextType = {
@@ -23,14 +24,18 @@ export const NavbarContextProvider = ({ children }: React.PropsWithChildren) => 
     };
 
     useEffect(() => {
-        if(currentUser?.roles.includes("DOCTOR")){
+         if (currentUser?.roles.includes("DOCTOR")){
             pagesModifier(DoctorPages)
-        } else if (currentUser?.roles.includes("RECEPTIONIST")){
+        }
+        else if (currentUser?.roles.includes("RECEPTIONIST")){
             pagesModifier(DoctorPages)
         }
         else if (currentUser?.roles.includes("OWNER")){
             pagesModifier(OwnerPages)
-        }else {
+        }else if(currentUser?.roles.includes("USER")){
+            pagesModifier(UserPages)
+        }
+        else {
             pagesModifier(UnLoginPages);
         }
 

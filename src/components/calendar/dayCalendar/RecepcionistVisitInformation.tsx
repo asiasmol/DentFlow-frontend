@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, useCallback, useContext, useEffect, useState} from "react"
+import React, { useCallback, useContext, useEffect, useState} from "react"
 import {Informacions, RecepcionistVisitInformationContainet} from "./RecepcionistVisitInformation.styles"
 import {Description, DescriptionRow} from "./DayCalendar.styles";
 import {CalendarContext} from "../../../context/CalendarContext";

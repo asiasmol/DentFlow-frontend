@@ -6,6 +6,7 @@ import {Arrow, CalendarBody, CalendarHeaderBody, BackButton,BackVisitButton, Hea
 import {CalendarContext} from "../../context/CalendarContext";
 import { DayCalendar } from './dayCalendar/DayCalendar';
 import {AddVisitModal} from "./addVisit/AddVisitModal";
+import {UserContext} from "../../context/UserContext";
 
 
 export const Calendar = () => {
@@ -13,6 +14,7 @@ export const Calendar = () => {
     require('dayjs/locale/pl'); // Importuj lokalizację językową
     dayjs.locale('pl'); // Ustawienie języka na polski
     const {currenDate,weekDays,dateModifier} = useContext(CalendarContext)
+    const {currentUser} = useContext(UserContext)
     const [isOpen, setIsOpen] = useState(false);
     const [isWeekCalendar, setIsWeekCalendar] = useState(true);
     const [showModal, setShowModal] = useState(false);
@@ -47,9 +49,10 @@ export const Calendar = () => {
                    <span />
                </Toggle>
                <CalendarHeaderBody>
-                   <BackVisitButton onClick={handleModalOpen}>
-                       Dodaj wizyte
-                   </BackVisitButton>
+                   {(currentUser?.roles.includes("DOCTOR") ||
+                       currentUser?.roles.includes("RECEPTIONIST")) &&
+                       <BackVisitButton onClick={handleModalOpen}>Dodaj wizyte</BackVisitButton>}
+
                    <BackButton onClick={goToday}>
                        Dzisiaj
                    </BackButton>

@@ -13,11 +13,12 @@ type Props = {
     changeCalendar:() => void;
     column: number,
     isWeekCalendar:boolean;
-    isDoctor:boolean;
+    isDoctor:boolean | undefined;
+    isReceptionist:boolean | undefined;
 };
 export  const WeekDay: React.FC<Props> = (props:Props) =>{
     const {currentVisits,visitModifier,selectedDateModifier,currentVisit} = useContext(CalendarContext);
-    const {currentUser} = useContext(UserContext);
+
 
     const getMatchingVisits = (hour:string) => {
         const day = props.day.format("YYYYMMDD");
@@ -36,7 +37,7 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
     };
     return(
         <>
-            <DayBody column={props.column} isDoctor={props.isDoctor} >
+            <DayBody  column={props.column} isWeekCalendar={props.isWeekCalendar} isReceptionist={props.isReceptionist} isDoctor={props.isDoctor} >
                 <DayBodyHeader  isToday={dayjs(new Date()).format("YYYYMMDD")  === props.day.format("YYYYMMDD")}>
                     <DayTextLabel className="margin marginBottom0" >{props.day.format("ddd")}.</DayTextLabel>
                     <DayLabel>{props.day.format("DD")}</DayLabel>

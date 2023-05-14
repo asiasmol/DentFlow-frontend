@@ -16,10 +16,9 @@ type Props = {
 export  const DayCalendar: React.FC<Props> = (props:Props) =>{
     const {selectedDate} = useContext(CalendarContext)
     const {currentUser} = useContext(UserContext)
-
     return(
         <DayBody isOpen={props.isOpen} >
-            <WeekDay  key={"dayCalendar_WeekDay"}column={1}  day={selectedDate}    changeCalendar={()=>{}} isWeekCalendar={false} isDoctor={!currentUser?.roles.includes("DOCTOR")}/>
+            <WeekDay  key={"dayCalendar_WeekDay"}column={1}  day={selectedDate}    changeCalendar={()=>{}} isWeekCalendar={false} isReceptionist={currentUser?.roles.includes("RECEPTIONIST")} isDoctor={currentUser?.roles.includes("DOCTOR")}/>
             {currentUser?.roles.includes("DOCTOR") &&< Visit/>}
             {currentUser?.roles.includes("RECEPTIONIST") &&<RecepcionistVisitInformation/>}
         </DayBody>
