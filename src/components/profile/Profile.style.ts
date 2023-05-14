@@ -189,3 +189,62 @@ export const TableDiv = styled(Box)`
     flex-direction: column;
   }
 `;
+
+export const ModalContentClinic = styled.div`
+  position: relative;
+  z-index: 101;
+  width: 700px;
+  padding: 20px;
+  border: 1px solid #1784b3;
+  border-radius: 1rem;
+  background-color: white;
+
+`;
+export const Week = styled.div`
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Powtarza 7 kolumn z równą szerokością */
+  grid-gap: 10px;
+`;
+export const Monday = styled.div`
+  grid-column: 1;
+width: 100px;
+  display: flex;
+  flex-direction: column;
+`;
+export const Tuesday = styled.div`
+  grid-column: 2;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+`;
+export const Wednesday = styled.div`
+  grid-column: 3;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+`;
+export const Thursday = styled.div`
+  grid-column: 4;
+  display: flex;
+  flex-direction: column;
+`;
+export const Friday = styled.div`
+  grid-column: 5;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+`;
+export const Saturday  = styled.div`
+  grid-column: 6;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+`;
+export const WeekName  = styled.label`
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+`;

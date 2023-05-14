@@ -23,6 +23,7 @@ export default function MultiActionAreaCard() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+
     const openModal = () => {
         setShowModal(true)
     }
