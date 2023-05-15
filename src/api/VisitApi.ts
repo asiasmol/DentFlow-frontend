@@ -1,8 +1,11 @@
 import {authorizedApi} from "../hooks/withAxiosIntercepted";
 import { VisitRequest } from "../models/api/VisitRequest";
+import dayjs from "dayjs";
+import {EmployeeResponse} from "../models/api/EmployeeResponse";
+import {PatientResponse} from "../models/api/PatientResponse";
 
 export class VisitApi {
-    static add = async(request: VisitRequest) =>
+    static add = async (request: VisitRequest) =>
         await authorizedApi.post("/visits", request)
 
     static getVisitsFromClinic = async(request: { clinicId: number | undefined }) =>

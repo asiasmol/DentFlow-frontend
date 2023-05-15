@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import TextareaAutosize from '@mui/base/TextareaAutosize';
+import {Autocomplete} from "@mui/material";
 
 export const Modal = styled.div`
   position: fixed;
@@ -24,8 +26,8 @@ export const ModalOverlay = styled.div`
 export const ModalContent = styled.div`
   position: relative;
   z-index: 101;
-  width: 26rem;
-  height: 500px;
+  width: 36rem;
+  height: 53rem;
   background: #ffffff;
   border: 3px solid #1784b3;
   border-radius: 1rem;
@@ -34,43 +36,35 @@ export const ModalContent = styled.div`
   flex-direction: column;
 `;
 
-export const ModalLabelHeader = styled.div`
-  font-size: 30px;
-  text-align: center;
-`;
-export const ModalLabel = styled.div`
-  font-size: 20px;
-  text-align: left;
-  padding-left: 30px;
-`;
-export const ModalTextArea = styled.textarea`
-  margin-right: 30px;
-  height: 80px;
-  margin-left: 30px;
-  resize: none;
-  border: 3px solid #1784b3;
-  border-radius: 1rem;
-`;
-export const ModalTimeOptions = styled.div`
-  margin-top: 10px;
+export const StyledTextarea = styled(TextareaAutosize)`
+  width: 18.4rem;
+  font-family: Montserrat;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 12px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 40px;
-`;
-export const ModalTimeInput = styled.input`
-  border: 1px solid #1784b3;
-  border-radius: 0.2rem;
-`;
-export const AddEmplyeeInput = styled.input`
-  margin-left:50px ;
-  width: 100px;
-  border: 1px solid #1784b3;
-  border-radius: 0.2rem;
-`;
-export const SearchList = styled.ul`
-  
-`
+  border-color: #9a9a9a;
 
-export const SearchElement = styled.li``
-export const ModalButton = styled.button``
+  &:hover {
+    border-color: #131313;
+  }
+
+  &:focus {
+    border-color: #2f8bb4;
+  }
+`;
+
+export const AutocompleteTime = styled(Autocomplete)`
+  width: 9rem;
+`;
+
+export const InputsTime = styled.div`
+  display: flex;
+  gap: 3rem;
+`;

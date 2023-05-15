@@ -67,7 +67,7 @@ export const LoginHeader = styled.div`
   font-size: 2rem;
   align-self: center;
   font-family: Montserrat;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   margin-top: 2rem;
   flex-direction: column;
 
