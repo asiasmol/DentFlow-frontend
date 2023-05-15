@@ -117,6 +117,7 @@ export default function CustomPaginationActionsTable() {
     }
     function employeeHandleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         const searchTerm = event.target.value;
+        console.log(employees)
         const result = splitString(searchTerm);
         let results: EmployeeResponse[] = [];
         if (result !== null) {
@@ -155,6 +156,7 @@ export default function CustomPaginationActionsTable() {
             const result = await ClinicApi.getEmployees()
             setEmployees(result.data);
             setEmployeesSearchResults(result.data);
+            console.log(result.data)
         } finally {
             // setIsLoading(false);
         }
@@ -217,7 +219,10 @@ export default function CustomPaginationActionsTable() {
                                 <strong>Nazwisko</strong>
                             </TableCell>
                             <TableCell>
-                                <strong> Email</strong>
+                                <strong>Status</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong>Email</strong>
                             </TableCell>
                             <TableCell />
                         </TableRow>
@@ -234,10 +239,10 @@ export default function CustomPaginationActionsTable() {
                                 <TableCell component="th" scope="row">
                                     {employee.firstName}
                                 </TableCell>
-                                <TableCell >
-                                    {employee.lastName}
+                                <TableCell>
+                                    {employee.roles.includes("DOCTOR")&&"Lekarz" || employee.roles.includes("RECEPTIONIST")&&"Recepcjonistka"}
                                 </TableCell>
-                                <TableCell style={{ width: 60,marginLeft:0 }} >
+                                <TableCell style={{ width: 60,marginLeft:0 }}>
                                     {employee.email}
                                 </TableCell>
                                 <TableCell style={{ width: 60,cursor:"pointer",marginLeft:0 }} align="right" onClick={openModal} title={employee.email}>
