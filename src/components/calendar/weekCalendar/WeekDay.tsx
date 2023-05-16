@@ -5,6 +5,8 @@ import {CalendarContext} from "../../../context/CalendarContext";
 import {VisitResponse} from "../../../models/api/VisitResponse";
 import Tooltip from "@mui/material/Tooltip";
 import {UserContext} from "../../../context/UserContext";
+import {CLINIC_NAME} from "../../../constants/constants";
+
 
 
 
@@ -18,6 +20,7 @@ type Props = {
 };
 export  const WeekDay: React.FC<Props> = (props:Props) =>{
     const {currentVisits,visitModifier,selectedDateModifier,currentVisit} = useContext(CalendarContext);
+    const {currentUser} = useContext(UserContext)
 
 
     const getMatchingVisits = (hour:string) => {
@@ -50,11 +53,11 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                                     <Tooltip key={i}  title={
                                         <div>
                                             <strong>Lekarz:</strong> {visit.doctor.firstName} {visit.doctor.lastName}<br />
-                                            <strong>Pacjent:</strong> {visit.patient.firstName} {visit.patient.lastName}
+                                            {(currentUser?.roles.includes("DOCTOR") ||currentUser?.roles.includes("RECEPTIONIST"))&& (<> <strong>Pacjent:</strong> {visit.patient.firstName} {visit.patient.lastName}</>)}
                                         </div>
                                     }>
-                                        <Visit  onClick={() => setCurrentVisit(visit)} min={Number(dayjs(visit.visitDate, 'YYYY-MM-DD HH:mm').format("mm"))} selectedVisit={visit==currentVisit}>
-                                            {visit.patient.firstName}   {visit.patient.lastName}
+                                        <Visit  onClick={() => setCurrentVisit(visit)} min={Number(dayjs(visit.visitDate, 'YYYY-MM-DD HH:mm').format("mm"))} type={visit.type} lengthOfTheVisit={visit.lengthOfTheVisit} selectedVisit={visit==currentVisit}>
+                                            {(currentUser?.roles.includes("DOCTOR") ||currentUser?.roles.includes("RECEPTIONIST"))? (<>{visit.patient.firstName}   {visit.patient.lastName}</>):(<>{visit.clinicName} </>)}
                                         </Visit>
                                     </Tooltip >
                                 ))}

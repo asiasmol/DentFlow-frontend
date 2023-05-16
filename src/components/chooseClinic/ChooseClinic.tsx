@@ -78,7 +78,6 @@ export const ChooseClinic = () => {
         try {
             const result = await UserApi.getAllMyPatientsAccountClinics();
             setClinicsToAdd(result.data)
-            console.log(result.data)
         } catch (e){
 
         }
@@ -100,6 +99,7 @@ export const ChooseClinic = () => {
             clinicModifier(foundClinic);
             localStorage.setItem(CLINIC_ID,String(foundClinic.id))
             localStorage.setItem(CLINIC_NAME,foundClinic.name)
+
         }
         navigate(`/clinics/${clinicId}/visits`)
     },[navigate,clinicId,clinicModifier,clinics] );

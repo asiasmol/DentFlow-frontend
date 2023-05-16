@@ -74,16 +74,24 @@ export const Hour = styled.div<{row:number}>`
   }
 `;
 
-export const Visit = styled.div<{selectedVisit:boolean,min:number}>`
+export const Visit = styled.div<{type:string,lengthOfTheVisit:number,selectedVisit:boolean,min:number}>`
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid #1784B3;
   width: 100%;
   margin-top: ${props => props.min}px;
-  height: 30px;
+  height: ${props => props.lengthOfTheVisit}px;
   font-size: 80%;
   color: #fff;
-  background-color: ${props => props.selectedVisit ? '#81a0be' : "#1784B3"};
+  background-color: ${props => props.selectedVisit
+    ? '#81a0be' // Kolor, gdy selectedVisit jest true
+    : props.type === 'CONTROL'
+        ? '#1784B3' // Kolor, gdy type jest CONTROL
+        : props.type === 'TREATMENT'
+            ? 'pink' // Kolor, gdy type jest TREATMENT
+            : props.type === 'OTHER'
+                ? 'black' // Kolor, gdy type jest OTHER
+                : '#1784B3'};
   float: right;
   opacity: 0.5;
   margin-left: 10px;

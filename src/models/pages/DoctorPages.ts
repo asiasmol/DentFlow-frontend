@@ -1,4 +1,5 @@
 import {link} from "../Link";
+import {CLINIC_ID} from "../../constants/constants";
 
 export const DoctorPages: link[] = [
     {
@@ -7,7 +8,7 @@ export const DoctorPages: link[] = [
     },
     {
         label: "Obecna przychodnia",
-        link: "/clinic"
+        link: `/clinics/${localStorage.getItem(CLINIC_ID)}/visits`
     },
     {
         label:"Pacjenci",

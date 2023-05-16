@@ -1,8 +1,19 @@
-import React from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import { EmployeeResponse } from '../../models/api/EmployeeResponse';
 import { VisitResponse } from "../../models/api/VisitResponse";
 import { Time } from "./ClinicAvailability.styles";
 import dayjs from "dayjs";
+import {Button, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, UserName} from "../profile/Profile.styles";
+import {LoginButton, LoginHeader, LoginInputs} from "../login/Login.styles";
+import {Autocomplete, TextField} from "@mui/material";
+import {LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {DemoContainer} from "@mui/x-date-pickers/internals/demo";
+import {DatePicker} from "@mui/x-date-pickers/DatePicker";
+import {StyledTextarea} from "../calendar/addVisit/AddVisitModal..styles";
+import {VisitApi} from "../../api/VisitApi";
+import {toast} from "react-toastify";
+import {CalendarContext} from "../../context/CalendarContext";
 
 
 interface TimeRangeProps {
@@ -13,22 +24,43 @@ interface TimeRangeProps {
 
 export const TimeRange: React.FC<TimeRangeProps> = (props: TimeRangeProps) => {
     const {clinicId, doctor, visits } = props;
+    const [showModal, setShowModal] = React.useState(false);
+    const [type, setType] = useState("Konsultacja");
+    const [description, setDescription] = useState("")
+    const [from, setfrom] = useState("")
+    const {currenDate} = useContext(CalendarContext)
 
     const renderTimeList = (timeList: string[]) => {
         return timeList.map((time, index) => <Time onClick={bookAVisit} key={index}>{time}</Time>);
     };
 
-    const bookAVisit = (event:React.MouseEvent<HTMLDivElement> ) => {
-        console.log(event.currentTarget.innerHTML)
-        console.log(doctor.email)
-        console.log(clinicId)
-        const hour = parseInt(dayjs(new Date()).format("HH"), 10)
-        if(hour<8 || hour >19){
-
-        }else{
-
-        }
+    const handleModalClose = () => {
+        setShowModal(false)
     };
+    function changeDescription(event:React.ChangeEvent<HTMLTextAreaElement>){
+        setDescription(event.target.value)
+    }
+    const bookAVisit = (event:React.MouseEvent<HTMLDivElement> ) => {
+        setShowModal(true)
+        setfrom(event.currentTarget.innerHTML)
+    };
+    const handleAppointment = useCallback(async () => {
+        try {
+            await VisitApi.addVisitUser({
+                clinicId:parseInt(clinicId??""),
+                receptionistDescription: description,
+                visitDate:currenDate?.format("YYYY-MM-DD"),
+                visitTime:from,
+                type:type === "Kontrolna" ? "CONTROL" : type === "Zabieg" ? "TREATMENT" : type === "Inne" ? "OTHER" : "",
+                doctorEmail:doctor.email,
+                lengthOfTheVisit: 30
+            })
+            toast.success("Dodano wizyte");
+            setShowModal(true)
+        } finally {
+            // setIsLoading(false);
+        }
+    }, [doctor.email,currenDate,clinicId,type,props,description]);
     const getAvailableTimes = () => {
         const hoursOfAvailability = doctor.hoursOfAvailability;
         const occupiedHoursMap: { [hour: string]: boolean } = {};
@@ -82,5 +114,40 @@ export const TimeRange: React.FC<TimeRangeProps> = (props: TimeRangeProps) => {
 
     const availableTimes = getAvailableTimes();
 
-    return <div>{renderTimeList(availableTimes)}</div>;
+    return (
+        <>
+            {showModal ?(
+                <Modal>
+                    <ModalOverlay onClick={handleModalClose} />
+                    <ModalContent>
+                        <LoginHeader>Umów wizytę</LoginHeader>
+                        <LoginInputs>
+                            <Autocomplete
+                                sx = {{marginBottom: "1.5rem",
+                                }}
+                                disablePortal
+                                id="combo-box-demo"
+                                defaultValue={"Kontrolna"}
+                                options={["Kontrolna","Zabieg","Inne"]}
+                                renderInput={(params) => <TextField {...params} label="Rodzaj Wizyty" />}
+                                inputValue={type}
+                                onInputChange={(event, type) => {setType(type);}}
+                            />
+
+                            <StyledTextarea
+                                value={description}
+                                onChange={changeDescription}
+                                aria-label="minimum height"
+                                minRows={3}
+                                placeholder="Opisz co ci dolega"
+                            />
+                            <LoginButton onClick={handleAppointment} >Umów</LoginButton>
+                        </LoginInputs>
+                    </ModalContent>
+                </Modal>
+            ):(
+                <div>
+                {renderTimeList(availableTimes)}
+            </div>)}
+        </>)
 };
