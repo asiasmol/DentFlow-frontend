@@ -3,7 +3,7 @@ import {link} from "../Link";
 export const DoctorPages: link[] = [
     {
         label: "Moje przychodnie",
-        link: "/clinics-choice"
+        link: "/clinics"
     },
     {
         label: "Obecna przychodnia",

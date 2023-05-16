@@ -17,7 +17,7 @@ import {
     ModalContent,
     ModalBody,
     ModalFooter, UserName, Button,
-} from "../../components/profile/Profile.style";
+} from "../profile/Profile.styles";
 import {toast} from "react-toastify";
 
 

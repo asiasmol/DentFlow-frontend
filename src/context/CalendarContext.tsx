@@ -58,18 +58,16 @@ export const CalendarContextProvider = ({ children }: React.PropsWithChildren) =
             }
             else if (currentUser?.roles.includes("RECEPTIONIST")){
                 const result = await VisitApi.getVisitsFromClinic({clinicId: currentClinic?.id})
-                console.log(result.data)
                 setCurrentVisits(result.data);
                 setNoFilterVisits(result.data)
             }else if(currentUser?.roles.includes("USER")){
                 const result = await VisitApi.getMyVisits()
-                console.log(result.data)
                 setCurrentVisits(result.data);
                 setNoFilterVisits(result.data)
             }
 
         }catch (e) {
-            console.log("nie załaduje")
+
         }
         finally {
             // setIsLoading(false);

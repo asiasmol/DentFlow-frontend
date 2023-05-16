@@ -30,6 +30,7 @@ import PatientDetails from "../patientDetails/PatientDetails";
 
 
 
+
 export const AppRouter = () => {
   return (
     <Routes>
@@ -58,6 +59,12 @@ export const AppRouter = () => {
                 }
             ></Route>
             <Route
+                path="/visits"
+                element={
+                    <Calendar/>
+                }
+            ></Route>
+            <Route
                 path="/reset-password"
                 element={
                     <ResetPassword/>
@@ -70,7 +77,7 @@ export const AppRouter = () => {
                 }
             ></Route>
             <Route
-              path="/clinics-choice"
+              path="/clinics"
               element={
                <ProtectedRoute>
                    <NonOwnerProtectedRoot>
@@ -88,18 +95,9 @@ export const AppRouter = () => {
                  </ProtectedRoute>
              }>
             </Route>
-            <Route path="/visits"
-                   element={
-                       <ProtectedRoute>
-                           <CalendarContextProvider>
-                               <Calendar/>
-                           </CalendarContextProvider>
-                       </ProtectedRoute>
-                   }>
-            </Route>
             <Route path="/patients/:lastName" element={<PatientDetails />} />
             <Route
-                path="/clinic"
+                path="/clinics/:clinicId/visits"
                 element={
                     <ProtectedRoute>
                         <CalendarContextProvider>

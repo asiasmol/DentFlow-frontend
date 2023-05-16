@@ -7,7 +7,7 @@ import {
     ModalBody,
     ModalFooter,
     ProfilePicture, UserName, Button, TextFieldModal, ChangeButton
-} from "./Profile.style";
+} from "./Profile.styles";
 import img from "../../resources/img/profile.png";
 import {useCallback, useEffect, useState} from "react";
 import {UserApi} from "../../api/UserApi";
@@ -15,6 +15,9 @@ import {ProfileUserResponse} from "../../models/api/ProfileUserResponse";
 import {toast} from "react-toastify";
 import { CardActions } from '@mui/material';
 import {AuthApi} from "../../api/AuthApi";
+import {
+    Loader
+} from "../login/Login.styles";
 
 export default function MultiActionAreaCard() {
     const [isLoading, setIsLoading] = useState(false);
@@ -86,49 +89,55 @@ export default function MultiActionAreaCard() {
     };
 
         return (
-            <ProfileDiv>
-                <ProfilePicture src={img} />
-                <UserName>{firstName} {lastName}</UserName>
-                <Button onClick={openModal}>
-                    Edytuj Profil
-                </Button>
-                <CardActions>
-                    {showModal && (
-                        <Modal>
-                            <ModalOverlay/>
-                            <ModalContent>
-                                <UserName>Edytuj Profil</UserName>
-                                <ModalBody>
-                                    <TextFieldModal
-                                        required
-                                        id="firstName"
-                                        label="Imię"
-                                        defaultValue={firstName}
-                                        onChange={changeFirstname}/>
-                                    <TextFieldModal
-                                        required
-                                        id="lastName"
-                                        label="Nazwisko"
-                                        defaultValue={lastName}
-                                        onChange={changeLastname}/>
-                                    <TextFieldModal
-                                        defaultValue={email}
-                                        type='email' disabled/>
-                                    <ChangeButton onClick={onResetClicked}>zmień maila</ChangeButton>
-                                </ModalBody>
-                                <ModalFooter>
-                                    <Button onClick={closeModal}>
-                                        Anuluj
-                                    </Button>
-                                    <Button onClick={handleSubmit}>
-                                        Zapisz
-                                    </Button>
-                                </ModalFooter>
-                            </ModalContent>
-                        </Modal>
-                    )}
-                </CardActions>
-            </ProfileDiv>
+            <>
+                {isLoading ? (
+                    <Loader ></Loader>
+                ):(
+                    <ProfileDiv>
+                        <ProfilePicture src={img} />
+                        <UserName>{firstName} {lastName}</UserName>
+                        <Button onClick={openModal}>
+                            Edytuj Profil
+                        </Button>
+                        <CardActions>
+                            {showModal && (
+                                <Modal>
+                                    <ModalOverlay/>
+                                    <ModalContent>
+                                        <UserName>Edytuj Profil</UserName>
+                                        <ModalBody>
+                                            <TextFieldModal
+                                                required
+                                                id="firstName"
+                                                label="Imię"
+                                                defaultValue={firstName}
+                                                onChange={changeFirstname}/>
+                                            <TextFieldModal
+                                                required
+                                                id="lastName"
+                                                label="Nazwisko"
+                                                defaultValue={lastName}
+                                                onChange={changeLastname}/>
+                                            <TextFieldModal
+                                                defaultValue={email}
+                                                type='email' disabled/>
+                                            <ChangeButton onClick={onResetClicked}>zmień maila</ChangeButton>
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <Button onClick={closeModal}>
+                                                Anuluj
+                                            </Button>
+                                            <Button onClick={handleSubmit}>
+                                                Zapisz
+                                            </Button>
+                                        </ModalFooter>
+                                    </ModalContent>
+                                </Modal>
+                            )}
+                        </CardActions>
+                    </ProfileDiv>
+                )}
+            </>
         );
     }
 

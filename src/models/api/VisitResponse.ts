@@ -8,4 +8,5 @@ export type VisitResponse = {
     patient:PatientResponse,
     visitDate: string
     id: number;
+    lengthOfTheVisit: number
 }

@@ -11,23 +11,25 @@ import {CLINIC_ID, CLINIC_NAME} from "../../constants/constants";
 import {UserApi} from "../../api/UserApi";
 import {
     Button,
-    ChangeButton, Modal,
+    Modal,
     ModalBody,
     ModalContent,
     ModalFooter,
     ModalOverlay,
-    TextFieldModal,
     UserName
-} from "../profile/Profile.style";
+} from "../profile/Profile.styles";
+import {Visit} from "../calendar/dayCalendar/Visit";
+import {UserContext} from "../../context/UserContext";
 
 
 export const ChooseClinic = () => {
-    const [clinicsWhereWork, setclinicsWhereWork] = React.useState<ClinicResponse[]>([]);
+    const [clinics, setClinics] = React.useState<ClinicResponse[]>([]);
     const [clinicsToAdd, setClinicsToAdd] = React.useState<ClinicResponse[]>([]);
-    const [isClinicValid, setisClinicValid] = useState<boolean>(true);
+    const [isClinicValid, setIsClinicValid] = useState<boolean>(true);
     const [clinicId, setClinicId] = useState<string |number>("");
     const [open, setOpen] = React.useState(false);
     const {clinicModifier} = useContext(ClinicContext);
+    const {currentUser} = useContext(UserContext)
     const navigate = useNavigate();
 
     const handleChange = (event: SelectChangeEvent<number>) => {
@@ -48,7 +50,16 @@ export const ChooseClinic = () => {
     const fetchClinics= useCallback(async () => {
         try {
             const result = await ClinicApi.getClinicWhereWork();
-            setclinicsWhereWork(result.data);
+            setClinics(result.data);
+        } catch (e){
+
+        }
+    }, []);
+
+    const fetchClinicsForUser= useCallback(async () => {
+        try {
+            const result = await ClinicApi.getAllClinics();
+            setClinics(result.data);
         } catch (e){
 
         }
@@ -67,33 +78,42 @@ export const ChooseClinic = () => {
         try {
             const result = await UserApi.getAllMyPatientsAccountClinics();
             setClinicsToAdd(result.data)
+            console.log(result.data)
         } catch (e){
 
         }
     }, []);
 
     useEffect(() => {
-        fetchClinics();
+        if(currentUser?.roles.includes("DOCTOR") || currentUser?.roles.includes("RECEPTIONIST")){
+            fetchClinics();
+        }else{
+            fetchClinicsForUser()
+        }
+
         fetchPatientsAccount();
     }, [fetchClinics,fetchPatientsAccount])
 
     const choseClinic = useCallback(async () => {
-        const foundClinic = clinicsWhereWork.find(clinic => clinic.id === clinicId);
+        const foundClinic = clinics.find(clinic => clinic.id === clinicId);
         if (foundClinic) {
             clinicModifier(foundClinic);
             localStorage.setItem(CLINIC_ID,String(foundClinic.id))
             localStorage.setItem(CLINIC_NAME,foundClinic.name)
         }
-        navigate(`/clinic`)
-    },[navigate,clinicId,clinicModifier,clinicsWhereWork] );
+        navigate(`/clinics/${clinicId}/visits`)
+    },[navigate,clinicId,clinicModifier,clinics] );
 
     useEffect(() => {
-        setisClinicValid(clinicId !== "");
+        setIsClinicValid(clinicId !== "");
     }, [clinicId]);
 
     return (
         <>
-            {clinicsWhereWork.length === 0 ? (
+            {clinics.length === 0 ? (
+                <>
+                </>
+            ):(
                 <>
                     {clinicsToAdd.length !== 0 && (
                         <Modal>
@@ -110,9 +130,7 @@ export const ChooseClinic = () => {
                                 </ModalFooter>
                             </ModalContent>
                         </Modal>
-                            )}
-                </>
-            ):(
+                    )}
                 <MainContainer>
                     <ChooseClinicLabel>Wybierz placówkę </ChooseClinicLabel>
                     <FormSelect sx={{ m: 1, Width: 300 }}>
@@ -126,9 +144,9 @@ export const ChooseClinic = () => {
                             label="Clinic"
                             onChange={handleChange}
                         >
-                            {clinicsWhereWork.map((clinic) => (
+                            {clinics.map((clinic) => (
                                 <MenuItem key={clinic.id}  value={clinic.id}>
-                                    {clinic.name}
+                                    {clinic.city} {clinic.address} {clinic.name}
                                 </MenuItem>
                             ))}
                         </Select>
@@ -141,6 +159,7 @@ export const ChooseClinic = () => {
                     </FormSelect>
 
                 </MainContainer>
+                </>
             )}
         </>
     );

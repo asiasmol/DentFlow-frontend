@@ -7,18 +7,21 @@ import {CalendarContext} from "../../context/CalendarContext";
 import { DayCalendar } from './dayCalendar/DayCalendar';
 import {AddVisitModal} from "./addVisit/AddVisitModal";
 import {UserContext} from "../../context/UserContext";
+import {ClinicAvailability} from "../UserInterface/ClinicAvailability";
+import {useParams} from "react-router-dom";
+import dayjs from "dayjs";
 
 
 export const Calendar = () => {
+    const { clinicId } = useParams();
     const dayjs = require('dayjs');
     require('dayjs/locale/pl'); // Importuj lokalizację językową
     dayjs.locale('pl'); // Ustawienie języka na polski
-    const {currenDate,weekDays,dateModifier} = useContext(CalendarContext)
+    const {currenDate,selectedDateModifier,weekDays,dateModifier} = useContext(CalendarContext)
     const {currentUser} = useContext(UserContext)
     const [isOpen, setIsOpen] = useState(false);
     const [isWeekCalendar, setIsWeekCalendar] = useState(true);
     const [showModal, setShowModal] = useState(false);
-
     const handleModalOpen = () => {
         setShowModal(true);
     };
@@ -33,6 +36,7 @@ export const Calendar = () => {
     }
     const goToday =() => {
         dateModifier(dayjs(new Date()));
+        selectedDateModifier(dayjs(new Date()))
     }
     const nextWeek =() => {
         dateModifier(currenDate.add(1, 'week'));
@@ -52,7 +56,6 @@ export const Calendar = () => {
                    {(currentUser?.roles.includes("DOCTOR") ||
                        currentUser?.roles.includes("RECEPTIONIST")) &&
                        <BackVisitButton onClick={handleModalOpen}>Dodaj wizyte</BackVisitButton>}
-
                    <BackButton onClick={goToday}>
                        Dzisiaj
                    </BackButton>
@@ -73,7 +76,10 @@ export const Calendar = () => {
                    {isOpen &&(
                        <Slidebar />
                    )}
-                   {isWeekCalendar ?(<Week changeCalendar={changeCalendar} isWeekCalendar={isWeekCalendar} isOpen = {isOpen} week = {weekDays}/>):(<DayCalendar isOpen = {isOpen}/>)}
+                   {(currentUser?.roles.includes("DOCTOR") || currentUser?.roles.includes("RECEPTIONIST") || !clinicId )?
+                       (<>{isWeekCalendar ?(<Week changeCalendar={changeCalendar} isWeekCalendar={isWeekCalendar} isOpen = {isOpen} week = {weekDays}/>)
+                           :(<DayCalendar isOpen = {isOpen}/>)
+                       }</>):(<ClinicAvailability/>)}
                </CalendarBody>
            </HScreen>
             {showModal && (

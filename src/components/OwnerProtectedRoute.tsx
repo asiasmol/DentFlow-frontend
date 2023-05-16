@@ -6,7 +6,7 @@ import {UserContext} from "../context/UserContext";
 export const OwnerProtectedRoute = ({ children }: React.PropsWithChildren) => {
   const { currentUser} = useContext(UserContext);
   if (!currentUser?.roles.includes("OWNER")) {
-    return <Navigate to={"/clinics-choice"} replace />;
+    return <Navigate to={"/clinics"} replace />;
   }
   return <>{children}</>;
 };

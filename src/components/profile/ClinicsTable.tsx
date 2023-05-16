@@ -3,20 +3,13 @@ import {
     Button,
     Modal,
     ModalBody,
-    ModalContent, ModalFooter,
+    ModalFooter,
     ModalOverlay,
-    Monday,
-    Tuesday,
     TableDiv,
     UserName,
-    Week,
-    Friday,
-    Thursday,
-    Saturday,
-    Wednesday,
     ModalContentClinic,
-    WeekName
-} from "./Profile.style";
+
+} from "./Profile.styles";
 import {useState, useEffect, useCallback} from "react";
 import { ClinicResponse } from '../../models/api/ClinicResponse';
 import {ClinicApi} from "../../api/ClinicApi";

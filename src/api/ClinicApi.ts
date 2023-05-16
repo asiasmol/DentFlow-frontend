@@ -4,8 +4,11 @@ import {ClinicRequest} from "../models/api/ClinicRequest";
 import {EmployeeResponse} from "../models/api/EmployeeResponse";
 import {EmployeeRequest} from "../models/api/EmployeeRequest";
 import {PatientResponse} from "../models/api/PatientResponse";
+import {VisitResponse} from "../models/api/VisitResponse";
 
 export class ClinicApi {
+    static getAllClinics = async () =>
+        await authorizedApi.get<ClinicResponse[]>("/clinics");
     static getClinicWhereWork = async () =>
         await authorizedApi.get<ClinicResponse[]>("/clinics/myClinics");
 
@@ -26,6 +29,10 @@ export class ClinicApi {
         await authorizedApi.delete("/clinics/personnel", { data: request })
 
     static getDoctors = async (request: { clinicId: number | undefined }) =>
-        await authorizedApi.get<EmployeeResponse[]>("/clinics/doctors", {params:request});
+        await authorizedApi.get<EmployeeResponse[]>("/clinics/myDoctors", {params:request});
 
+    static getDoctorsForClinic = async (request: { clinicId: number | undefined }) =>
+        await authorizedApi.get<EmployeeResponse[]>("/clinics/doctors", {params:request});
+    static getVisitsForClinic = async (request: { clinicId: number | undefined }) =>
+        await authorizedApi.get<VisitResponse[]>("/clinics/visits", {params:request});
 }

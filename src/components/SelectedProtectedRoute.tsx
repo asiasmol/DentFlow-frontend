@@ -5,7 +5,7 @@ import {ClinicContext} from "../context/ClinicContext";
 export const SelectedProtectedRoute = ({ children }: React.PropsWithChildren) => {
   const {currentClinic} = useContext(ClinicContext);
   if (currentClinic?.id===0) {
-    return <Navigate to={"/clinics-choice"} replace />;
+    return <Navigate to={"/clinics"} replace />;
   }
   return <>{children}</>;
 };

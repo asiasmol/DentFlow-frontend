@@ -39,7 +39,7 @@ export const AddPatient = () => {
                 phoneNumber: phoneNumber
             })
             toast.success("Dodano Pacjenta");
-            navigate("/clinic");
+            navigate(`/clinics/${currentClinic?.id}/visits`)
         } catch (error: any) {
 
         }

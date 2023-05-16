@@ -17,7 +17,7 @@ import {
     ModalOverlay,
     TextFieldModal,
     UserName
-} from "../profile/Profile.style";
+} from "../profile/Profile.styles";
 
 import {toast} from "react-toastify";
 
