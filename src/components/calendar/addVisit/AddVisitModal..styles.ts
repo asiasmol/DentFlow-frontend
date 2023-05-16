@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import TextareaAutosize from '@mui/base/TextareaAutosize';
 import {Autocomplete} from "@mui/material";
-
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 export const Modal = styled.div`
   position: fixed;
@@ -59,29 +57,6 @@ export const StyledTextarea = styled(TextareaAutosize)`
   }
 `;
 
-export const StyledTextarea = styled(TextareaAutosize)`
-  width: 18.4rem;
-  font-family: Montserrat;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  padding: 12px;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border-color: #9a9a9a;
-
-  &:hover {
-    border-color: #131313;
-  }
-
-  &:focus {
-    border-color: #2f8bb4;
-  }
-`;
 
 export const AutocompleteTime = styled(Autocomplete)`
   width: 9rem;
