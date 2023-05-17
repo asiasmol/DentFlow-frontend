@@ -93,7 +93,9 @@ export  const AddVisitModal: React.FC<Props> = (props:Props) =>{
     useEffect(() => {
         validateForm();
     }, [patient, doctor, date, from, to, description]);
-
+    useEffect(()=>{
+        doFilterDoctors()
+    },[doFilterDoctors])
 
     const handleAppointment= useCallback(async () => {
         try {
@@ -114,7 +116,19 @@ export  const AddVisitModal: React.FC<Props> = (props:Props) =>{
             // setIsLoading(false);
         }
     }, [currentClinic?.id,props,from, to,date,description]);
-
+    function doFilterDoctors ()  {
+        const filterDoctors:EmployeeResponse[]=[]
+        doctors.map((doctor)=>{
+            doctor.hoursOfAvailability.map((hour)=>{
+                if(hour.day.toLowerCase() === date?.format("dddd") ){
+                    if (hour.from <= from && to<hour.to){
+                        filterDoctors.push(doctor)
+                    }
+                }
+            })
+        })
+        setDoctors(filterDoctors)
+    };
     const validateForm = () => {
         const areAllFieldsFilled =
             !!patient &&
