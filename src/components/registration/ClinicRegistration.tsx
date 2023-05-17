@@ -29,6 +29,7 @@ const ClinicRegistration = () => {
     const [isEmailValid, setEmailValid] = useState<boolean>(false)
     const [city, setCity] = useState('');
     const [address, setAddress] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('')
     const [password, setPassword] = useState('');
     const [secondPassword, setSecondPassword] = useState('');
     const [isPasswordValid, setPasswordValid] = useState<boolean | null>(false)
@@ -52,11 +53,11 @@ const ClinicRegistration = () => {
                 clinicName: clinicName,
                 ownerName: ownerName,
                 ownerLastname: ownerLastname,
+                phoneNumber:phoneNumber,
                 city: city,
                 address: address,
                 email: email,
                 password: password,
-
             });
             toast.success("Założono klinikę")
             navigate("/")
@@ -64,7 +65,7 @@ const ClinicRegistration = () => {
         } catch (error: any) {
 
         }
-    }, [clinicName, city, address, email, password, navigate]);
+    }, [phoneNumber,clinicName, city, address, email, password, navigate]);
 
     useEffect(() => {
         setEmailValid(email.match(emailRegex) !== null)
@@ -90,6 +91,9 @@ const ClinicRegistration = () => {
 
     const onCityChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setCity(event.target.value)
+    }
+    const onPhoneNumberChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setPhoneNumber(event.target.value)
     }
     const onStreetChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setAddress(event.target.value)
@@ -156,7 +160,7 @@ const ClinicRegistration = () => {
                     </ModalContent>
                 </Modal>
                 ):(
-                <LoginForm height={63}>
+                <LoginForm height={67}>
                     <LoginHeader>
                         Załóż przychodnię
                     </LoginHeader>
@@ -184,6 +188,9 @@ const ClinicRegistration = () => {
 
                         <StyledTextFieldMedium label='Adres' size={"medium"} value={address} onChange={onStreetChange}/>
                         <StyledTextFieldSmall label='Adres' size={"small"} value={address} onChange={onStreetChange}/>
+
+                        <StyledTextFieldMedium label='tel kliniki' size={"medium"} value={phoneNumber} onChange={onPhoneNumberChange}/>
+                        <StyledTextFieldSmall label='tel kliniki' size={"small"} value={phoneNumber} onChange={onPhoneNumberChange}/>
 
                         <StyledTextFieldMedium label="Email" size={'medium'} value={email} onChange={onEmailChange}/>
                         <StyledTextFieldSmall label="Email" size={'small'} value={email} onChange={onEmailChange}/>

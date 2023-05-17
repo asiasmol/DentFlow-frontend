@@ -8,6 +8,7 @@ import {TimeRange} from './TimeRange';
 import {CalendarContext} from "../../context/CalendarContext";
 import {VisitResponse} from "../../models/api/VisitResponse";
 import dayjs from "dayjs";
+import {ClinicContext} from "../../context/ClinicContext";
 
 
 export const ClinicAvailability = () => {
@@ -15,6 +16,7 @@ export const ClinicAvailability = () => {
     const [doctors, setDoctors] = useState<EmployeeResponse[]>([]);
     const [visits, setVisits] = useState<VisitResponse[]>([]);
     const {currenDate} = useContext(CalendarContext)
+    const {currentClinic} = useContext(ClinicContext)
 
     const fetchDoctors = async () => {
         try {
@@ -28,7 +30,6 @@ export const ClinicAvailability = () => {
             // Obsłuż błąd
         }
     };
-
 
     const fetchVisits = async () => {
         try {
@@ -50,7 +51,7 @@ export const ClinicAvailability = () => {
     return (
         <>
             <HeaderLabel>{currenDate.format("MMM DD dddd")}</HeaderLabel>
-            <HeaderLabel>Możesz umówić się telefonicznie:<br /></HeaderLabel>
+            <HeaderLabel>Możesz umówić się telefonicznie:<br />{currentClinic?.phoneNumber}</HeaderLabel>
             <HeaderLabel>Lekarze:</HeaderLabel>
             <>
                 {doctors.map((doctor,id) => (

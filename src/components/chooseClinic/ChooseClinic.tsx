@@ -7,7 +7,7 @@ import {ClinicResponse} from "../../models/api/ClinicResponse";
 import {ClinicApi} from "../../api/ClinicApi";
 import {useNavigate} from "react-router-dom";
 import {ClinicContext} from "../../context/ClinicContext";
-import {CLINIC_ID, CLINIC_NAME} from "../../constants/constants";
+import {CLINIC_ID, CLINIC_NAME, CLINIC_PHONE} from "../../constants/constants";
 import {UserApi} from "../../api/UserApi";
 import {
     Button,
@@ -99,6 +99,7 @@ export const ChooseClinic = () => {
             clinicModifier(foundClinic);
             localStorage.setItem(CLINIC_ID,String(foundClinic.id))
             localStorage.setItem(CLINIC_NAME,foundClinic.name)
+            localStorage.setItem(CLINIC_PHONE,foundClinic.phoneNumber)
 
         }
         navigate(`/clinics/${clinicId}/visits`)
