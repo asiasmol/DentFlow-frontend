@@ -23,6 +23,7 @@ export  const AddVisitModal: React.FC<Props> = (props:Props) =>{
     const [date, setDate] = useState<dayjs.Dayjs | null>(dayjs(new Date()));
     const [description, setDescription] = useState("")
     const [doctors, setDoctors] = useState<EmployeeResponse[]>([]);
+    const [filterDoctors, setFilterDoctors] = useState<EmployeeResponse[]>([]);
     const [doctor, setDoctor] = useState<EmployeeResponse>();
     const [patient, setPatient] = useState<PatientResponse>();
     const [patients, setPatients] = useState<PatientResponse[]>([]);
@@ -95,7 +96,7 @@ export  const AddVisitModal: React.FC<Props> = (props:Props) =>{
     }, [patient, doctor, date, from, to, description]);
     useEffect(()=>{
         doFilterDoctors()
-    },[doFilterDoctors])
+    },[doctors,date,from,to])
 
     const handleAppointment= useCallback(async () => {
         try {
@@ -121,13 +122,13 @@ export  const AddVisitModal: React.FC<Props> = (props:Props) =>{
         doctors.map((doctor)=>{
             doctor.hoursOfAvailability.map((hour)=>{
                 if(hour.day.toLowerCase() === date?.format("dddd") ){
-                    if (hour.from <= from && to<hour.to){
+                    if (hour.from <= from && to<=hour.to){
                         filterDoctors.push(doctor)
                     }
                 }
             })
         })
-        setDoctors(filterDoctors)
+        setFilterDoctors(filterDoctors)
     };
     const validateForm = () => {
         const areAllFieldsFilled =
@@ -164,7 +165,7 @@ export  const AddVisitModal: React.FC<Props> = (props:Props) =>{
                         }}
                         disablePortal
                         id="combo-box-demo"
-                        options={doctors}
+                        options={filterDoctors}
                         getOptionLabel={(doctor) => doctor.firstName + ' ' + doctor.lastName}
                         renderInput={(params) => <TextField {...params} label="Lekarz" />}
                         value={doctor}

@@ -8,6 +8,12 @@ import {
     TableDiv,
     UserName,
     ModalContentClinic,
+    Table,
+    AddButton,
+    AutocompleteTime,
+    TimeSettings,
+    DeleteButton,
+    CenterDiv,
 
 } from "./Profile.styles";
 import {useState, useEffect, useCallback} from "react";
@@ -18,6 +24,8 @@ import {GridColDef,  GridRowParams} from '@mui/x-data-grid/models';
 import {UserApi} from "../../api/UserApi";
 import {toast} from "react-toastify";
 import { HoursOfAvailabilityRequest } from '../../models/api/HoursOfAvailabilityRequest';
+import {TextField} from "@mui/material";
+import dayjs from "dayjs";
 
 
 const columns: GridColDef[] = [
@@ -56,7 +64,20 @@ export default function DataGridDemo() {
         { day: 'Piątek', hours: [] },
         { day: 'Sobota', hours: [] },
     ]);
+    const generateTimeOptions = () => {
+        const options = [];
+        for (let hour = 8; hour <= 20; hour++) {
+            for (let minute = 0; minute < 60; minute += 15) {
+                const time = dayjs().set("hour", hour).set("minute", minute);
+                const label = time.format("HH:mm");
+                const value = time.toISOString();
+                options.push({ label, value });
+            }
+        }
+        return options;
+    };
 
+    const timeOptions = generateTimeOptions();
     const addHour = (dayIndex: number) => {
         const updatedDays = [...days];
         updatedDays[dayIndex].hours.push({ from: '', to: '' });
@@ -176,41 +197,43 @@ export default function DataGridDemo() {
                     <ModalContentClinic>
                         <UserName>Twoje Godziny Dostępności</UserName>
                         <ModalBody>
-                            <table>
-                                <thead>
+                            <Table>
                                 <tr>
-                                    <th>Dzień</th>
-                                    <th>Godziny dostępności</th>
-                                </tr>
-                                </thead>
-                                <tbody>
                                 {days.map((day, dayIndex) => (
-                                    <tr key={day.day}>
-                                        <td>{day.day}</td>
+                                        <th>{day.day}</th>
+                                ))}
+                                </tr>
+                                {days.map((day, dayIndex) => (
                                         <td>
                                             {day.hours.map((hour, hourIndex) => (
-                                                <div key={hourIndex}>
-                                                    <input
-                                                        type="time"
-                                                        value={hour.from}
-                                                        onChange={(e) => handleHourChange(dayIndex, hourIndex, 'from', e.target.value)}
+                                                <TimeSettings key={hourIndex}>
+                                                    <AutocompleteTime
+                                                        id="free-solo-demo"
+                                                        freeSolo
+                                                        options={timeOptions}
+                                                        defaultValue={hour.from}
+                                                        renderInput={(params) => <TextField {...params} label="OD" />}
+                                                        onInputChange={(event, value) => {handleHourChange(dayIndex, hourIndex, 'from',value)}}
+                                                        />
+
+                                                    <AutocompleteTime
+                                                        id="free-solo-demo"
+                                                        freeSolo
+                                                        options={timeOptions}
+                                                        defaultValue={hour.to}
+                                                        renderInput={(params) => <TextField {...params} label="DO" />}
+                                                        onInputChange={(event, value) => {handleHourChange(dayIndex, hourIndex, 'to', value)}}
                                                     />
-                                                    do
-                                                    <input
-                                                        type="time"
-                                                        value={hour.to}
-                                                        onChange={(e) => handleHourChange(dayIndex, hourIndex, 'to', e.target.value)}
-                                                    />
-                                                    <button onClick={() => removeHour(dayIndex, hourIndex)}>Usuń</button>
-                                                </div>
+                                                    <DeleteButton onClick={() => removeHour(dayIndex, hourIndex)}>X</DeleteButton>
+                                                </TimeSettings>
                                             ))}
-                                            <button onClick={() => addHour(dayIndex)}>Dodaj godzinę</button>
+                                            <CenterDiv>
+                                                <AddButton onClick={() => addHour(dayIndex)}>Dodaj godzinę</AddButton>
+                                            </CenterDiv>
                                         </td>
-                                        <td></td>
-                                    </tr>
+
                                 ))}
-                                </tbody>
-                            </table>
+                            </Table>
                         </ModalBody>
                         <ModalFooter>
                             <Button onClick={closeModal}>

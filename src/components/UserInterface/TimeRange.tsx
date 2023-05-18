@@ -3,7 +3,16 @@ import { EmployeeResponse } from '../../models/api/EmployeeResponse';
 import { VisitResponse } from "../../models/api/VisitResponse";
 import { Time } from "./ClinicAvailability.styles";
 import dayjs from "dayjs";
-import {Button, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, UserName} from "../profile/Profile.styles";
+import {
+    Button,
+    CenterDiv,
+    Modal,
+    ModalBody,
+    ModalContent,
+    ModalFooter,
+    ModalOverlay,
+    UserName
+} from "../profile/Profile.styles";
 import {LoginButton, LoginHeader, LoginInputs} from "../login/Login.styles";
 import {Autocomplete, TextField} from "@mui/material";
 import {LocalizationProvider} from "@mui/x-date-pickers";
@@ -14,6 +23,7 @@ import {StyledTextarea} from "../calendar/addVisit/AddVisitModal..styles";
 import {VisitApi} from "../../api/VisitApi";
 import {toast} from "react-toastify";
 import {CalendarContext} from "../../context/CalendarContext";
+import {HoursOfAvailabilityResponse} from "../../models/api/HoursOfAvailabilityResponse";
 
 
 interface TimeRangeProps {
@@ -62,9 +72,14 @@ export const TimeRange: React.FC<TimeRangeProps> = (props: TimeRangeProps) => {
         }
     }, [doctor.email,currenDate,clinicId,type,props,description]);
     const getAvailableTimes = () => {
-        const hoursOfAvailability = doctor.hoursOfAvailability;
+        const hoursOfAvailability:HoursOfAvailabilityResponse[] = []
+        doctor.hoursOfAvailability.map((hour)=>{
+            if(hour.day.toLowerCase() === currenDate.format("dddd")){
+                console.log(hour)
+                hoursOfAvailability.push(hour)
+            }
+        })
         const occupiedHoursMap: { [hour: string]: boolean } = {};
-
         for (const visit of visits) {
             // Sprawdzanie czy email lekarza zgadza się z wizytą
             if (visit.doctor.email === doctor.email) {
@@ -82,7 +97,6 @@ export const TimeRange: React.FC<TimeRangeProps> = (props: TimeRangeProps) => {
         }
 
         const availableTimes: string[] = [];
-
         for (const availability of hoursOfAvailability) {
             const startTime = new Date(`2000-01-01 ${availability.from}`);
             const endTime = new Date(`2000-01-01 ${availability.to}`);
@@ -90,7 +104,6 @@ export const TimeRange: React.FC<TimeRangeProps> = (props: TimeRangeProps) => {
             let currentTime = startTime;
             while (currentTime < endTime) {
                 const hour = formatTime(currentTime);
-
                 if (!occupiedHoursMap[hour]) {
                     availableTimes.push(hour);
                 }
@@ -148,6 +161,6 @@ export const TimeRange: React.FC<TimeRangeProps> = (props: TimeRangeProps) => {
             ):(
                 <div>
                 {renderTimeList(availableTimes)}
-            </div>)}
+                 </div>)}
         </>)
 };

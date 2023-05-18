@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Box from "@mui/material/Box";
-import {TextField} from "@mui/material";
+import {Autocomplete, TextField} from "@mui/material";
 
 export const ProfileDiv = styled.div`
   @media(max-width: 768px){
@@ -193,58 +193,65 @@ export const TableDiv = styled(Box)`
 export const ModalContentClinic = styled.div`
   position: relative;
   z-index: 101;
-  width: 700px;
+  width: 1450px;
   padding: 20px;
   border: 1px solid #1784b3;
   border-radius: 1rem;
   background-color: white;
 
 `;
-export const Week = styled.div`
-  width: 600px;
+export const Table = styled.table`
+  width: 1450px;
+  border-collapse: collapse;
+`;
+
+
+export const AddButton  = styled.button`
+  background-color: #FFBE5C;
+  color: white;
+  height: 3rem;
+  width: 10rem;
+  font-size: 1rem;
   margin-left: auto;
   margin-right: auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); /* Powtarza 7 kolumn z równą szerokością */
-  grid-gap: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  display: block;
+  &:hover {
+    filter: brightness(85%);
+  }
+  
 `;
-export const Monday = styled.div`
-  grid-column: 1;
-width: 100px;
+
+export const DeleteButton  = styled.button`
+  background: none;
+  border: none;
+  text-align: center;
+  padding-top: 3px;
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor:pointer;
+  height:20px;
+  border-radius:10px;
+  :hover{
+    background-color: lightgray;
+  }
+`;
+
+
+export const AutocompleteTime = styled(Autocomplete)`
+  margin-top: 5px;
+  width: 6.1rem;
+`;
+export const TimeSettings = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
-export const Tuesday = styled.div`
-  grid-column: 2;
-  width: 100px;
-  display: flex;
-  flex-direction: column;
+
+
+export const CenterDiv = styled.div`
+  width: 12.2rem;
 `;
-export const Wednesday = styled.div`
-  grid-column: 3;
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-`;
-export const Thursday = styled.div`
-  grid-column: 4;
-  display: flex;
-  flex-direction: column;
-`;
-export const Friday = styled.div`
-  grid-column: 5;
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-`;
-export const Saturday  = styled.div`
-  grid-column: 6;
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-`;
-export const WeekName  = styled.label`
-  font-size: 1rem;
-  display: flex;
-  flex-direction: column;
-`;
+
+

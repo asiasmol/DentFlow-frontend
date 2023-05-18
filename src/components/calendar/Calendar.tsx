@@ -79,7 +79,7 @@ export const Calendar = () => {
                    {(currentUser?.roles.includes("DOCTOR") || currentUser?.roles.includes("RECEPTIONIST") || !clinicId )?
                        (<>{isWeekCalendar ?(<Week changeCalendar={changeCalendar} isWeekCalendar={isWeekCalendar} isOpen = {isOpen} week = {weekDays}/>)
                            :(<DayCalendar isOpen = {isOpen}/>)
-                       }</>):(<ClinicAvailability/>)}
+                       }</>):(<ClinicAvailability isOpen = {isOpen}/>)}
                </CalendarBody>
            </HScreen>
             {showModal && (

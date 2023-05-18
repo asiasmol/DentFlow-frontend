@@ -10,7 +10,19 @@ export const List = styled.div`
 `;
 export const Time = styled.div`
   cursor: pointer;
-  border: 1px solid blue;
-  width: 50px;
-  margin: 5px;
+  border: 2px solid #1784b3;
+  width: 100px;
+  font-size: 1.5rem;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: center;
+  align-items: center;
+  :hover{
+    opacity: 80%;
+    background-color: lightgray;
+  }
+`;
+export const Div = styled.div<{isOpen:boolean}>`
+  width: ${props => props.isOpen ? '85%' : '100%'};
+  float: right;
 `;
