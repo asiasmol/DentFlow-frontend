@@ -14,7 +14,7 @@ export const Profile = () => {
           <PersonalProfile/>
           {currentUser?.roles.includes("DOCTOR") &&<ClinicsTable/>}
           {currentUser?.roles.includes("OWNER")&&<OwnerProfileData />}
-          {/*{currentUser?.roles.includes("")&&<>todo</>}*/}
+          {!currentUser?.roles.includes("OWNER")&&!currentUser?.roles.includes("DOCTOR")&&<>todo</>}
       </HomeContainer>
       </>
   );

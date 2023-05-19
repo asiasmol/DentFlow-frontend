@@ -53,7 +53,7 @@ export  const WeekDay: React.FC<Props> = (props:Props) =>{
                                     <Tooltip key={i}  title={
                                         <div>
                                             <strong>Lekarz:</strong> {visit.doctor.firstName} {visit.doctor.lastName}<br />
-                                            {(currentUser?.roles.includes("DOCTOR") ||currentUser?.roles.includes("RECEPTIONIST"))&& (<> <strong>Pacjent:</strong> {visit.patient.firstName} {visit.patient.lastName}</>)}
+                                            {(currentUser?.roles.includes("DOCTOR") ||currentUser?.roles.includes("RECEPTIONIST"))&& (<> <strong>Rodzaj:</strong> {visit.type === "CONTROL" ? "Kontrolna" : visit.type === "TREATMENT" ? "Zabieg" : visit.type === "OTHER" ? "Inna" : ""} </>)}
                                         </div>
                                     }>
                                         <Visit  onClick={() => setCurrentVisit(visit)} min={Number(dayjs(visit.visitDate, 'YYYY-MM-DD HH:mm').format("mm"))} type={visit.type} lengthOfTheVisit={visit.lengthOfTheVisit} selectedVisit={visit==currentVisit}>
