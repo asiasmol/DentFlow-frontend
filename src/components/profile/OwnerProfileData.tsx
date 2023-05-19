@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ClinicData, TableDiv} from "./Profile.style";
+import {ClinicData, TableDiv} from "./Profile.styles";
 import {useState, useEffect, useCallback} from "react";
 import { ClinicResponse } from '../../models/api/ClinicResponse';
 import {ClinicApi} from "../../api/ClinicApi";
