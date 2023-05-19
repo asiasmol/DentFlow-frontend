@@ -95,7 +95,7 @@ export  const AddVisitModal: React.FC<Props> = (props:Props) =>{
         validateForm();
     }, [patient, doctor, date, from, to, description]);
     useEffect(()=>{
-        doFilterDoctors()
+        // doFilterDoctors()
     },[doctors,date,from,to])
 
     const handleAppointment= useCallback(async () => {
