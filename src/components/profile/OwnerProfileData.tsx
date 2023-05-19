@@ -1,31 +1,23 @@
 import * as React from 'react';
+import {ClinicData, TableDiv} from "./Profile.style";
 import {useState, useEffect, useCallback} from "react";
 import { ClinicResponse } from '../../models/api/ClinicResponse';
 import {ClinicApi} from "../../api/ClinicApi";
-import { DataGrid } from '@mui/x-data-grid/DataGrid';
-import { GridColDef } from '@mui/x-data-grid/models';
-import { TableDiv } from './Profile.styles';
-
-const columns: GridColDef[] = [
-    {
-        field: 'id',
-        headerName: 'Nr.',
-        width: 90
-    },
-    {
-        field: 'name',
-        headerName: 'Kliniki :',
-        width: 150,
-        editable: true,
-    }
-];
+import {TableCell, TableRow} from "@mui/material";
+import TableBody from "@mui/material/TableBody";
+import Table from "@mui/material/Table";
+import {ProfileUserResponse} from "../../models/api/ProfileUserResponse";
+import {UserApi} from "../../api/UserApi";
 
 export default function DataGridDemo() {
-    const [clinic, setClinic] = useState<ClinicResponse[]>([]);
+    const [ownerEmail, setOwnerEmail] = useState<String>();
+    const [clinic, setClinic] = useState<ClinicResponse>();
     const fetchClinic = useCallback(async () => {
         try {
-            const result = await ClinicApi.getClinicWhereWork()
-            setClinic(result.data)
+            const result = await ClinicApi.getMyClinic();
+            setClinic(result.data);
+            const user = await UserApi.getUser();
+            setOwnerEmail(user.data.email);
         }
         finally {
 
@@ -37,25 +29,44 @@ export default function DataGridDemo() {
 
     return (
         <TableDiv>
-            <DataGrid sx={{
-                borderRadius: 3,
-                border: 3,
-                borderColor: '#1784B3',
-                '& .MuiDataGrid-cell:hover': {
-                    color: 'primary.main',
-                },
-            }}
-                      rows={clinic}
-                      columns={columns}
-                      initialState={{
-                          pagination: {
-                              paginationModel: {
-                                  pageSize: 4,
-                              },
-                          },
-                      }}
-                      pageSizeOptions={[4]}
-            />
+        <ClinicData>
+            <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+                <TableBody>
+                    <TableRow>
+                        <TableCell>
+                            <strong>Nazwa</strong>
+                        </TableCell>
+                        <TableCell>
+                            <strong>Adres</strong>
+                        </TableCell>
+                        <TableCell>
+                            <strong>Miasto</strong>
+                        </TableCell>
+                        <TableCell>
+                            <strong>Email</strong>
+                        </TableCell>
+                        <TableCell>
+                            <strong>Numer Telefonu</strong>
+                        </TableCell>
+                        <TableCell />
+                    </TableRow>
+                    <TableRow>
+                    <TableCell>
+                        {clinic?.name}
+                    </TableCell>
+                    <TableCell>
+                        {clinic?.address}
+                    </TableCell>
+                    <TableCell >
+                        {clinic?.city}
+                    </TableCell>
+                    <TableCell >
+                        {ownerEmail}
+                    </TableCell>
+                </TableRow>
+                </TableBody>
+            </Table>
+        </ClinicData>
         </TableDiv>
     );
 }

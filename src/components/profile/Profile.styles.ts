@@ -168,6 +168,14 @@ export const HomeContainer = styled.div`
   height: 60rem;
 `;
 
+export const ClinicData = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #1784B3;
+  border-radius: 5px;
+`
+
 export const TableDiv = styled(Box)`
   width: 120rem;
   padding-top: 5rem;
