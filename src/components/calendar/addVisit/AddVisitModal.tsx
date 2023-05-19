@@ -117,19 +117,20 @@ export  const AddVisitModal: React.FC<Props> = (props:Props) =>{
             // setIsLoading(false);
         }
     }, [currentClinic?.id,props,from, to,date,description]);
-    function doFilterDoctors ()  {
-        const filterDoctors:EmployeeResponse[]=[]
-        doctors.map((doctor)=>{
-            doctor.hoursOfAvailability.map((hour)=>{
-                if(hour.day.toLowerCase() === date?.format("dddd") ){
-                    if (hour.from <= from && to<=hour.to){
-                        filterDoctors.push(doctor)
-                    }
-                }
-            })
-        })
-        setFilterDoctors(filterDoctors)
-    };
+
+    // function doFilterDoctors ()  {
+    //     const filterDoctors:EmployeeResponse[]=[]
+    //     doctors.map((doctor)=>{
+    //         doctor.hoursOfAvailability.map((hour)=>{
+    //             if(hour.day.toLowerCase() === date?.format("dddd") ){
+    //                 if (hour.from <= from && to<=hour.to){
+    //                     filterDoctors.push(doctor)
+    //                 }
+    //             }
+    //         })
+    //     })
+    //     setFilterDoctors(filterDoctors)
+    // };
     const validateForm = () => {
         const areAllFieldsFilled =
             !!patient &&
@@ -165,7 +166,7 @@ export  const AddVisitModal: React.FC<Props> = (props:Props) =>{
                         }}
                         disablePortal
                         id="combo-box-demo"
-                        options={filterDoctors}
+                        options={doctors}
                         getOptionLabel={(doctor) => doctor.firstName + ' ' + doctor.lastName}
                         renderInput={(params) => <TextField {...params} label="Lekarz" />}
                         value={doctor}
